@@ -1,10 +1,6 @@
-import React from "react";
-
-type Props = {};
-
-const PostBoard = (props: Props) => {
+const PostBoard = () => {
   return (
-    <div className="bg-[white] text-center rounded-md mt-[30px] py-3 w-[80%] min-w-[300px] shadow-md mx-auto px-3">
+    <div className="bg-[white] text-center rounded-md mt-[30px] py-3 w-[80%] min-w-[300px] shadow-md mx-auto px-3 sm:w-[50%]">
       <div className="flex justify-center gap-4 items-center">
         <div className="w-[45px] h-[45px] bg-[#d5d5d5] flex justify-center items-center rounded-full">
           {false ? <img src="" alt="" /> : <i className="fa-solid fa-user"></i>}
