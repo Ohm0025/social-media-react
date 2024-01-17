@@ -1,14 +1,22 @@
-import { useState } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { loginUserService } from "./service/testaxios";
+import { useEffect } from "react";
+import HomePage from "./page/HomePage";
 
 function App() {
+  const calldata = async () => {
+    await loginUserService();
+  };
+  useEffect(() => {
+    calldata();
+  }, []);
   const router = createBrowserRouter([
     {
       path: "/final-project/",
       children: [
         {
           path: "",
-          element: <h1>Home page</h1>,
+          element: <HomePage />,
         },
         {
           path: "login",
