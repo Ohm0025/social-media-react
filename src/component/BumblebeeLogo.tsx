@@ -1,8 +1,4 @@
-import React from "react";
-
-type Props = {};
-
-const BumblebeeLogo = (props: Props) => {
+const BumblebeeLogo = () => {
   return (
     <div className="rounded-full w-[70px] h-[70px] overflow-hidden">
       <img

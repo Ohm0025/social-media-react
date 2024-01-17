@@ -1,8 +1,4 @@
-import React from "react";
-
-type Props = {};
-
-const ProfileBtn = (props: Props) => {
+const ProfileBtn = () => {
   return (
     <div className="flex gap-1">
       <button className="rounded-full w-[50px] h-[50px] text-[26px] bg-[#f7f7f7] text-center">

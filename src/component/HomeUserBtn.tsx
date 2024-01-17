@@ -1,8 +1,4 @@
-import React from "react";
-
-type Props = {};
-
-const HomeUserBtn = (props: Props) => {
+const HomeUserBtn = () => {
   return (
     <div className="flex gap-6">
       <button className="text-[26px]">
