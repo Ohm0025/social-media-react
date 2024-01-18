@@ -1,6 +1,21 @@
+import Footer from "../component/etc/Footer";
 import BumblebeeLogo from "../component/homepage/BumblebeeLogo";
+import { useForm } from "react-hook-form";
+import InputText from "../component/loginPage/InputText";
 
 const LoginPage = () => {
+  const {
+    register,
+    handleSubmit,
+
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data: any) => {
+    //res to login service
+    console.log(data);
+  };
+
   return (
     <div className="flex flex-col min-h-[100vh]">
       <div className="flex flex-col justify-center px-7 md:mt-auto min-h-[90vh] md:items-center md:flex-row">
@@ -10,37 +25,47 @@ const LoginPage = () => {
             BumBleBee
           </h1>
         </div>
-        <div className="md:flex-1 bg-white rounded-md overflow-hidden p-4 shadow-md">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="md:flex-1 bg-white rounded-md overflow-hidden p-4 shadow-md">
           <div className="flex flex-col gap-2">
-            <input
-              className="border border-[#f7f7f7f] rounded-md p-2 text-[22px]"
+            <InputText
+              objInput={register("emailOrPhone", {
+                required: {
+                  value: true,
+                  message: "email or phone number is required",
+                },
+
+                pattern: {
+                  value:
+                    /^(?:(?:\+|00)\d{1,3})?[-.\s]?\d{7,15}$|^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  message: "Invalid email address or phone number",
+                },
+              })}
+              errors={errors}
               type="text"
-              placeholder="email or phone number"
             />
-            <input
-              className="border border-[#f7f7f7f] rounded-md p-2 text-[22px]"
+
+            <InputText
+              objInput={register("password", {
+                required: { value: true, message: "password is required" },
+              })}
+              errors={errors}
               type="password"
-              placeholder="password"
             />
           </div>
-          <button className="flex mt-2 w-full justify-center text-[24px] text-white rounded-md bg-[#ffbc12] py-2">
+          <button
+            type="submit"
+            className="flex mt-2 w-full justify-center text-[24px] text-white rounded-md bg-[#ffbc12] py-2">
             Login
           </button>
           <hr className="my-2" />
           <button className="flex mt-2 mx-auto px-7 justify-center text-[24px] text-white rounded-md bg-[gray] py-1">
             Register
           </button>
-        </div>
+        </form>
       </div>
-      <div className="bg-white h-[150px] text-gray-400 shadow mt-auto">
-        <span>submvpebno</span>
-        <span>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum ratione
-          repudiandae, ducimus consequuntur nulla iste labore fugiat assumenda
-          molestias odio hic aspernatur nam praesentium, beatae quo
-          necessitatibus doloribus laudantium nobis.
-        </span>
-      </div>
+      <Footer />
     </div>
   );
 };

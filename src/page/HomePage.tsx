@@ -1,6 +1,5 @@
 import FeedBoard from "../component/homepage/FeedBoard";
 import PostBoard from "../component/homepage/PostBoard";
-import TopBar from "../component/homepage/TopBar";
 
 const HomePage = () => {
   return (
