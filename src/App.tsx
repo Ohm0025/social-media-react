@@ -1,23 +1,32 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { loginUserService } from "./service/testaxios";
-import { useEffect } from "react";
 import HomePage from "./page/HomePage";
 import LoginPage from "./page/LoginPage";
 import ProfilePage from "./page/ProfilePage";
 import LayoutHome from "./layout/LayoutHome";
 import FriendPage from "./page/FriendPage";
+import { useCookies } from "react-cookie";
+import { useEffect, useState } from "react";
+import { callToken } from "./service/callToken";
+import { useTokenCookies } from "./store/cookies";
 
 function App() {
-  const calldata = async () => {
-    await loginUserService();
+  const [cookies]: any = useCookies([]);
+  const { setTokenCookies } = useTokenCookies();
+  const [isValidUser, setIsValidUser] = useState(false);
+
+  const callData = async () => {
+    const result = await callToken(cookies["bumblebee-token"]);
+    result && setTokenCookies(cookies["bumblebee-token"]);
   };
+
   useEffect(() => {
-    calldata();
-  }, []);
+    callData();
+  }, [cookies]);
+
   const router = createBrowserRouter([
     {
       path: "/final-project/",
-      element: <LayoutHome />,
+      element: <>{isValidUser ? <LayoutHome /> : <LoginPage />}</>,
       children: [
         {
           path: "",
