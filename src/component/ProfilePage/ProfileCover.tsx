@@ -1,9 +1,6 @@
-import React from "react";
 import ProfileIcon from "../etc/ProfileIcon";
 
-type Props = {};
-
-const ProfileCover = (props: Props) => {
+const ProfileCover = () => {
   return (
     <div className="min-h-[60vh] bg-white w-full min-w-[300px] shadow-md">
       <div

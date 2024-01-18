@@ -5,6 +5,7 @@ import HomePage from "./page/HomePage";
 import LoginPage from "./page/LoginPage";
 import ProfilePage from "./page/ProfilePage";
 import LayoutHome from "./layout/LayoutHome";
+import FriendPage from "./page/FriendPage";
 
 function App() {
   const calldata = async () => {
@@ -29,7 +30,7 @@ function App() {
         },
         {
           path: "friend",
-          element: <h1>Friend page</h1>,
+          element: <FriendPage />,
         },
       ],
     },
