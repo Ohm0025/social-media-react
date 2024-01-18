@@ -12,7 +12,7 @@ const InputText = (props: Props) => {
         {...props.objInput}
         type={props.type || "text"}
         placeholder={props.objInput.name}
-        className={`border py-1 px-2 outline-black ${
+        className={`border py-1 px-2 outline-[#ffbc12] ${
           !props.errors[props.objInput.name]?.message
             ? "border - gray - 400"
             : "border-[red] bg-[#dc99995d]"

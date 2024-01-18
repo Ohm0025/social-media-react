@@ -2,6 +2,8 @@ import Footer from "../component/etc/Footer";
 import BumblebeeLogo from "../component/homepage/BumblebeeLogo";
 import { useForm } from "react-hook-form";
 import InputText from "../component/loginPage/InputText";
+import ModalRegister from "../component/registerModal/ModalRegister";
+import { useState } from "react";
 
 const LoginPage = () => {
   const {
@@ -10,6 +12,8 @@ const LoginPage = () => {
 
     formState: { errors },
   } = useForm();
+
+  const [isOpen, setIsOpen] = useState(false);
 
   const onSubmit = async (data: any) => {
     //res to login service
@@ -28,9 +32,9 @@ const LoginPage = () => {
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="md:flex-1 bg-white rounded-md overflow-hidden p-4 shadow-md">
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-6">
             <InputText
-              objInput={register("emailOrPhone", {
+              objInput={register("EmailAddressOrPhoneNumber", {
                 required: {
                   value: true,
                   message: "email or phone number is required",
@@ -56,16 +60,20 @@ const LoginPage = () => {
           </div>
           <button
             type="submit"
-            className="flex mt-2 w-full justify-center text-[24px] text-white rounded-md bg-[#ffbc12] py-2">
+            className="flex mt-6 w-full justify-center text-[24px] text-white rounded-md bg-[#ffbc12] py-2">
             Login
           </button>
           <hr className="my-2" />
-          <button className="flex mt-2 mx-auto px-7 justify-center text-[24px] text-white rounded-md bg-[gray] py-1">
+          <button
+            type="button"
+            onClick={() => setIsOpen(true)}
+            className="flex mt-2 mx-auto px-7 justify-center text-[24px] text-white rounded-md bg-[gray] py-1">
             Register
           </button>
         </form>
       </div>
       <Footer />
+      <ModalRegister isOpen={isOpen} handleClose={() => setIsOpen(false)} />
     </div>
   );
 };
