@@ -1,10 +1,11 @@
-type Props = {};
+import BumblebeeLogo from "../component/homepage/BumblebeeLogo";
 
 const LoginPage = () => {
   return (
     <div className="flex flex-col min-h-[100vh]">
       <div className="flex flex-col justify-center px-7 md:mt-auto min-h-[90vh] md:items-center md:flex-row">
-        <div className="md:flex-1 mb-6 md:mb-0">
+        <div className="flex justify-center gap-5 md:flex-col items-center md:flex-1 mb-6 md:mb-0">
+          <BumblebeeLogo />
           <h1 className="font-mono text-[#ffbc12] font-extrabold text-[48px] drop-shadow-md text-center md:text-start">
             BumBleBee
           </h1>

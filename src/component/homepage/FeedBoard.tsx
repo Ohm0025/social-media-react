@@ -1,8 +1,15 @@
 import PostCard from "./PostCard";
 
-const FeedBoard = () => {
+type Props = {
+  isProfile?: boolean;
+};
+
+const FeedBoard = ({ isProfile = false }: Props) => {
   return (
-    <div className="w-[80%] min-w-[300px] mx-auto my-[20px] sm:w-[50%]">
+    <div
+      className={`${
+        isProfile ? "w-full" : "w-[80%]"
+      } min-w-[300px] mx-auto my-[20px] ${isProfile ? "" : "sm:w-[50%]"}`}>
       <PostCard />
     </div>
   );

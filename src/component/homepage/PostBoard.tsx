@@ -1,6 +1,17 @@
-const PostBoard = () => {
+type Props = {
+  isProfile?: boolean;
+};
+
+const PostBoard = ({ isProfile = false }: Props) => {
   return (
-    <div className="bg-[white] text-center rounded-md mt-[30px] py-3 w-[80%] min-w-[300px] shadow-md mx-auto px-3 sm:w-[50%]">
+    <div
+      className={`bg-[white] text-center rounded-md ${
+        isProfile ? "" : "mt-[30px]"
+      } py-3 ${
+        isProfile ? "" : "w-[80%]"
+      } min-w-[300px] shadow-md mx-auto px-3 ${isProfile ? "" : "sm:w-[50%]"} ${
+        isProfile ? "w-full" : ""
+      }`}>
       <div className="flex justify-center gap-4 items-center">
         <div className="w-[45px] h-[45px] bg-[#d5d5d5] flex justify-center items-center rounded-full">
           {false ? <img src="" alt="" /> : <i className="fa-solid fa-user"></i>}
