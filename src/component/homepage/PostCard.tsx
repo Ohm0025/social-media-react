@@ -1,8 +1,9 @@
 import ProfileIcon from "../etc/ProfileIcon";
 
-const PostCard = () => {
+const PostCard = ({ postItem }: any) => {
+  console.log(postItem.post_date);
   return (
-    <div className="bg-white w-full rounded-md shadow-md py-4">
+    <div className="bg-white w-full rounded-md shadow-md py-4 mb-5">
       {/* top */}
       <div className="flex justify-between px-4">
         {/* top-start */}
@@ -10,7 +11,7 @@ const PostCard = () => {
           <ProfileIcon radius="40px" textSize="20px" bgColor="gray" />
           <div className="flex flex-col">
             <div>
-              <b>firstname lastname</b>
+              <b>{`${postItem.firstname + " " + postItem.lastname}`}</b>
             </div>
             <div>
               <span>10 hr </span>
@@ -31,17 +32,18 @@ const PostCard = () => {
 
       {/* middle - content */}
       <div className="flex flex-col w-full">
-        <div className="py-2 px-4">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
-          eum provident ea maxime minus sapiente illum a dolor placeat ipsum?
-        </div>
-        <div className="flex justify-center items-center">
-          <img
-            className="w-full"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSERKca3LUPbxwdRugv3FOS5LG34SDoMiXZd6t1jA-njQ&s"
-            alt="sample-picture"
-          />
-        </div>
+        {postItem.post_content && (
+          <div className="py-2 px-4">{`${postItem.post_content}`}</div>
+        )}
+        {postItem.post_picture && (
+          <div className="flex justify-center items-center">
+            <img
+              className="w-full"
+              src={`${postItem.post_picture}`}
+              alt="sample-picture"
+            />
+          </div>
+        )}
         <div className="px-3">
           <div className="flex justify-between my-2">
             <div className="flex items-center gap-2">

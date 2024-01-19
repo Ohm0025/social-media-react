@@ -8,7 +8,7 @@ const HomePage = () => {
   return (
     <div className="min-h-[100vh]">
       <PostBoard openModal={() => setIsOpen(true)} />
-      <FeedBoard />
+      <FeedBoard postArr={[]} />
       <ModalPost isOpen={isOpen} handleClose={() => setIsOpen(false)} />
     </div>
   );
