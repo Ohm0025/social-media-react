@@ -17,14 +17,13 @@ const LoginPage = () => {
   } = useForm();
 
   const [isOpen, setIsOpen] = useState(false);
-  const [cookies, setCookies]: any = useCookies([]);
+  const [cookies, setCookies]: any = useCookies();
 
   const onSubmit = async (data: any) => {
     const res = await userLogin(data);
-    console.log(data);
     if (res.status === 200) {
       console.log(res.data);
-      setCookies(BBB_COOKIES, res.data.data);
+      setCookies(BBB_COOKIES, res.data?.data);
     }
   };
 

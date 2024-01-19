@@ -1,10 +1,14 @@
 import { Outlet } from "react-router-dom";
 import TopBar from "../component/homepage/TopBar";
 
-const LayoutHome = () => {
+type Props = {
+  removeCookie: () => void;
+};
+
+const LayoutHome = ({ removeCookie }: Props) => {
   return (
     <div className="min-h-[100vh]">
-      <TopBar />
+      <TopBar removeCookie={removeCookie} />
       <Outlet />
     </div>
   );

@@ -1,6 +1,6 @@
 import axios, { InternalAxiosRequestConfig } from "axios";
 import { getCookie } from "./getCookies";
-import { API_URL } from "./constant";
+import { API_URL, BBB_COOKIES } from "./constant";
 
 axios.defaults.baseURL = API_URL;
 
@@ -12,7 +12,7 @@ axios.interceptors.request.use(
     | Promise<InternalAxiosRequestConfig<any>> => {
     if (configObj.url === "/login") return configObj;
     if (configObj.url === "/register") return configObj;
-    const token = getCookie("bumblebee-token");
+    const token = getCookie(BBB_COOKIES);
     if (token) {
       configObj.headers.Authorization = `Bearer ${token}`;
     }

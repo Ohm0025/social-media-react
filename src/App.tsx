@@ -7,25 +7,38 @@ import FriendPage from "./page/FriendPage";
 import { useCookies } from "react-cookie";
 import { useEffect, useState } from "react";
 import { callToken } from "./api/callToken";
+import { BBB_COOKIES } from "./utils/constant";
+import { useTokenCookies } from "./store/cookies";
 
 function App() {
-  const [cookies]: any = useCookies([]);
+  const [cookies, setCookie, removeCookie]: any = useCookies([BBB_COOKIES]);
   const [isValidUser, setIsValidUser] = useState(false);
 
   const callData = async () => {
-    const result = await callToken(cookies["bumblebee-token"]);
-    setIsValidUser(result);
+    try {
+      const result = await callToken(cookies[BBB_COOKIES]);
+      setIsValidUser(result.data?.cookies);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
-    console.log(cookies);
     callData();
-  }, [cookies]);
+  }, [cookies[BBB_COOKIES]]);
 
   const router = createBrowserRouter([
     {
       path: "/final-project/",
-      element: <>{isValidUser ? <LayoutHome /> : <LoginPage />}</>,
+      element: (
+        <>
+          {isValidUser ? (
+            <LayoutHome removeCookie={removeCookie} />
+          ) : (
+            <LoginPage />
+          )}
+        </>
+      ),
       children: [
         {
           path: "",
