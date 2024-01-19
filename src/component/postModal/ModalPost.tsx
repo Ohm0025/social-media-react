@@ -24,12 +24,13 @@ const style = {
 
 const ModalPost = ({ isOpen, handleClose }: Props) => {
   const [postText, setPostText] = useState("");
+  const [postType, setPostType] = useState("only_friend");
   const handleSubmit = async () => {
     try {
       if (postText.trim() === "") {
         console.log("post not be empty");
       } else {
-        const res = await createPostText(postText);
+        const res = await createPostText(postText, postType);
         if (res.status === 201) {
           console.log(res.data?.message);
           console.log(res.data);
@@ -68,7 +69,13 @@ const ModalPost = ({ isOpen, handleClose }: Props) => {
               <ProfileIcon radius="30px" textSize="20px" />
               <div className="flex flex-col">
                 <b>firstname lastname</b>
-                <span>dropdown</span>
+                <select
+                  value={postType}
+                  onChange={(e) => setPostType(e.target.value)}>
+                  <option value="only_friend">only friend</option>
+                  <option value="private">private</option>
+                  <option value="public">public</option>
+                </select>
               </div>
             </div>
             <div className="text-center py-3 px-3 border my-3">
