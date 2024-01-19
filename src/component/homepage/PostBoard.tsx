@@ -1,8 +1,9 @@
 type Props = {
   isProfile?: boolean;
+  openModal?: () => void;
 };
 
-const PostBoard = ({ isProfile = false }: Props) => {
+const PostBoard = ({ isProfile = false, openModal = () => {} }: Props) => {
   return (
     <div
       className={`bg-[white] text-center rounded-md ${
@@ -17,7 +18,10 @@ const PostBoard = ({ isProfile = false }: Props) => {
           {false ? <img src="" alt="" /> : <i className="fa-solid fa-user"></i>}
         </div>
 
-        <button className="flex flex-grow rounded-3xl px-4 py-2 bg-[#f7f7f7]">
+        <button
+          type="button"
+          onClick={() => openModal()}
+          className="flex flex-grow rounded-3xl px-4 py-2 bg-[#f7f7f7]">
           <span>What 's in your mind ?</span>
         </button>
       </div>
