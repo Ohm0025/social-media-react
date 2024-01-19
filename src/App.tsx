@@ -6,7 +6,7 @@ import LayoutHome from "./layout/LayoutHome";
 import FriendPage from "./page/FriendPage";
 import { useCookies } from "react-cookie";
 import { useEffect, useState } from "react";
-import { callToken } from "./service/callToken";
+import { callToken } from "./api/callToken";
 import { useTokenCookies } from "./store/cookies";
 
 function App() {
