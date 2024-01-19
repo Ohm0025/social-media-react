@@ -7,19 +7,18 @@ import FriendPage from "./page/FriendPage";
 import { useCookies } from "react-cookie";
 import { useEffect, useState } from "react";
 import { callToken } from "./api/callToken";
-import { useTokenCookies } from "./store/cookies";
 
 function App() {
   const [cookies]: any = useCookies([]);
-  const { setTokenCookies } = useTokenCookies();
   const [isValidUser, setIsValidUser] = useState(false);
 
   const callData = async () => {
     const result = await callToken(cookies["bumblebee-token"]);
-    result && setTokenCookies(cookies["bumblebee-token"]);
+    setIsValidUser(result);
   };
 
   useEffect(() => {
+    console.log(cookies);
     callData();
   }, [cookies]);
 

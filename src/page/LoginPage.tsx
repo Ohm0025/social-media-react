@@ -4,6 +4,9 @@ import { useForm } from "react-hook-form";
 import InputText from "../component/loginPage/InputText";
 import ModalRegister from "../component/registerModal/ModalRegister";
 import { useState } from "react";
+import { userLogin } from "../api/authenticate";
+import { useCookies } from "react-cookie";
+import { BBB_COOKIES } from "../utils/constant";
 
 const LoginPage = () => {
   const {
@@ -14,10 +17,15 @@ const LoginPage = () => {
   } = useForm();
 
   const [isOpen, setIsOpen] = useState(false);
+  const [cookies, setCookies]: any = useCookies([]);
 
   const onSubmit = async (data: any) => {
-    //res to login service
+    const res = await userLogin(data);
     console.log(data);
+    if (res.status === 200) {
+      console.log(res.data);
+      setCookies(BBB_COOKIES, res.data.data);
+    }
   };
 
   return (
@@ -51,7 +59,7 @@ const LoginPage = () => {
             />
 
             <InputText
-              objInput={register("password", {
+              objInput={register("Password", {
                 required: { value: true, message: "password is required" },
               })}
               errors={errors}

@@ -3,6 +3,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import InputText from "../loginPage/InputText";
 import { useForm } from "react-hook-form";
+import { userRegister } from "../../api/authenticate";
 
 type Props = {
   isOpen: boolean;
@@ -29,9 +30,13 @@ const ModalRegister = ({ isOpen, handleClose }: Props) => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: any) => {
     console.log(data);
-    handleClose();
+    const res = await userRegister(data);
+    console.log(res);
+    if (res.status === 200) {
+      handleClose();
+    }
   };
 
   return (
@@ -112,6 +117,21 @@ const ModalRegister = ({ isOpen, handleClose }: Props) => {
             errors={errors}
             type="password"
           />
+          <div>
+            <label htmlFor="BirthDate">
+              <small className="text-secondary">Birthdate</small>
+            </label>
+            <InputText
+              objInput={register("BirthDate", {
+                required: {
+                  value: true,
+                  message: "birthdate is required",
+                },
+              })}
+              errors={errors}
+              type="date"
+            />
+          </div>
           <button type="submit" className="bg-[#ffcb08] py-2 rounded-md">
             Submit
           </button>
