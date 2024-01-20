@@ -1,9 +1,17 @@
+import { useEffect, useRef, useState } from "react";
+
 type Props = {
   isProfile?: boolean;
   openModal?: () => void;
 };
 
 const PostBoard = ({ isProfile = false, openModal = () => {} }: Props) => {
+  const fileEl = useRef<any>();
+  const [postObj, setPostObj] = useState({});
+
+  useEffect(() => {
+    console.log(postObj);
+  }, [postObj]);
   return (
     <div
       className={`bg-[white] text-center rounded-md ${
@@ -27,10 +35,22 @@ const PostBoard = ({ isProfile = false, openModal = () => {} }: Props) => {
       </div>
       <hr className="my-4" />
       <div>
-        <button className="flex mx-auto items-center gap-3 hover:bg-[#f7f7f7] py-2 px-3 rounded-md">
+        <button
+          onClick={() => fileEl.current.click()}
+          className="flex mx-auto items-center gap-3 hover:bg-[#f7f7f7] py-2 px-3 rounded-md">
           <i className="fa-solid fa-image text-[green] text-[22px]"></i>
           <span>photo</span>
         </button>
+        <input
+          type="file"
+          className="hidden"
+          ref={fileEl}
+          onChange={(e) => {
+            if (e.target.files && e.target.files.length) {
+              setPostObj({ ...e.target.files });
+            }
+          }}
+        />
       </div>
     </div>
   );

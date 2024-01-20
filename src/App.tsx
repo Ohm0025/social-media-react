@@ -9,15 +9,28 @@ import { useEffect, useState } from "react";
 import { callToken } from "./api/callToken";
 import { BBB_COOKIES } from "./utils/constant";
 import { useTokenCookies } from "./store/cookies";
+import { useLoading } from "./store/loading";
+import BackDropLoading from "./component/backDropLoaing/BackDropLoading";
+import DelayBox from "./component/delayBox/DelayBox";
 
 function App() {
   const [cookies, setCookie, removeCookie]: any = useCookies([BBB_COOKIES]);
   const [isValidUser, setIsValidUser] = useState(false);
+  const { isLoading, openIsLoading, closeIsLoading } = useLoading();
 
   const callData = async () => {
     try {
-      const result = await callToken(cookies[BBB_COOKIES]);
-      setIsValidUser(result.data?.cookies);
+      openIsLoading();
+      callToken(cookies[BBB_COOKIES]).then((res) =>
+        setIsValidUser(res.data?.cookies)
+      );
+      // const result = await callToken(cookies[BBB_COOKIES]);
+      // setTimeout(() => {
+      //   setIsValidUser(result.data?.cookies);
+      // }, 1000);
+      setTimeout(() => {
+        closeIsLoading();
+      }, 700);
     } catch (err) {
       console.log(err);
     }
@@ -72,7 +85,10 @@ function App() {
 
   return (
     <div className="">
-      <RouterProvider router={router}></RouterProvider>
+      <DelayBox>
+        <RouterProvider router={router}></RouterProvider>
+      </DelayBox>
+      <BackDropLoading open={isLoading} handleClose={closeIsLoading} />
     </div>
   );
 }

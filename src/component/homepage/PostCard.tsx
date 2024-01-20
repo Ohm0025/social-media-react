@@ -1,7 +1,8 @@
+import { calDiffHr } from "../../utils/calDiffTime";
 import ProfileIcon from "../etc/ProfileIcon";
 
 const PostCard = ({ postItem }: any) => {
-  console.log(postItem.post_date);
+  console.log(calDiffHr(postItem.post_date) + " hr");
   return (
     <div className="bg-white w-full rounded-md shadow-md py-4 mb-5">
       {/* top */}
