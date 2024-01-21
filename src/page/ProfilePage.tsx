@@ -4,9 +4,13 @@ import PictureBoard from "../component/ProfilePage/PictureBoard";
 import ProfileCover from "../component/ProfilePage/ProfileCover";
 import FeedBoard from "../component/homepage/FeedBoard";
 import PostBoard from "../component/homepage/PostBoard";
+import ModalPost from "../component/postModal/ModalPost";
+import ModalPostPic from "../component/postModal/ModalPostPic";
 
 const ProfilePage = () => {
   const [myPostArr, setMyPostArr] = useState<any>([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenPic, setIsOpenPic] = useState(false);
   const callMyPost = async () => {
     try {
       const res = await getMyPost();
@@ -28,10 +32,18 @@ const ProfilePage = () => {
           <PictureBoard />
         </div>
         <div className="flex-1">
-          <PostBoard isProfile={true} />
+          <PostBoard
+            isProfile={true}
+            openModal={() => setIsOpen(true)}
+            openPicModal={() => setIsOpenPic(true)}
+          />
           <FeedBoard isProfile={true} postArr={myPostArr} />
         </div>
       </div>
+      <ModalPost isOpen={isOpen} handleClose={() => setIsOpen(false)} />
+      <ModalPostPic
+        isOpen={isOpenPic}
+        handleClose={() => setIsOpenPic(false)}></ModalPostPic>
     </>
   );
 };

@@ -4,3 +4,6 @@ export const createPostText = (postText: string, postType: string) =>
   axios.post("/postOnlyText", { postText, postType });
 
 export const getMyPost = () => axios.get("/getMyPost");
+
+export const createPostTextImg = (postObj: FormData) =>
+  axios.post("/postTextImg", postObj);

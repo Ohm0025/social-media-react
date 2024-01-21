@@ -1,8 +1,9 @@
 import { calDiffHr } from "../../utils/calDiffTime";
+import { API_URL } from "../../utils/constant";
 import ProfileIcon from "../etc/ProfileIcon";
 
 const PostCard = ({ postItem }: any) => {
-  console.log(calDiffHr(postItem.post_date) + " hr");
+  console.log(postItem);
   return (
     <div className="bg-white w-full rounded-md shadow-md py-4 mb-5">
       {/* top */}
@@ -15,7 +16,7 @@ const PostCard = ({ postItem }: any) => {
               <b>{`${postItem.firstname + " " + postItem.lastname}`}</b>
             </div>
             <div>
-              <span>10 hr </span>
+              <span>{calDiffHr(postItem.post_date)}</span>
               <i className="fa-solid fa-earth-americas"></i>
             </div>
           </div>
@@ -40,7 +41,10 @@ const PostCard = ({ postItem }: any) => {
           <div className="flex justify-center items-center">
             <img
               className="w-full"
-              src={`${postItem.post_picture}`}
+              src={`${
+                postItem.post_picture &&
+                API_URL + "/" + postItem.post_picture.split("public/")[1]
+              }`}
               alt="sample-picture"
             />
           </div>
