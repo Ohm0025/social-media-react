@@ -5,3 +5,5 @@ export const createPostTextImg = (postObj: FormData) =>
 
 export const fetchSearchFriend = (searchName: string) =>
   axios.post("/getMoreFriend", { searchName });
+
+export const fetchAllFriend = () => axios.get("/fetchMyFriend");

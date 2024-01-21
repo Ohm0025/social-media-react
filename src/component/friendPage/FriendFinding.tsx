@@ -35,7 +35,7 @@ const FriendFinding = (props: Props) => {
           onChange={(e) => setSearchName(e.target.value)}
         />
         <button
-          className="bg-[#ffcb08] text-[20px] p-2"
+          className="bg-[#ffcb08] text-[20px] py-2 px-5"
           onClick={() => callData()}>
           search
         </button>
