@@ -1,5 +1,4 @@
 import { BBB_COOKIES } from "../../utils/constant";
-import { useNavigate } from "react-router-dom";
 
 type Props = {
   isOpen: boolean;
