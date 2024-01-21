@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FriendFilter from "../component/friendPage/FriendFilter";
 import FriendList from "../component/friendPage/FriendList";
+import FriendFinding from "../component/friendPage/FriendFinding";
 
 const FriendPage = () => {
   const [page, setPage] = useState(1);
@@ -10,7 +11,7 @@ const FriendPage = () => {
     } else if (page === 3) {
       return <h1>page 3</h1>;
     } else if (page === 4) {
-      return <h1>page 4</h1>;
+      return <FriendFinding />;
     }
     return <FriendList />;
   };

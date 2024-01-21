@@ -3,7 +3,6 @@ import { API_URL } from "../../utils/constant";
 import ProfileIcon from "../etc/ProfileIcon";
 
 const PostCard = ({ postItem }: any) => {
-  console.log(postItem);
   return (
     <div className="bg-white w-full rounded-md shadow-md py-4 mb-5">
       {/* top */}
