@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import ProfileIcon from "../etc/ProfileIcon";
 import { useState, useRef, useEffect } from "react";
-import { createPostText, createPostTextImg } from "../../api/post";
+import { createPostTextImg } from "../../api/post";
 import { useLoading } from "../../store/loading";
 
 type Props = {
@@ -27,7 +27,7 @@ const ModalPostPic = ({ isOpen, handleClose }: Props) => {
   const { openIsLoading, closeIsLoading } = useLoading();
   const [postText, setPostText] = useState("");
   const [postType, setPostType] = useState("only_friend");
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState<any>(null);
 
   const fileEl = useRef<any>();
   const handleSubmit = async () => {

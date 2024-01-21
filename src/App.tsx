@@ -46,7 +46,10 @@ function App() {
       element: (
         <>
           {isValidUser ? (
-            <LayoutHome removeCookie={removeCookie} />
+            <LayoutHome
+              removeCookie={removeCookie}
+              changeValidUser={(value: boolean) => setIsValidUser(value)}
+            />
           ) : (
             <LoginPage />
           )}

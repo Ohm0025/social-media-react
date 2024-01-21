@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 type Props = {
   isOpen: boolean;
   removeCookie: (name: string) => void;
+  changeValidUser: (value: boolean) => void;
 };
 
 const UserDropdown = (props: Props) => {
@@ -13,7 +14,10 @@ const UserDropdown = (props: Props) => {
         <ul className="text-center">
           <li
             className="bg-gray-400 py-2 hover:cursor-pointer"
-            onClick={() => props.removeCookie(BBB_COOKIES)}>
+            onClick={() => {
+              props.removeCookie(BBB_COOKIES);
+              props.changeValidUser(false);
+            }}>
             Log out
           </li>
         </ul>

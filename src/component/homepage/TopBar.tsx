@@ -6,16 +6,21 @@ import UserDropdown from "./UserDropdown";
 
 type Props = {
   removeCookie: () => void;
+  changeValidUser: (value: boolean) => void;
 };
 
-const TopBar = ({ removeCookie }: Props) => {
+const TopBar = ({ removeCookie, changeValidUser }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="flex items-center bg-[#ffcb08] px-3 py-2 justify-between shadow-md sticky top-0">
       <BumblebeeLogo />
       <HomeUserBtn />
       <ProfileBtn openDropdown={() => setIsOpen((prev) => !prev)} />
-      <UserDropdown isOpen={isOpen} removeCookie={removeCookie} />
+      <UserDropdown
+        isOpen={isOpen}
+        removeCookie={removeCookie}
+        changeValidUser={changeValidUser}
+      />
     </div>
   );
 };
