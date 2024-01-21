@@ -15,7 +15,7 @@ const FriendPage = () => {
     return <FriendList />;
   };
   return (
-    <div className="flex flex-col min-h-[100vh]">
+    <div className="flex flex-col min-h-[100vh] min-w-[300px]">
       <FriendFilter changePage={(page) => setPage(page)} page={page} />
       {selectPage(page)}
     </div>

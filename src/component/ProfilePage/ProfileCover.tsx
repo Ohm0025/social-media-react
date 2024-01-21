@@ -2,7 +2,7 @@ import ProfileIcon from "../etc/ProfileIcon";
 
 const ProfileCover = () => {
   return (
-    <div className="min-h-[60vh] bg-white w-full min-w-[300px] shadow-md">
+    <div className="min-h-[60vh] bg-white min-w-[300px] shadow-md">
       <div
         className="w-full h-[50vh] mx-auto my-[-25px]"
         style={{

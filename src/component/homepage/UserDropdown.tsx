@@ -1,19 +1,31 @@
+import { useNavigate } from "react-router-dom";
 import { BBB_COOKIES } from "../../utils/constant";
 
 type Props = {
   isOpen: boolean;
   removeCookie: (name: string) => void;
   changeValidUser: (value: boolean) => void;
+  closeDropdown: () => void;
 };
 
 const UserDropdown = (props: Props) => {
+  const navigate = useNavigate();
   return (
     props.isOpen && (
-      <div className="absolute z-[2] top-2 right-0 max-w-[400px] w-[300px] translate-y-[60px]">
+      <div className="absolute z-[2] sm:top-4 right-2 min-w-[150px] sm:min-w-[300px] translate-y-[60px] shadow-md rounded-md overflow-hidden">
         <ul className="text-center">
           <li
-            className="bg-gray-400 py-2 hover:cursor-pointer"
+            className="py-2 bg-[#ffbc12] hover:cursor-pointer hover:filter hover:brightness-[90%]"
             onClick={() => {
+              props.closeDropdown();
+              navigate("/final-project/profile");
+            }}>
+            Profile
+          </li>
+          <li
+            className="py-2 bg-[#ffbc12] hover:cursor-pointer hover:filter hover:brightness-[90%]"
+            onClick={() => {
+              props.closeDropdown();
               props.removeCookie(BBB_COOKIES);
               props.changeValidUser(false);
             }}>

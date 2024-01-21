@@ -10,14 +10,29 @@ type Props = {
 };
 
 const TopBar = ({ removeCookie, changeValidUser }: Props) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<string>("");
   return (
-    <div className="flex items-center bg-[#ffcb08] px-3 py-2 justify-between shadow-md sticky top-0">
+    <div className="flex items-center bg-[#ffcb08] px-3 py-2 justify-between shadow-md sticky top-0 min-w-[300px]">
       <BumblebeeLogo />
       <HomeUserBtn />
-      <ProfileBtn openDropdown={() => setIsOpen((prev) => !prev)} />
-      <UserDropdown
+      <ProfileBtn
         isOpen={isOpen}
+        openDropdown={() =>
+          setIsOpen(() => {
+            if (isOpen === "") {
+              return "profileBtn";
+            }
+            return "";
+          })
+        }
+      />
+      <UserDropdown
+        isOpen={isOpen === "profileBtn"}
+        closeDropdown={() =>
+          setIsOpen(() => {
+            return "";
+          })
+        }
         removeCookie={removeCookie}
         changeValidUser={changeValidUser}
       />
