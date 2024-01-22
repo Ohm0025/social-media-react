@@ -1,8 +1,8 @@
 import { API_URL } from "../../utils/constant";
 
-const FriendCard = ({ item, btn1, btn2 }: any) => {
+const FriendCard = ({ item, btn1, btn2, cb }: any) => {
   return (
-    <div className="bg-white rounded-md flex flex-col w-[200px] shadow-md">
+    <div className="bg-white rounded-md flex flex-col w-[240px] shadow-md">
       <div className="flex h-[200px]">
         <img
           src={`${
@@ -17,7 +17,9 @@ const FriendCard = ({ item, btn1, btn2 }: any) => {
         {item.firstname + " " + item.lastname}
       </div>
       <div className="flex flex-col items-center mb-2 gap-2">
-        <button className="p-2 bg-[orange] w-[80%] rounded-md">{btn1}</button>
+        <button className="p-2 bg-[orange] w-[80%] rounded-md" onClick={cb}>
+          {btn1}
+        </button>
         {btn2 && (
           <button className="p-2 bg-[#cacaca] w-[80%] rounded-md">
             {btn2}

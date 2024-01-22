@@ -2,14 +2,16 @@ import { useState } from "react";
 import FriendFilter from "../component/friendPage/FriendFilter";
 import FriendList from "../component/friendPage/FriendList";
 import FriendFinding from "../component/friendPage/FriendFinding";
+import FriendRequest from "../component/friendPage/FriendRequest";
+import FriendAccept from "../component/friendPage/FriendAccept";
 
 const FriendPage = () => {
   const [page, setPage] = useState(1);
   const selectPage = (page: number) => {
     if (page === 2) {
-      return <h1>page2</h1>;
+      return <FriendRequest />;
     } else if (page === 3) {
-      return <h1>page 3</h1>;
+      return <FriendAccept />;
     } else if (page === 4) {
       return <FriendFinding />;
     }
