@@ -1,6 +1,9 @@
+import { useState } from "react";
 import ProfileIcon from "../etc/ProfileIcon";
+import ModalUpdatePicture from "./ModalUpdatePicture";
 
-const ProfileCover = () => {
+const ProfileCover = (props: any) => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="min-h-[60vh] bg-white min-w-[300px] shadow-md">
       <div
@@ -20,9 +23,15 @@ const ProfileCover = () => {
           </div>
         </div>
         <div className="px-3 py-2 rounded-md mt-7 bg-[#ffcb08]">
-          <button>Edit Profile</button>
+          <button onClick={() => setIsOpen(true)}>Edit Profile</button>
         </div>
       </div>
+      <ModalUpdatePicture
+        isOpen={isOpen}
+        handleClose={() => setIsOpen(false)}
+        oldPicture={props.profile_picture || null}
+        oldCover={props.profile_cover || null}
+      />
     </div>
   );
 };
