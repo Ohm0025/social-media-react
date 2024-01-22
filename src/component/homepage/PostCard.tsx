@@ -4,9 +4,11 @@ import { API_URL } from "../../utils/constant";
 import ConFirmModal from "../conFirmModal/ConFirmModal";
 import ProfileIcon from "../etc/ProfileIcon";
 import { removePost } from "../../api/post";
+import CommentBox from "../commentBox/CommentBox";
 
 const PostCard = ({ postItem }: any) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isComment, setIsComment] = useState(false);
   const clickRemove = async () => {
     try {
       const res = await removePost(postItem.postid);
@@ -80,11 +82,16 @@ const PostCard = ({ postItem }: any) => {
               <i className="fa-regular fa-thumbs-up text-[24px]"></i>
               <span>LIKE</span>
             </button>
-            <button className="flex flex-1 gap-2 items-baseline justify-center hover:bg-[#f7f7f7] hover:outline outline-8 outline-[#f7f7f7] rounded-md px-2 py-1">
+            <button
+              onClick={() => setIsComment((prev) => !prev)}
+              className={`flex flex-1 gap-2 items-baseline justify-center hover:bg-[#f7f7f7] hover:outline outline-8 outline-[#f7f7f7] rounded-md px-2 py-1 ${
+                isComment ? "bg-[#f7f7f7]" : ""
+              }`}>
               <i className="fa-regular fa-comment text-[24px]"></i>
               <span>COMMENT</span>
             </button>
           </div>
+          {isComment && <CommentBox commentArr={["kl", "kl"]} />}
         </div>
       </div>
       <ConFirmModal
