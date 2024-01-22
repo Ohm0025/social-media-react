@@ -8,6 +8,7 @@ import { useLoading } from "../../store/loading";
 type Props = {
   isOpen: boolean;
   handleClose: () => void;
+  addMyPost: (newPost: any) => void;
 };
 
 const style = {
@@ -23,7 +24,7 @@ const style = {
   p: 4,
 };
 
-const ModalPostPic = ({ isOpen, handleClose }: Props) => {
+const ModalPostPic = ({ isOpen, handleClose, addMyPost }: Props) => {
   const { openIsLoading, closeIsLoading } = useLoading();
   const [postText, setPostText] = useState("");
   const [postType, setPostType] = useState("only_friend");
@@ -42,7 +43,10 @@ const ModalPostPic = ({ isOpen, handleClose }: Props) => {
         formData.append("image", image);
       }
       let res = await createPostTextImg(formData);
-      console.log(res);
+      if (res.status === 201) {
+        addMyPost(res.data?.data.rows[0]);
+        handleClose();
+      }
     } catch (err) {
       console.log(err);
     } finally {
@@ -118,6 +122,8 @@ const ModalPostPic = ({ isOpen, handleClose }: Props) => {
               <textarea
                 className={"outline-none flex flex-1 flex-wrap"}
                 placeholder="caption for picture"
+                value={postText}
+                onChange={(e) => setPostText(e.target.value)}
               />
             </div>
             <div className="flex flex-col gap-3">

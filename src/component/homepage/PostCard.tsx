@@ -1,8 +1,22 @@
+import { useState } from "react";
 import { calDiffHr } from "../../utils/calDiffTime";
 import { API_URL } from "../../utils/constant";
+import ConFirmModal from "../conFirmModal/ConFirmModal";
 import ProfileIcon from "../etc/ProfileIcon";
+import { removePost } from "../../api/post";
 
 const PostCard = ({ postItem }: any) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const clickRemove = async () => {
+    try {
+      const res = await removePost(postItem.postid);
+      if (res.status === 201) {
+        setIsOpen(false);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div className="bg-white w-full rounded-md shadow-md py-4 mb-5">
       {/* top */}
@@ -25,7 +39,7 @@ const PostCard = ({ postItem }: any) => {
           <button className="text-[24px]">
             <i className="fa-solid fa-ellipsis"></i>
           </button>
-          <button className="text-[24px]">
+          <button className="text-[24px]" onClick={() => setIsOpen(true)}>
             <i className="fa-solid fa-xmark"></i>
           </button>
         </div>
@@ -73,6 +87,13 @@ const PostCard = ({ postItem }: any) => {
           </div>
         </div>
       </div>
+      <ConFirmModal
+        isOpen={isOpen}
+        handleClose={() => setIsOpen(false)}
+        questionTag="confirm delete post"
+        questionDetail="Do you confirm to delete this post?"
+        cb={() => clickRemove()}
+      />
     </div>
   );
 };

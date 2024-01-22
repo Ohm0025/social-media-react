@@ -21,6 +21,12 @@ const ProfilePage = () => {
     }
   };
 
+  const addMyPost = (newPost: any) => {
+    setMyPostArr((prev: any) => {
+      return [newPost, ...prev];
+    });
+  };
+
   useEffect(() => {
     callMyPost();
   }, []);
@@ -40,9 +46,14 @@ const ProfilePage = () => {
           <FeedBoard isProfile={true} postArr={myPostArr} />
         </div>
       </div>
-      <ModalPost isOpen={isOpen} handleClose={() => setIsOpen(false)} />
+      <ModalPost
+        isOpen={isOpen}
+        addMyPost={addMyPost}
+        handleClose={() => setIsOpen(false)}
+      />
       <ModalPostPic
         isOpen={isOpenPic}
+        addMyPost={addMyPost}
         handleClose={() => setIsOpenPic(false)}></ModalPostPic>
     </>
   );

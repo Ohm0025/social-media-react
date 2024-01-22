@@ -7,6 +7,7 @@ import { createPostText } from "../../api/post";
 type Props = {
   isOpen: boolean;
   handleClose: () => void;
+  addMyPost: (newPost: any) => void;
 };
 
 const style = {
@@ -22,7 +23,7 @@ const style = {
   p: 4,
 };
 
-const ModalPost = ({ isOpen, handleClose }: Props) => {
+const ModalPost = ({ isOpen, handleClose, addMyPost }: Props) => {
   const [postText, setPostText] = useState("");
   const [postType, setPostType] = useState("only_friend");
   const handleSubmit = async () => {
@@ -32,8 +33,9 @@ const ModalPost = ({ isOpen, handleClose }: Props) => {
       } else {
         const res = await createPostText(postText, postType);
         if (res.status === 201) {
-          console.log(res.data?.message);
-          console.log(res.data);
+          console.log(res);
+          addMyPost(res.data?.data.rows[0]);
+          handleClose();
         } else {
           console.log("error create post");
           console.log(res.data);
