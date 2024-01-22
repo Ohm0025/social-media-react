@@ -10,3 +10,5 @@ export const createPostTextImg = (postObj: FormData) =>
 
 export const removePost = (postid: number) =>
   axios.post("/removePost", { postid });
+
+export const getStandardPost = () => axios.get("/getStandardPost");

@@ -8,7 +8,7 @@ import { useLoading } from "../../store/loading";
 type Props = {
   isOpen: boolean;
   handleClose: () => void;
-  addMyPost: (newPost: any) => void;
+  addMyPost?: (newPost: any) => void;
 };
 
 const style = {
@@ -24,7 +24,7 @@ const style = {
   p: 4,
 };
 
-const ModalPostPic = ({ isOpen, handleClose, addMyPost }: Props) => {
+const ModalPostPic = ({ isOpen, handleClose, addMyPost = () => {} }: Props) => {
   const { openIsLoading, closeIsLoading } = useLoading();
   const [postText, setPostText] = useState("");
   const [postType, setPostType] = useState("only_friend");

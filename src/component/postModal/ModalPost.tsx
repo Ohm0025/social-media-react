@@ -7,7 +7,7 @@ import { createPostText } from "../../api/post";
 type Props = {
   isOpen: boolean;
   handleClose: () => void;
-  addMyPost: (newPost: any) => void;
+  addMyPost?: (newPost: any) => void;
 };
 
 const style = {
@@ -23,7 +23,7 @@ const style = {
   p: 4,
 };
 
-const ModalPost = ({ isOpen, handleClose, addMyPost }: Props) => {
+const ModalPost = ({ isOpen, handleClose, addMyPost = () => {} }: Props) => {
   const [postText, setPostText] = useState("");
   const [postType, setPostType] = useState("only_friend");
   const handleSubmit = async () => {
