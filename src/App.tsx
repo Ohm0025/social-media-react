@@ -11,6 +11,8 @@ import { BBB_COOKIES } from "./utils/constant";
 import { useLoading } from "./store/loading";
 import BackDropLoading from "./component/backDropLoaing/BackDropLoading";
 import DelayBox from "./component/delayBox/DelayBox";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [cookies, setCookie, removeCookie]: any = useCookies([BBB_COOKIES]);
@@ -20,9 +22,12 @@ function App() {
   const callData = async () => {
     try {
       openIsLoading();
-      callToken(cookies[BBB_COOKIES]).then((res) =>
-        setIsValidUser(res.data?.cookies)
-      );
+      callToken(cookies[BBB_COOKIES])
+        .then((res) => setIsValidUser(res.data?.cookies))
+        .catch((err) => {
+          console.log(err);
+        });
+
       // const result = await callToken(cookies[BBB_COOKIES]);
       // setTimeout(() => {
       //   setIsValidUser(result.data?.cookies);
@@ -34,6 +39,12 @@ function App() {
       console.log(err);
     }
   };
+
+  // const callMe = async () => {
+  //   try{
+
+  //   }
+  // }
 
   useEffect(() => {
     callData();
@@ -90,6 +101,18 @@ function App() {
       <DelayBox>
         <RouterProvider router={router}></RouterProvider>
       </DelayBox>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <BackDropLoading open={isLoading} handleClose={closeIsLoading} />
     </div>
   );

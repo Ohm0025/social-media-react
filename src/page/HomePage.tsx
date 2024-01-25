@@ -11,9 +11,13 @@ const HomePage = () => {
   const [postArr, setPostArr] = useState<any>([]);
 
   const callData = async () => {
-    const res = await getStandardPost();
-    if (res.status === 200) {
-      setPostArr([...res.data?.data]);
+    try {
+      const res = await getStandardPost();
+      if (res.status === 200) {
+        setPostArr([...res.data?.data]);
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 

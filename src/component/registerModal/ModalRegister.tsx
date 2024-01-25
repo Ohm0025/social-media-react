@@ -4,6 +4,7 @@ import Modal from "@mui/material/Modal";
 import InputText from "../loginPage/InputText";
 import { useForm } from "react-hook-form";
 import { userRegister } from "../../api/authenticate";
+import { toast } from "react-toastify";
 
 type Props = {
   isOpen: boolean;
@@ -31,11 +32,17 @@ const ModalRegister = ({ isOpen, handleClose }: Props) => {
   } = useForm();
 
   const onSubmit = async (data: any) => {
-    console.log(data);
-    const res = await userRegister(data);
-    console.log(res);
-    if (res.status === 200) {
-      handleClose();
+    try {
+      console.log(data);
+      const res = await userRegister(data);
+      console.log(res);
+      if (res.status === 201) {
+        toast.success(res.data?.message);
+        handleClose();
+      }
+    } catch (err: any) {
+      console.log(err.response?.data?.message);
+      toast.error(err.response?.data?.message);
     }
   };
 

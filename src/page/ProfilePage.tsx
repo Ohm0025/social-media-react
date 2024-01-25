@@ -31,7 +31,7 @@ const ProfilePage = () => {
     callMyPost();
   }, []);
   return (
-    <>
+    <div className="min-h-[100vh]">
       <ProfileCover />
       <div className="w-[80%] min-w-[300px] flex flex-col md:flex-row gap-4 justify-between mx-auto mt-4">
         <div className="flex-1">
@@ -55,7 +55,7 @@ const ProfilePage = () => {
         isOpen={isOpenPic}
         addMyPost={addMyPost}
         handleClose={() => setIsOpenPic(false)}></ModalPostPic>
-    </>
+    </div>
   );
 };
 

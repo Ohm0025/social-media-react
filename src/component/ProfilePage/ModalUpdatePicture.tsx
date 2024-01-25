@@ -1,7 +1,7 @@
 import { Box, Modal } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import { API_URL } from "../../utils/constant";
-import { updateProfileCover, updateProfilePicture } from "../../api/user";
+import { updateUserPicture } from "../../api/user";
 import { useLoading } from "../../store/loading";
 
 type Props = {
@@ -45,33 +45,6 @@ const ModalUpdatePicture = ({
   const handleSaveChange = async () => {
     try {
       openIsLoading();
-      const formData = new FormData();
-      if (image) {
-        formData.append("image", image);
-        const res1 = await updateProfilePicture(formData);
-        if (res1.status === 201) {
-          setIsError((prev) => {
-            return { ...prev, errImage: "" };
-          });
-        } else {
-          setIsError((prev) => {
-            return { ...prev, errImage: res1.data.message };
-          });
-        }
-      }
-      if (cover) {
-        formData.append("cover", cover);
-        const res2 = await updateProfileCover(formData);
-        if (res2.status === 201) {
-          setIsError((prev) => {
-            return { ...prev, errCover: "" };
-          });
-        } else {
-          setIsError((prev) => {
-            return { ...prev, errCover: res2.data.message };
-          });
-        }
-      }
       if (!cover && !image) {
         setIsError((prev) => {
           return {
@@ -79,6 +52,20 @@ const ModalUpdatePicture = ({
             errImage: "Image has not changed",
             errCover: "Cover has not changed",
           };
+        });
+      }
+      const formData = new FormData();
+      formData.append("profile_picture", image);
+      formData.append("profile_cover", cover);
+
+      const res = await updateUserPicture(formData);
+      if (res.status === 201) {
+        setIsError((prev) => {
+          return { ...prev, errImage: "" };
+        });
+      } else {
+        setIsError((prev) => {
+          return { ...prev, errImage: res.data.message };
         });
       }
     } catch (err) {
