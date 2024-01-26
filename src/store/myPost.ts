@@ -13,12 +13,12 @@ export const useMyPost = create<UseMyPost>((set) => ({
     set(() => {
       return { myPostArr: [...fetchPost] };
     }),
-  removeMyPostArr: (postid) => console.log(postid),
-  // set((prev) => {
-  //   return {
-  //     myPostArr: [...prev.myPostArr.filter((item) => item.postid !== postid)],
-  //   };
-  // })
+  removeMyPostArr: (postid) =>
+    set((prev) => {
+      return {
+        myPostArr: prev.myPostArr.filter((item) => item.postid !== postid),
+      };
+    }),
   addMyPostArr: (newPost) =>
     set((prev) => {
       return {

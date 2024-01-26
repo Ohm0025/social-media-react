@@ -10,9 +10,6 @@ const PostCard = ({ postItem }: any) => {
   const [isComment, setIsComment] = useState(false);
   const { userObj } = useUser();
 
-  console.log(userObj.userid);
-  console.log(postItem.userid);
-
   return (
     <div className="bg-white w-full rounded-md shadow-md py-4 mb-5">
       {/* top */}

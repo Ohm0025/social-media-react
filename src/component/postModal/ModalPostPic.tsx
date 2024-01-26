@@ -45,7 +45,6 @@ const ModalPostPic = ({ isOpen, handleClose }: Props) => {
       }
       let res = await createPost({ ...formData, postText, postType });
       if (res.status === 201) {
-        console.log(res.data?.data.rows[0]);
         addMyPostArr({
           ...res.data?.data.rows[0],
           firstname: userObj.firstname,
@@ -62,10 +61,6 @@ const ModalPostPic = ({ isOpen, handleClose }: Props) => {
   const clearText = () => {
     setPostText("");
   };
-
-  useEffect(() => {
-    console.log(image);
-  }, [image]);
 
   return (
     <Modal

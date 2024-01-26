@@ -10,14 +10,17 @@ const PostTopBtn = ({ postItem }: any) => {
   const clickRemove = async () => {
     try {
       const res = await removePost(postItem.postid);
-      if (res.status === 201) {
+      if (res.status === 200) {
+        console.log("jenma");
         removeMyPostArr(postItem.postid);
-        setIsOpen(false);
       }
     } catch (err) {
       console.log(err);
+    } finally {
+      setIsOpen(false);
     }
   };
+
   return (
     <div className="flex items-center gap-5">
       <button className="text-[24px]">
