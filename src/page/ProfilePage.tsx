@@ -6,25 +6,20 @@ import FeedBoard from "../component/homepage/FeedBoard";
 import PostBoard from "../component/homepage/PostBoard";
 import ModalPost from "../component/postModal/ModalPost";
 import ModalPostPic from "../component/postModal/ModalPostPic";
+import { useMyPost } from "../store/myPost";
 
 const ProfilePage = () => {
-  const [myPostArr, setMyPostArr] = useState<any>([]);
+  // const [myPostArr, setMyPostArr] = useState<any>([]);
+  const { myPostArr, setMyPostArr } = useMyPost();
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenPic, setIsOpenPic] = useState(false);
   const callMyPost = async () => {
     try {
       const res = await getMyPost();
-      console.log(res.data?.data);
       res.data?.data.length > 0 && setMyPostArr([...res.data?.data]);
     } catch (err) {
       console.log(err);
     }
-  };
-
-  const addMyPost = (newPost: any) => {
-    setMyPostArr((prev: any) => {
-      return [newPost, ...prev];
-    });
   };
 
   useEffect(() => {
@@ -46,14 +41,9 @@ const ProfilePage = () => {
           <FeedBoard isProfile={true} postArr={myPostArr} />
         </div>
       </div>
-      <ModalPost
-        isOpen={isOpen}
-        addMyPost={addMyPost}
-        handleClose={() => setIsOpen(false)}
-      />
+      <ModalPost isOpen={isOpen} handleClose={() => setIsOpen(false)} />
       <ModalPostPic
         isOpen={isOpenPic}
-        addMyPost={addMyPost}
         handleClose={() => setIsOpenPic(false)}></ModalPostPic>
     </div>
   );

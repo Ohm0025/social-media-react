@@ -33,9 +33,8 @@ const ModalRegister = ({ isOpen, handleClose }: Props) => {
 
   const onSubmit = async (data: any) => {
     try {
-      console.log(data);
       const res = await userRegister(data);
-      console.log(res);
+
       if (res.status === 201) {
         toast.success(res.data?.message);
         handleClose();

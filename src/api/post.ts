@@ -1,14 +1,13 @@
 import axios from "../utils/axios";
 
-export const createPostText = (postText: string, postType: string) =>
-  axios.post("/postOnlyText", { postText, postType });
+export const createPost = (postObj: any) => {
+  console.log(postObj);
+  return axios.post("/post", postObj);
+};
+//export const createPost = (postObj: FormData) => console.log(postObj);
 
-export const getMyPost = () => axios.get("/getMyPost");
+export const getMyPost = () => axios.get("/postMy");
 
-export const createPostTextImg = (postObj: FormData) =>
-  axios.post("/postTextImg", postObj);
+export const removePost = (postid: number) => axios.delete("/post/" + postid);
 
-export const removePost = (postid: number) =>
-  axios.post("/removePost", { postid });
-
-export const getStandardPost = () => axios.get("/getStandardPost");
+export const getStandardPost = () => axios.get("/post");

@@ -21,14 +21,16 @@ const ProfileIcon = ({
   return (
     <button
       onClick={openDropdown}
-      className={`rounded-full w-[30px] h-[30px] text-[13px] sm:w-[${radius}] sm:h-[${radius}] sm:text-[${textSize}] overflow-hidden bg-[${
+      style={{
+        width: radius,
+        height: radius,
+        fontSize: textSize,
+      }}
+      className={`rounded-full text-[${textSize}] overflow-hidden bg-[${
         isOpen ? "#ffbc12" : bgColor
       }] text-center`}>
       {profilePicture ? (
-        <img
-          src={`${API_URL}+/images+${formatPicName(profilePicture)}`}
-          alt=""
-        />
+        <img src={`${API_URL}/images${formatPicName(profilePicture)}`} alt="" />
       ) : (
         <i className="fa-solid fa-user"></i>
       )}

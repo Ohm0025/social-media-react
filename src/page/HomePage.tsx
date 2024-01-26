@@ -21,6 +21,8 @@ const HomePage = () => {
     }
   };
 
+  console.log(postArr);
+
   useEffect(() => {
     callData();
   }, []);

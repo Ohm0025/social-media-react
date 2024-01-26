@@ -1,4 +1,3 @@
 import axios from "../utils/axios";
 
-export const updateUserPicture = (userObj: FormData) =>
-  axios.post("/updateUserPicture", userObj);
+export const updateUser = (userObj: FormData) => axios.patch("/user", userObj);

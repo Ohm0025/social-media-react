@@ -22,7 +22,6 @@ const LoginPage = () => {
   const onSubmit = async (data: any) => {
     const res = await userLogin(data);
     if (res.status === 200) {
-      console.log(res.data);
       setCookies(BBB_COOKIES, res.data?.data);
     }
   };

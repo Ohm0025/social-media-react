@@ -2,7 +2,7 @@ import PostCard from "./PostCard";
 
 type Props = {
   isProfile?: boolean;
-  postArr: [];
+  postArr: any[];
 };
 
 const FeedBoard = ({ isProfile = false, postArr }: Props) => {

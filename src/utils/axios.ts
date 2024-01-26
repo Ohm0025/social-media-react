@@ -16,6 +16,12 @@ axios.interceptors.request.use(
     if (token) {
       configObj.headers.Authorization = `Bearer ${token}`;
     }
+
+    //  const config = {
+    //    headers: {
+    //      "Content-Type": "multipart/form-data",
+    //    },
+    //  };
     return configObj;
   },
   (errObj) => {

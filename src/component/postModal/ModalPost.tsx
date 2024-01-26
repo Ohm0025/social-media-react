@@ -2,12 +2,15 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import ProfileIcon from "../etc/ProfileIcon";
 import { useState } from "react";
-import { createPostText } from "../../api/post";
+import { createPost } from "../../api/post";
+import { toast } from "react-toastify";
+import { useLoading } from "../../store/loading";
+import { useMyPost } from "../../store/myPost";
+import { useUser } from "../../store/user";
 
 type Props = {
   isOpen: boolean;
   handleClose: () => void;
-  addMyPost?: (newPost: any) => void;
 };
 
 const style = {
@@ -23,18 +26,26 @@ const style = {
   p: 4,
 };
 
-const ModalPost = ({ isOpen, handleClose, addMyPost = () => {} }: Props) => {
+const ModalPost = ({ isOpen, handleClose }: Props) => {
   const [postText, setPostText] = useState("");
   const [postType, setPostType] = useState("only_friend");
+  const { openIsLoading, closeIsLoading } = useLoading();
+  const { addMyPostArr } = useMyPost();
+  const { userObj } = useUser();
+
   const handleSubmit = async () => {
     try {
+      openIsLoading();
       if (postText.trim() === "") {
-        console.log("post not be empty");
+        toast.error("post text cannot be empty");
       } else {
-        const res = await createPostText(postText, postType);
+        const res = await createPost({ postText, postType });
         if (res.status === 201) {
-          console.log(res);
-          addMyPost(res.data?.data.rows[0]);
+          addMyPostArr({
+            ...res.data?.data.rows[0],
+            firstname: userObj.firstname,
+            lastname: userObj.lastname,
+          });
           handleClose();
         } else {
           console.log("error create post");
@@ -43,6 +54,8 @@ const ModalPost = ({ isOpen, handleClose, addMyPost = () => {} }: Props) => {
       }
     } catch (err) {
       console.log(err);
+    } finally {
+      closeIsLoading();
     }
   };
   const clearText = () => {

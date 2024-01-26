@@ -1,7 +1,7 @@
 import { Box, Modal } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import { API_URL } from "../../utils/constant";
-import { updateUserPicture } from "../../api/user";
+import { updateUser } from "../../api/user";
 import { useLoading } from "../../store/loading";
 
 type Props = {
@@ -58,11 +58,12 @@ const ModalUpdatePicture = ({
       formData.append("profile_picture", image);
       formData.append("profile_cover", cover);
 
-      const res = await updateUserPicture(formData);
+      const res = await updateUser(formData);
       if (res.status === 201) {
         setIsError((prev) => {
           return { ...prev, errImage: "" };
         });
+        handleClose();
       } else {
         setIsError((prev) => {
           return { ...prev, errImage: res.data.message };

@@ -13,17 +13,25 @@ import BackDropLoading from "./component/backDropLoaing/BackDropLoading";
 import DelayBox from "./component/delayBox/DelayBox";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useUser } from "./store/user";
 
 function App() {
   const [cookies, setCookie, removeCookie]: any = useCookies([BBB_COOKIES]);
   const [isValidUser, setIsValidUser] = useState(false);
   const { isLoading, openIsLoading, closeIsLoading } = useLoading();
+  const { setUserObj } = useUser();
 
   const callData = async () => {
     try {
       openIsLoading();
       callToken(cookies[BBB_COOKIES])
-        .then((res) => setIsValidUser(res.data?.cookies))
+        .then((res) => {
+          setIsValidUser(res.data?.cookies);
+          if (res.data?.data) {
+            console.log(res.data?.data);
+            setUserObj({ ...res.data.data });
+          }
+        })
         .catch((err) => {
           console.log(err);
         });
