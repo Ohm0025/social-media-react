@@ -30,7 +30,7 @@ const ProfilePage = () => {
       <ProfileCover />
       <div className="w-[80%] min-w-[300px] flex flex-col md:flex-row gap-4 justify-between mx-auto mt-4">
         <div className="flex-1">
-          <PictureBoard />
+          <PictureBoard myPostArr={myPostArr} />
         </div>
         <div className="flex-1">
           <PostBoard

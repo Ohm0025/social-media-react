@@ -16,7 +16,6 @@ const PostBoard = ({
     userObj: { profile_picture },
   } = useUser();
 
-  console.log(profile_picture);
   return (
     <div
       className={`bg-[white] text-center rounded-md ${
