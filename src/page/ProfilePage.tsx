@@ -7,6 +7,7 @@ import PostBoard from "../component/homepage/PostBoard";
 import ModalPost from "../component/postModal/ModalPost";
 import ModalPostPic from "../component/postModal/ModalPostPic";
 import { useMyPost } from "../store/myPost";
+import DescriptionBoard from "../component/ProfilePage/DescriptionBoard";
 
 const ProfilePage = () => {
   // const [myPostArr, setMyPostArr] = useState<any>([]);
@@ -30,6 +31,7 @@ const ProfilePage = () => {
       <ProfileCover />
       <div className="w-[80%] min-w-[300px] flex flex-col md:flex-row gap-4 justify-between mx-auto mt-4">
         <div className="flex-1">
+          <DescriptionBoard />
           <PictureBoard myPostArr={myPostArr} />
         </div>
         <div className="flex-1">

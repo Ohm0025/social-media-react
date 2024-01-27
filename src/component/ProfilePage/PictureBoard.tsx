@@ -23,15 +23,14 @@ const PictureBoard = ({ myPostArr }: any) => {
       <h1 className="text-center mb-1">PictureBoard</h1>
       {myPostArr.map((item: any, index: number) => {
         return (
-          <>
+          <div key={`picture-item-${index}`}>
             {item.post_picture && (
               <div
                 onClick={() => {
                   setIsOpen(true);
                   setPhoto(item.post_picture);
                 }}
-                className="w-[200px] h-[200px] flex justify-center items-center border p-1 rounded-md hover:pointer"
-                key={`picture-item-${index}`}>
+                className="w-[200px] h-[200px] flex justify-center items-center border p-1 rounded-md hover:pointer">
                 <img
                   className="w-full"
                   src={`${
@@ -41,7 +40,7 @@ const PictureBoard = ({ myPostArr }: any) => {
                 />
               </div>
             )}
-          </>
+          </div>
         );
       })}
       <Modal open={isOpen} onClose={() => setIsOpen(false)}>

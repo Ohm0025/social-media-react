@@ -8,6 +8,7 @@ const initUserObj = {
   birthDate: "",
   profile_picture: "",
   profile_cover: "",
+  description: "",
 };
 
 type UseUser = {
