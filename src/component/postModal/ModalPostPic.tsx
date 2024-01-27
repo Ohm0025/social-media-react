@@ -1,11 +1,12 @@
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import ProfileIcon from "../etc/ProfileIcon";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { createPost } from "../../api/post";
 import { useLoading } from "../../store/loading";
 import { useMyPost } from "../../store/myPost";
 import { useUser } from "../../store/user";
+import { updateUser } from "../../api/user";
 
 type Props = {
   isOpen: boolean;
@@ -29,21 +30,24 @@ const ModalPostPic = ({ isOpen, handleClose }: Props) => {
   const { addMyPostArr } = useMyPost();
   const { userObj } = useUser();
   const { openIsLoading, closeIsLoading } = useLoading();
-  const [postText, setPostText] = useState("");
-  const [postType, setPostType] = useState("only_friend");
+  const [postText, setPostText] = useState<string>("");
+  const [postType, setPostType] = useState<string>("only_friend");
   const [image, setImage] = useState<any>(null);
 
   const fileEl = useRef<any>();
   const handleSubmit = async () => {
-    const formData = new FormData();
     try {
       openIsLoading();
+
       if (!image) {
         return console.log("photo is required");
-      } else {
-        formData.append("post_picture", image);
       }
-      let res = await createPost({ ...formData, postText, postType });
+      const formData = new FormData();
+      formData.append("postText", postText);
+      formData.append("postType", postType);
+      formData.append("post_picture", image);
+
+      const res = await createPost(formData);
       if (res.status === 201) {
         addMyPostArr({
           ...res.data?.data.rows[0],

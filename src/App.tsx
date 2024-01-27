@@ -28,7 +28,6 @@ function App() {
         .then((res) => {
           setIsValidUser(res.data?.cookies);
           if (res.data?.data) {
-            console.log(res.data?.data);
             setUserObj({ ...res.data.data });
           }
         })

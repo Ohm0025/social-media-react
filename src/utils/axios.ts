@@ -17,11 +17,18 @@ axios.interceptors.request.use(
       configObj.headers.Authorization = `Bearer ${token}`;
     }
 
+    // if (configObj.url === "/post" && configObj.method === "post") {
+    //   configObj.headers["Content-Type"] = "multipart/form-data";
+    //   // console.log("this taget");
+    //   // console.log(configObj.headers["Content-Type"]);
+    // }
+    //configObj.headers["Content-Type"] = "multipart/form-data";
     //  const config = {
     //    headers: {
     //      "Content-Type": "multipart/form-data",
     //    },
-    //  };
+    // //  };
+    // console.log(configObj);
     return configObj;
   },
   (errObj) => {

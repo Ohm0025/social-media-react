@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { useLoading } from "../../store/loading";
 import { useMyPost } from "../../store/myPost";
 import { useUser } from "../../store/user";
+import { toFormData } from "../../utils/toFormData";
 
 type Props = {
   isOpen: boolean;
@@ -38,19 +39,22 @@ const ModalPost = ({ isOpen, handleClose }: Props) => {
       openIsLoading();
       if (postText.trim() === "") {
         toast.error("post text cannot be empty");
+      }
+      const formData = new FormData();
+      formData.append("postText", postText);
+      formData.append("postType", postType);
+
+      const res = await createPost(formData);
+      if (res.status === 201) {
+        addMyPostArr({
+          ...res.data?.data.rows[0],
+          firstname: userObj.firstname,
+          lastname: userObj.lastname,
+        });
+        handleClose();
       } else {
-        const res = await createPost({ postText, postType });
-        if (res.status === 201) {
-          addMyPostArr({
-            ...res.data?.data.rows[0],
-            firstname: userObj.firstname,
-            lastname: userObj.lastname,
-          });
-          handleClose();
-        } else {
-          console.log("error create post");
-          console.log(res.data);
-        }
+        console.log("error create post");
+        console.log(res.data);
       }
     } catch (err) {
       console.log(err);

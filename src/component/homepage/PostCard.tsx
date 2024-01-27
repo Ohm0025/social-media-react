@@ -16,7 +16,12 @@ const PostCard = ({ postItem }: any) => {
       <div className="flex justify-between px-4">
         {/* top-start */}
         <div className="flex items-center gap-3">
-          <ProfileIcon radius="40px" textSize="20px" bgColor="gray" />
+          <ProfileIcon
+            radius="40px"
+            textSize="20px"
+            bgColor="gray"
+            profilePicture={userObj.profile_picture}
+          />
           <div className="flex flex-col">
             <div>
               <b>{`${postItem.firstname + " " + postItem.lastname}`}</b>

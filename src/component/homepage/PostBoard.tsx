@@ -1,3 +1,6 @@
+import { useUser } from "../../store/user";
+import { API_URL } from "../../utils/constant";
+
 type Props = {
   isProfile?: boolean;
   openModal?: () => void;
@@ -9,6 +12,11 @@ const PostBoard = ({
   openModal = () => {},
   openPicModal = () => {},
 }: Props) => {
+  const {
+    userObj: { profile_picture },
+  } = useUser();
+
+  console.log(profile_picture);
   return (
     <div
       className={`bg-[white] text-center rounded-md ${
@@ -19,8 +27,18 @@ const PostBoard = ({
         isProfile ? "w-full" : ""
       }`}>
       <div className="flex justify-center gap-4 items-center">
-        <div className="w-[45px] h-[45px] bg-[#d5d5d5] flex justify-center items-center rounded-full">
-          {false ? <img src="" alt="" /> : <i className="fa-solid fa-user"></i>}
+        <div className="w-[45px] h-[45px] bg-[#d5d5d5] flex justify-center items-center rounded-full overflow-hidden">
+          {profile_picture ? (
+            <img
+              src={`${
+                profile_picture &&
+                API_URL + "/" + profile_picture.split("public/")[1]
+              }`}
+              alt=""
+            />
+          ) : (
+            <i className="fa-solid fa-user"></i>
+          )}
         </div>
 
         <button

@@ -7,6 +7,7 @@ import { useState } from "react";
 import { userLogin } from "../api/authenticate";
 import { useCookies } from "react-cookie";
 import { BBB_COOKIES } from "../utils/constant";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
   const {
@@ -20,9 +21,13 @@ const LoginPage = () => {
   const [cookies, setCookies]: any = useCookies();
 
   const onSubmit = async (data: any) => {
-    const res = await userLogin(data);
-    if (res.status === 200) {
-      setCookies(BBB_COOKIES, res.data?.data);
+    try {
+      const res = await userLogin(data);
+      if (res.status === 200) {
+        setCookies(BBB_COOKIES, res.data?.data);
+      }
+    } catch (err: any) {
+      toast.error(err.response.data?.message);
     }
   };
 
