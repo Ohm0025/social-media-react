@@ -6,6 +6,7 @@ type Props = {};
 
 const FriendRequest = (props: Props) => {
   const [arrFriend, setArrFriend] = useState<any>([]);
+  const [searchName, setSearchName] = useState("");
 
   const callData = async () => {
     try {
@@ -28,12 +29,19 @@ const FriendRequest = (props: Props) => {
         <input
           className="outline-none text-[20px] px-2 py-1 flex-1"
           type="text"
-          value={"s"}
+          value={searchName}
           onChange={() => {}}
         />
         <button
           className="bg-[#ffcb08] text-[20px] py-2 px-5"
-          onClick={() => callData()}>
+          onClick={() =>
+            setArrFriend((prev: any) => {
+              return prev.filter(
+                (item: any) =>
+                  item.firstname === searchName || item.lastname === searchName
+              );
+            })
+          }>
           search
         </button>
       </div>
@@ -54,7 +62,7 @@ const FriendRequest = (props: Props) => {
       ) : (
         <div className="flex flex-col items-center justify-center min-h-[500px]">
           <h1 className="text-[40px]">no friend found</h1>
-          <h4 className="text-[36px]">{`'${"s"}'`}</h4>
+          <h4 className="text-[36px]">{searchName}</h4>
         </div>
       )}
     </div>

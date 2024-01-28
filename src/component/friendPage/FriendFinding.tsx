@@ -71,7 +71,7 @@ const FriendFinding = (props: Props) => {
       ) : (
         <div className="flex flex-col items-center justify-center min-h-[500px]">
           <h1 className="text-[40px]">no friend found</h1>
-          <h4 className="text-[36px]">{`'${searchName}'`}</h4>
+          <h4 className="text-[36px]">{searchName}</h4>
         </div>
       )}
     </div>

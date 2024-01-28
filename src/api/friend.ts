@@ -1,16 +1,16 @@
 import axios from "../utils/axios";
 
 export const fetchSearchFriend = (searchName: string) =>
-  axios.post("/getMoreFriend", { searchName });
+  axios.post("/friend/pending", { searchName });
 
-export const fetchAllFriend = () => axios.get("/fetchMyFriend");
+export const fetchAllFriend = () => axios.get("/friend");
 
 export const requestFriend = (accepterid: number) =>
-  axios.post("/requestFriend", { accepterid });
+  axios.post("/friend/request", { accepterid });
 
-export const fetchFriendRequest = () => axios.get("/fetchFriendRequest");
+export const fetchFriendRequest = () => axios.get("/friend/request");
 
-export const fetchFriendAccept = () => axios.get("/fetchFriendAccept");
+export const fetchFriendAccept = () => axios.get("/friend/pending");
 
 export const acceptRequest = (friendid: number) =>
-  axios.put("/acceptFriendRequest", { friendid });
+  axios.put("/friend", { friendid });
