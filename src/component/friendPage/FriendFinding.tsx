@@ -4,7 +4,7 @@ import FriendCard from "./FriendCard";
 
 type Props = {};
 
-const FriendFinding = (props: Props) => {
+const FriendFinding = ({}: Props) => {
   const [searchName, setSearchName] = useState("");
   const [arrFriend, setArrFriend] = useState<any>([]);
 
@@ -13,6 +13,7 @@ const FriendFinding = (props: Props) => {
       const res = await fetchSearchFriend(searchName);
       if (res.data?.data.length > 0) {
         setArrFriend(res.data?.data);
+        console.log(res.data.data);
       }
     } catch (err) {
       console.log(err);

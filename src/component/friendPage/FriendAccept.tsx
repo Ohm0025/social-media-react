@@ -43,34 +43,30 @@ const FriendAccept = (props: Props) => {
           className="outline-none text-[20px] px-2 py-1 flex-1"
           type="text"
           value={searchName}
-          onChange={() => {}}
+          onChange={(e) => setSearchName(e.target.value)}
         />
-        <button
-          className="bg-[#ffcb08] text-[20px] py-2 px-5"
-          onClick={() =>
-            setArrFriend((prev: any) => {
-              return prev.filter(
-                (item: any) =>
-                  item.firstname === searchName || item.lastname === searchName
-              );
-            })
-          }>
-          search
-        </button>
       </div>
       {arrFriend.length > 0 ? (
         <div className="flex gap-4 mt-6">
-          {arrFriend.map((item: any, index: number) => {
-            return (
-              <FriendCard
-                item={item}
-                btn1={"Accept"}
-                btn2={"Deny"}
-                key={`friend-item-` + index}
-                cb={() => clickAccept(item.friendid)}
-              />
-            );
-          })}
+          {arrFriend
+            .filter((item: any) => {
+              console.log(item);
+              return (
+                item.firstname.includes(searchName) ||
+                item.lastname.includes(searchName)
+              );
+            })
+            .map((item: any, index: number) => {
+              return (
+                <FriendCard
+                  item={item}
+                  btn1={"Accept"}
+                  btn2={"Deny"}
+                  key={`friend-item-` + index}
+                  cb={() => clickAccept(item.friendid)}
+                />
+              );
+            })}
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center min-h-[500px]">

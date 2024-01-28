@@ -1,28 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import FriendCard from "./FriendCard";
-import { fetchAllFriend } from "../../api/friend";
-import { useFriendList } from "../../store/friendList";
 
-const FriendList = () => {
-  const { fetchFriendList, friendList } = useFriendList();
+const FriendList = ({ friendList }: any) => {
   const [searchName, setSearchName] = useState("");
-  const [arrFriend, setArrFriend] = useState<any>([]);
-
-  const callData = async () => {
-    try {
-      const res = await fetchAllFriend();
-      if (res.data?.data.length > 0) {
-        fetchFriendList(res.data.data);
-      }
-    } catch (err) {
-      console.log(err);
-      fetchFriendList([]);
-    }
-  };
-
-  useEffect(() => {
-    callData();
-  }, []);
+  const [arrFriend, setArrFriend] = useState<any>(friendList);
 
   return (
     <div className="flex flex-col items-center min-w-[300px] mt-6">
@@ -31,7 +12,7 @@ const FriendList = () => {
           className="outline-none text-[20px] px-2 py-1 flex-1"
           type="text"
           value={searchName}
-          onChange={() => {}}
+          onChange={(e) => setSearchName(e.target.value)}
         />
         <button
           className="bg-[#ffcb08] text-[20px] py-2 px-5"
@@ -46,9 +27,9 @@ const FriendList = () => {
           search
         </button>
       </div>
-      {friendList.length > 0 ? (
+      {arrFriend.length > 0 ? (
         <div className="flex p-5 flex-wrap gap-3 justify-center">
-          {friendList.map((item, index) => {
+          {arrFriend.map((item: any, index: number) => {
             return (
               <FriendCard
                 item={item}
@@ -61,7 +42,7 @@ const FriendList = () => {
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center min-h-[500px]">
-          <h1 className="text-[40px]">you have no friend</h1>
+          <h1 className="text-[40px]">no result</h1>
         </div>
       )}
     </div>

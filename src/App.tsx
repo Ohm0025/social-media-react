@@ -35,10 +35,6 @@ function App() {
           console.log(err);
         });
 
-      // const result = await callToken(cookies[BBB_COOKIES]);
-      // setTimeout(() => {
-      //   setIsValidUser(result.data?.cookies);
-      // }, 1000);
       setTimeout(() => {
         closeIsLoading();
       }, 700);
@@ -46,12 +42,6 @@ function App() {
       console.log(err);
     }
   };
-
-  // const callMe = async () => {
-  //   try{
-
-  //   }
-  // }
 
   useEffect(() => {
     callData();

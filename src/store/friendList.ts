@@ -5,6 +5,9 @@ type UseFriendList = {
   fetchFriendList: (fetchArr: any) => void;
   addFriendList: (newFriend: any) => void;
   removeFriendList: (friendUserId: number) => void;
+  friendArr: any[];
+  fetchFriendArr: (fetchArr: any) => void;
+  filterFriendArr: (friendArr: any) => void;
 };
 
 export const useFriendList = create<UseFriendList>((set) => ({
@@ -25,4 +28,11 @@ export const useFriendList = create<UseFriendList>((set) => ({
         ],
       };
     }),
+
+  friendArr: [],
+  fetchFriendArr: (fetchArr: any) =>
+    set(() => {
+      return { friendArr: [...fetchArr] };
+    }),
+  filterFriendArr: () => {},
 }));
