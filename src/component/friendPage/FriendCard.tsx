@@ -1,9 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import { API_URL } from "../../utils/constant";
 
 const FriendCard = ({ item, btn1, btn2, cb }: any) => {
+  console.log(item);
+  const navigate = useNavigate();
   return (
     <div className="bg-white rounded-md flex flex-col w-[240px] shadow-md overflow-hidden">
-      <div className="flex h-[200px]">
+      <div
+        className="flex h-[200px] hover:cursor-pointer"
+        onClick={() => navigate("/final-project/profile/" + item.accepterid)}>
         <img
           src={`${
             item.profile_picture

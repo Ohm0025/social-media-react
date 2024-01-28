@@ -5,7 +5,10 @@ import { updateUser } from "../../api/user";
 import { toast } from "react-toastify";
 import { useLoading } from "../../store/loading";
 
-type Props = {};
+type Props = {
+  otherDes?: string;
+  isOther: boolean;
+};
 
 const style = {
   position: "absolute" as "absolute",
@@ -20,7 +23,7 @@ const style = {
   p: 4,
 };
 
-const DescriptionBoard = (props: Props) => {
+const DescriptionBoard = ({ otherDes, isOther }: Props) => {
   const { userObj, updateObj } = useUser();
   const { openIsLoading, closeIsLoading } = useLoading();
 
@@ -54,7 +57,11 @@ const DescriptionBoard = (props: Props) => {
   return (
     <div className="rounded-md p-2 bg-white mb-5 shadow-md">
       <h1 className="text-center mb-3">Description</h1>
-      {userObj.description ? (
+      {isOther ? (
+        <div className="w-full h-[150px] flex border rounded-md p-3">
+          {otherDes}
+        </div>
+      ) : userObj.description ? (
         <div
           className="w-full h-[150px] flex border rounded-md p-3 hover:cursor-pointer"
           onClick={() => setIsOpen(true)}>

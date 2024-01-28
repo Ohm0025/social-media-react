@@ -15,3 +15,6 @@ export const getMyPost = () => axios.get("/post/postMy");
 export const removePost = (postid: number) => axios.delete("/post/" + postid);
 
 export const getStandardPost = () => axios.get("/post");
+
+export const getOtherUserPost = (otherid: number) =>
+  axios.get("/post/" + otherid);

@@ -20,12 +20,20 @@ const ProfileCover = (props: any) => {
       : defaultBg
   }`;
 
+  const otherUrl = `${
+    props.otherObj?.profile_cover
+      ? API_URL + "/images" + formatPicName(props.otherObj?.profile_cover)
+      : defaultBg
+  }`;
+  console.log(props.otherObj);
   return (
     <div className="min-h-[60vh] bg-white min-w-[300px] shadow-md">
       <div
         className="w-full h-[50vh] mx-auto my-[-25px]"
         style={{
-          backgroundImage: `linear-gradient(to top, rgba(255,255,255,0) ,rgba(0,0,0,0.8)),url(${picUrl})`,
+          backgroundImage: `linear-gradient(to top, rgba(255,255,255,0) ,rgba(0,0,0,0.8)),url(${
+            props.isOther ? otherUrl : picUrl
+          })`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}></div>
@@ -35,23 +43,31 @@ const ProfileCover = (props: any) => {
             <ProfileIcon
               radius="10rem"
               textSize="40px"
-              profilePicture={profile_picture}
+              profilePicture={
+                props.isOther
+                  ? props.otherObj?.profile_picture
+                  : profile_picture
+              }
             />
           </div>
           <div className="flex flex-col pt-6">
             <b className="text-[15px] sm:text-[30px]">
-              {firstname + " " + lastname}
+              {props.isOther
+                ? props.otherObj?.firstname + " " + props.otherObj?.lastname
+                : firstname + " " + lastname}
             </b>
             <small>Friend 10</small>
           </div>
         </div>
-        <div className="p-1 sm:px-3 sm:py-2 rounded-md mt-7 bg-[#ffcb08]">
-          <button
-            onClick={() => setIsOpen(true)}
-            className="text-[10px] sm:text-[16px]">
-            Edit Profile
-          </button>
-        </div>
+        {!props.isOther && (
+          <div className="p-1 sm:px-3 sm:py-2 rounded-md mt-7 bg-[#ffcb08]">
+            <button
+              onClick={() => setIsOpen(true)}
+              className="text-[10px] sm:text-[16px]">
+              Edit Profile
+            </button>
+          </div>
+        )}
       </div>
       <ModalUpdatePicture
         isOpen={isOpen}

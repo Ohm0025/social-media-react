@@ -72,6 +72,11 @@ function App() {
           path: "profile",
           element: <ProfilePage />,
         },
+
+        {
+          path: "profile/:searchUserId",
+          element: <ProfilePage />,
+        },
         {
           path: "friend",
           element: <FriendPage />,
