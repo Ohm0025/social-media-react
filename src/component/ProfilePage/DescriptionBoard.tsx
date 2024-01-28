@@ -59,7 +59,11 @@ const DescriptionBoard = ({ otherDes, isOther }: Props) => {
       <h1 className="text-center mb-3">Description</h1>
       {isOther ? (
         <div className="w-full h-[150px] flex border rounded-md p-3">
-          {otherDes}
+          {otherDes || (
+            <p className="flex w-full justify-center items-center text-[gray]">
+              Empty
+            </p>
+          )}
         </div>
       ) : userObj.description ? (
         <div

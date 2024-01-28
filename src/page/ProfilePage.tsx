@@ -78,11 +78,20 @@ const ProfilePage = ({}: Props) => {
               openPicModal={() => setIsOpenPic(true)}
             />
           )}
-          <FeedBoard
-            isProfile={true}
-            postArr={isOther ? postArr : myPostArr}
-            isOther={isOther}
-          />
+          {postArr.length > 0 || myPostArr.length > 0 ? (
+            <FeedBoard
+              isProfile={true}
+              postArr={isOther ? postArr : myPostArr}
+              isOther={isOther}
+            />
+          ) : (
+            <div
+              className={`bg-white w-full flex justify-center items-center rounded-md shadow-md py-4 ${
+                isOther ? "" : "mt-4"
+              }`}>
+              <h1 className="">Empty Post</h1>
+            </div>
+          )}
         </div>
       </div>
       <ModalPost isOpen={isOpen} handleClose={() => setIsOpen(false)} />

@@ -8,7 +8,7 @@ const FriendCard = ({ item, btn1, btn2, cb }: any) => {
     <div className="bg-white rounded-md flex flex-col w-[240px] shadow-md overflow-hidden">
       <div
         className="flex h-[200px] hover:cursor-pointer"
-        onClick={() => navigate("/final-project/profile/" + item.accepterid)}>
+        onClick={() => navigate("/final-project/profile/" + item.userid)}>
         <img
           src={`${
             item.profile_picture
