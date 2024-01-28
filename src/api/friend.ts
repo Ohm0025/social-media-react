@@ -13,4 +13,4 @@ export const fetchFriendRequest = () => axios.get("/friend/request");
 export const fetchFriendAccept = () => axios.get("/friend/pending");
 
 export const acceptRequest = (friendid: number) =>
-  axios.put("/friend", { friendid });
+  axios.patch("/friend", { friendid });

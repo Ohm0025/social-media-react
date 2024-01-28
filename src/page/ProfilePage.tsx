@@ -39,6 +39,7 @@ const ProfilePage = ({}: Props) => {
   const callUserPost = async () => {
     try {
       const res = await getOtherUserPost(Number(searchUserId));
+      console.log(res);
       res.data?.data.length > 0 && setPostArr([...res.data?.data]);
       isOther && setOtherObj({ ...res.data?.userObj });
     } catch (err) {

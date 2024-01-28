@@ -20,7 +20,7 @@ const PostCard = ({ postItem }: any) => {
             radius="40px"
             textSize="20px"
             bgColor="gray"
-            profilePicture={postItem.profile_picture}
+            profilePicture={postItem.profile_picture || userObj.profile_picture}
           />
           <div className="flex flex-col">
             <div>
