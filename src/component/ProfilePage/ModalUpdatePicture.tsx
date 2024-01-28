@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { API_URL } from "../../utils/constant";
 import { updateUser } from "../../api/user";
 import { useLoading } from "../../store/loading";
+import { useUser } from "../../store/user";
 
 type Props = {
   isOpen: boolean;
@@ -40,6 +41,7 @@ const ModalUpdatePicture = ({
     errCover: "",
   });
 
+  const { userObj, updateObj } = useUser();
   const { openIsLoading, closeIsLoading } = useLoading();
 
   const handleSaveChange = async () => {
@@ -63,6 +65,11 @@ const ModalUpdatePicture = ({
         setIsError((prev) => {
           return { ...prev, errImage: "" };
         });
+        updateObj({
+          profile_picture: res.data?.data?.profile_picture,
+          profile_cover: res.data?.data?.profile_cover,
+        });
+        console.log(res.data);
         handleClose();
       } else {
         setIsError((prev) => {

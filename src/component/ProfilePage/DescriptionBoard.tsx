@@ -1,6 +1,9 @@
 import { Box, Modal } from "@mui/material";
 import React, { useState } from "react";
 import { useUser } from "../../store/user";
+import { updateUser } from "../../api/user";
+import { toast } from "react-toastify";
+import { useLoading } from "../../store/loading";
 
 type Props = {};
 
@@ -18,14 +21,45 @@ const style = {
 };
 
 const DescriptionBoard = (props: Props) => {
+  const { userObj, updateObj } = useUser();
+  const { openIsLoading, closeIsLoading } = useLoading();
+
   const [isOpen, setIsOpen] = useState(false);
-  const [desText, setDesText] = useState("");
-  const { userObj } = useUser();
+  const [desText, setDesText] = useState(userObj.description || "");
+
+  const handleSubmit = async () => {
+    try {
+      openIsLoading();
+      if (desText.trim() === "" || !desText) {
+        toast.error("description can not be empty");
+        return;
+      }
+      const formData = new FormData();
+      formData.append("description", desText);
+      const res = await updateUser(formData);
+      if (res.status === 201) {
+        toast.success("add description success");
+        updateObj({ description: desText });
+        setIsOpen(false);
+      } else {
+        console.log(res);
+      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      closeIsLoading();
+    }
+  };
+
   return (
     <div className="rounded-md p-2 bg-white mb-5 shadow-md">
       <h1 className="text-center mb-3">Description</h1>
       {userObj.description ? (
-        <div>{userObj.description}</div>
+        <div
+          className="w-full h-[150px] flex border rounded-md p-3 hover:cursor-pointer"
+          onClick={() => setIsOpen(true)}>
+          {userObj.description}
+        </div>
       ) : (
         <div className="w-full h-[150px] flex justify-center items-center border rounded-md">
           <button
@@ -44,7 +78,9 @@ const DescriptionBoard = (props: Props) => {
               onChange={(e) => setDesText(e.target.value)}
               placeholder="เพิ่มรายละเอียดเกี่ยวกับตัวคุณ"></textarea>
             <div className="flex items-center gap-4 mt-4">
-              <button className="bg-[orange] rounded-md flex flex-1 justify-center py-2">
+              <button
+                onClick={handleSubmit}
+                className="bg-[orange] rounded-md flex flex-1 justify-center py-2">
                 submit
               </button>
               <button className="bg-[orange] rounded-md flex flex-1 justify-center py-2">
