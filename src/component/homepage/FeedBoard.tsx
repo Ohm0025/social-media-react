@@ -4,9 +4,15 @@ type Props = {
   isProfile?: boolean;
   postArr: any[];
   isOther?: boolean;
+  updateCountOne: (postid: number, targetKey: string) => void;
 };
 
-const FeedBoard = ({ isProfile = false, postArr, isOther }: Props) => {
+const FeedBoard = ({
+  isProfile = false,
+  postArr,
+  isOther,
+  updateCountOne,
+}: Props) => {
   return (
     <div
       className={`${
@@ -15,7 +21,13 @@ const FeedBoard = ({ isProfile = false, postArr, isOther }: Props) => {
         isProfile ? "" : "sm:w-[50%]"
       }`}>
       {postArr.map((item, index) => {
-        return <PostCard postItem={item} key={"postcard_" + index} />;
+        return (
+          <PostCard
+            postItem={item}
+            updateCountOne={updateCountOne}
+            key={"postcard_" + index}
+          />
+        );
       })}
     </div>
   );

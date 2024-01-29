@@ -23,6 +23,19 @@ const HomePage = () => {
 
   console.log(postArr);
 
+  const updateCountOne = (postid: number, targetKey: string) => {
+    setPostArr((prev: any) => {
+      return [
+        ...prev.map((item: any) => {
+          if (item.postid === postid) {
+            return { ...item, [targetKey]: Number(item[targetKey]) + 1 };
+          }
+          return item;
+        }),
+      ];
+    });
+  };
+
   useEffect(() => {
     callData();
   }, []);
@@ -33,7 +46,7 @@ const HomePage = () => {
         openModal={() => setIsOpen(true)}
         openPicModal={() => setIsOpenPic(true)}
       />
-      <FeedBoard postArr={postArr} />
+      <FeedBoard postArr={postArr} updateCountOne={updateCountOne} />
       <ModalPost isOpen={isOpen} handleClose={() => setIsOpen(false)} />
       <ModalPostPic
         isOpen={isOpenPic}

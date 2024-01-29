@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { calDiffHr } from "../../utils/calDiffTime";
 import { API_URL } from "../../utils/constant";
 import ProfileIcon from "../etc/ProfileIcon";
@@ -6,7 +6,7 @@ import CommentBox from "../commentBox/CommentBox";
 import PostTopBtn from "../etc/PostTopBtn";
 import { useUser } from "../../store/user";
 
-const PostCard = ({ postItem }: any) => {
+const PostCard = ({ postItem, updateCountOne }: any) => {
   const [isComment, setIsComment] = useState(false);
   const { userObj } = useUser();
 
@@ -61,10 +61,12 @@ const PostCard = ({ postItem }: any) => {
               <div className="bg-[#ffbc12] rounded-full p-[5px] flex justify-center items-center">
                 <i className="fa-solid fa-thumbs-up text-[white] text-[18px]"></i>
               </div>
-              <small className="text-[gray]">3.3 K</small>
+              <small className="text-[gray]">{postItem.count_like}</small>
             </div>
             <div className="">
-              <small className="text-[gray]">100 comments</small>
+              <small className="text-[gray]">
+                {postItem.count_comment + " comments"}
+              </small>
             </div>
           </div>
           <hr />
@@ -82,7 +84,9 @@ const PostCard = ({ postItem }: any) => {
               <span>COMMENT</span>
             </button>
           </div>
-          {isComment && <CommentBox commentArr={["kl", "kl"]} />}
+          {isComment && (
+            <CommentBox postItem={postItem} updateCountOne={updateCountOne} />
+          )}
         </div>
       </div>
     </div>
