@@ -23,12 +23,12 @@ const HomePage = () => {
 
   console.log(postArr);
 
-  const updateCountOne = (postid: number, targetKey: string) => {
+  const updateCountOne = (postid: number, targetKey: string, value: number) => {
     setPostArr((prev: any) => {
       return [
         ...prev.map((item: any) => {
           if (item.postid === postid) {
-            return { ...item, [targetKey]: Number(item[targetKey]) + 1 };
+            return { ...item, [targetKey]: Number(item[targetKey]) + value };
           }
           return item;
         }),

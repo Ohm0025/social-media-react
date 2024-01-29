@@ -18,7 +18,7 @@ type Props = {
 
 const ProfilePage = ({}: Props) => {
   const { searchUserId } = useParams();
-  const { myPostArr, setMyPostArr } = useMyPost();
+  const { myPostArr, setMyPostArr, modPostArr } = useMyPost();
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenPic, setIsOpenPic] = useState(false);
   const { userObj } = useUser();
@@ -44,6 +44,24 @@ const ProfilePage = ({}: Props) => {
       isOther && setOtherObj({ ...res.data?.userObj });
     } catch (err) {
       console.log(err);
+    }
+  };
+
+  const updateCountOne = (postid: number, targetKey: string, value: number) => {
+    console.log("update count");
+    if (isOther) {
+      setPostArr((prev: any) => {
+        return [
+          ...prev.map((item: any) => {
+            if (item.postid === postid) {
+              return { ...item, [targetKey]: Number(item[targetKey]) + value };
+            }
+            return item;
+          }),
+        ];
+      });
+    } else {
+      modPostArr(postid, targetKey, value);
     }
   };
 
@@ -81,6 +99,7 @@ const ProfilePage = ({}: Props) => {
           )}
           {postArr.length > 0 || myPostArr.length > 0 ? (
             <FeedBoard
+              updateCountOne={updateCountOne}
               isProfile={true}
               postArr={isOther ? postArr : myPostArr}
               isOther={isOther}

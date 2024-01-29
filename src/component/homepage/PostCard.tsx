@@ -5,10 +5,29 @@ import ProfileIcon from "../etc/ProfileIcon";
 import CommentBox from "../commentBox/CommentBox";
 import PostTopBtn from "../etc/PostTopBtn";
 import { useUser } from "../../store/user";
+import { toggleLike } from "../../api/like";
 
 const PostCard = ({ postItem, updateCountOne }: any) => {
   const [isComment, setIsComment] = useState(false);
+  const [isLike, setIsLike] = useState(postItem.thisUserLike);
   const { userObj } = useUser();
+
+  const handleToggle = async () => {
+    try {
+      const res = await toggleLike(Number(postItem.postid));
+      if (res.status === 201) {
+        if (!isLike) {
+          updateCountOne(postItem.postid, "count_like", 1);
+          setIsLike(true);
+        } else {
+          updateCountOne(postItem.postid, "count_like", -1);
+          setIsLike(false);
+        }
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="bg-white w-full rounded-md shadow-md py-4 mb-5">
@@ -61,17 +80,21 @@ const PostCard = ({ postItem, updateCountOne }: any) => {
               <div className="bg-[#ffbc12] rounded-full p-[5px] flex justify-center items-center">
                 <i className="fa-solid fa-thumbs-up text-[white] text-[18px]"></i>
               </div>
-              <small className="text-[gray]">{postItem.count_like}</small>
+              <small className="text-[gray]">{postItem.count_like || 0}</small>
             </div>
             <div className="">
               <small className="text-[gray]">
-                {postItem.count_comment + " comments"}
+                {(postItem.count_comment || 0) + " comments"}
               </small>
             </div>
           </div>
           <hr />
           <div className="mt-3 flex items-center justify-between">
-            <button className="flex flex-1 gap-2 items-baseline justify-center hover:bg-[#f7f7f7] hover:outline outline-8 outline-[#f7f7f7] rounded-md px-2 py-1">
+            <button
+              className={`flex flex-1 gap-2 items-baseline justify-center hover:bg-[#f7f7f7] hover:outline outline-8 outline-[#f7f7f7] rounded-md px-2 py-1 ${
+                isLike ? "text-[orange]" : ""
+              }`}
+              onClick={handleToggle}>
               <i className="fa-regular fa-thumbs-up text-[24px]"></i>
               <span>LIKE</span>
             </button>

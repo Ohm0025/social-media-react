@@ -4,7 +4,7 @@ type Props = {
   isProfile?: boolean;
   postArr: any[];
   isOther?: boolean;
-  updateCountOne: (postid: number, targetKey: string) => void;
+  updateCountOne: (postid: number, targetKey: string, value: number) => void;
 };
 
 const FeedBoard = ({

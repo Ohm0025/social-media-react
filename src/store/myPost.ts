@@ -5,6 +5,7 @@ type UseMyPost = {
   setMyPostArr: (fetchPost: any) => void;
   removeMyPostArr: (postid: number) => void;
   addMyPostArr: (newPost: any) => void;
+  modPostArr: (targetPostId: number, targetKey: string, value: number) => void;
 };
 
 export const useMyPost = create<UseMyPost>((set) => ({
@@ -23,6 +24,19 @@ export const useMyPost = create<UseMyPost>((set) => ({
     set((prev) => {
       return {
         myPostArr: [newPost, ...prev.myPostArr],
+      };
+    }),
+  modPostArr: (targetPostId: number, targetKey: string, value: number) =>
+    set((prev) => {
+      return {
+        myPostArr: [
+          ...prev.myPostArr.map((item) => {
+            if (item.postid === targetPostId) {
+              return { ...item, [targetKey]: Number(item[targetKey]) + value };
+            }
+            return item;
+          }),
+        ],
       };
     }),
 }));
