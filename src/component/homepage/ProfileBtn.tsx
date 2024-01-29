@@ -7,12 +7,18 @@ const profileBtn = "profileBtn";
 type Props = {
   isOpen: string;
   openDropdown?: () => void;
+  openChat?: () => void;
 };
 
-const ProfileBtn = ({ isOpen, openDropdown = function () {} }: Props) => {
+const ProfileBtn = ({
+  isOpen,
+  openDropdown = function () {},
+  openChat = function () {},
+}: Props) => {
   return (
     <div className="flex gap-1">
       <button
+        onClick={openChat}
         className={`rounded-full w-[30px] h-[30px] text-[13px] sm:w-[50px] sm:h-[50px] sm:text-[26px] ${
           isOpen === chatBtn ? "bg-[#ffbc12]" : "bg-[#f7f7f7]"
         } text-center`}>

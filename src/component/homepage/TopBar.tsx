@@ -3,6 +3,7 @@ import BumblebeeLogo from "./BumblebeeLogo";
 import HomeUserBtn from "./HomeUserBtn";
 import ProfileBtn from "./ProfileBtn";
 import UserDropdown from "./UserDropdown";
+import ChatBox from "../chatBox/ChatBox";
 
 type Props = {
   removeCookie: () => void;
@@ -25,6 +26,19 @@ const TopBar = ({ removeCookie, changeValidUser }: Props) => {
             return "";
           })
         }
+        openChat={() =>
+          setIsOpen(() => {
+            if (isOpen === "") {
+              return "chatBtn";
+            }
+            return "";
+          })
+        }
+      />
+      <ChatBox
+        isOpen={isOpen === "chatBtn"}
+        currentUser={""}
+        recipientSocketID={""}
       />
       <UserDropdown
         isOpen={isOpen === "profileBtn"}

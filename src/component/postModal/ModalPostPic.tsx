@@ -86,9 +86,13 @@ const ModalPostPic = ({ isOpen, handleClose }: Props) => {
           <hr className="my-4" />
           <div className="flex flex-col">
             <div className="flex items-center">
-              <ProfileIcon radius="30px" textSize="20px" />
+              <ProfileIcon
+                radius="30px"
+                textSize="20px"
+                profilePicture={userObj.profile_picture}
+              />
               <div className="flex flex-col">
-                <b>firstname lastname</b>
+                <b>{userObj.firstname + " " + userObj.lastname}</b>
                 <select
                   value={postType}
                   onChange={(e) => setPostType(e.target.value)}>
