@@ -12,6 +12,7 @@ import { toFormData } from "../../utils/toFormData";
 type Props = {
   isOpen: boolean;
   handleClose: () => void;
+  aftersubmit: () => void;
 };
 
 const style = {
@@ -27,7 +28,7 @@ const style = {
   p: 4,
 };
 
-const ModalPost = ({ isOpen, handleClose }: Props) => {
+const ModalPost = ({ isOpen, handleClose, aftersubmit }: Props) => {
   const [postText, setPostText] = useState("");
   const [postType, setPostType] = useState("only_friend");
   const { openIsLoading, closeIsLoading } = useLoading();
@@ -46,11 +47,13 @@ const ModalPost = ({ isOpen, handleClose }: Props) => {
 
       const res = await createPost(formData);
       if (res.status === 201) {
-        addMyPostArr({
-          ...res.data?.data.rows[0],
-          firstname: userObj.firstname,
-          lastname: userObj.lastname,
-        });
+        aftersubmit();
+        //use after instead store
+        // addMyPostArr({
+        //   ...res.data?.data.rows[0],
+        //   firstname: userObj.firstname,
+        //   lastname: userObj.lastname,
+        // });
         handleClose();
       } else {
         console.log("error create post");

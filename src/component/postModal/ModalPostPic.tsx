@@ -11,6 +11,7 @@ import { updateUser } from "../../api/user";
 type Props = {
   isOpen: boolean;
   handleClose: () => void;
+  aftersubmit: () => void;
 };
 
 const style = {
@@ -26,7 +27,7 @@ const style = {
   p: 4,
 };
 
-const ModalPostPic = ({ isOpen, handleClose }: Props) => {
+const ModalPostPic = ({ isOpen, handleClose, aftersubmit }: Props) => {
   const { addMyPostArr } = useMyPost();
   const { userObj } = useUser();
   const { openIsLoading, closeIsLoading } = useLoading();
@@ -49,11 +50,12 @@ const ModalPostPic = ({ isOpen, handleClose }: Props) => {
 
       const res = await createPost(formData);
       if (res.status === 201) {
-        addMyPostArr({
-          ...res.data?.data.rows[0],
-          firstname: userObj.firstname,
-          lastname: userObj.lastname,
-        });
+        aftersubmit();
+        // addMyPostArr({
+        //   ...res.data?.data.rows[0],
+        //   firstname: userObj.firstname,
+        //   lastname: userObj.lastname,
+        // });
         handleClose();
       }
     } catch (err) {

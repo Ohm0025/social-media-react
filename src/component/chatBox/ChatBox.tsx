@@ -34,7 +34,10 @@ const ChatBox = (props: Props) => {
       ]);
     });
 
-    socket.emit("authenticate", { userId: userObj.userid });
+    socket.emit("authenticate", {
+      userId: userObj.userid,
+      firstname: userObj.firstname,
+    });
     return () => {
       socket.disconnect();
     };
@@ -62,7 +65,7 @@ const ChatBox = (props: Props) => {
                 return (
                   <div
                     onClick={() => setRecipient(item.userid)}
-                    className="flex justify-center items-center gap-3 bg-[gray] px-2 py-1"
+                    className="flex justify-center items-center gap-3 bg-[gray] px-2 py-1 w-[150px]"
                     key={`recipient-item-${index}`}>
                     <ProfileIcon
                       radius={"50px"}
@@ -74,15 +77,15 @@ const ChatBox = (props: Props) => {
                 );
               })}
             </div>
-          </div>
-          <div className="bg-[#c7adad]">
-            <ul>
-              {privateMessages.map((msg: any, index: number) => (
-                <li key={index}>
-                  <strong>{msg.sender}:</strong> {msg.message}
-                </li>
-              ))}
-            </ul>
+            <div className="bg-[#c7adad] flex w-full">
+              <ul className="w-full">
+                {privateMessages.map((msg: any, index: number) => (
+                  <li key={index}>
+                    <strong>{msg.sender}:</strong> {msg.message}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
           <div className="bg-[#dadada] flex flex-col mt-5 p-4">
             <label className="flex w-full p-2 border">

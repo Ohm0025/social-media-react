@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import FeedBoard from "../component/homepage/FeedBoard";
-import PostBoard from "../component/homepage/PostBoard";
-import ModalPost from "../component/postModal/ModalPost";
-import ModalPostPic from "../component/postModal/ModalPostPic";
-import { getStandardPost } from "../api/post";
+import FeedBoard from "../../component/homepage/FeedBoard";
+import PostBoard from "../../component/homepage/PostBoard";
+import ModalPost from "../../component/postModal/ModalPost";
+import ModalPostPic from "../../component/postModal/ModalPostPic";
+import { getStandardPost } from "../../api/post";
 
 const HomePage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,9 +47,14 @@ const HomePage = () => {
         openPicModal={() => setIsOpenPic(true)}
       />
       <FeedBoard postArr={postArr} updateCountOne={updateCountOne} />
-      <ModalPost isOpen={isOpen} handleClose={() => setIsOpen(false)} />
+      <ModalPost
+        isOpen={isOpen}
+        handleClose={() => setIsOpen(false)}
+        aftersubmit={callData}
+      />
       <ModalPostPic
         isOpen={isOpenPic}
+        aftersubmit={callData}
         handleClose={() => setIsOpenPic(false)}></ModalPostPic>
     </div>
   );
