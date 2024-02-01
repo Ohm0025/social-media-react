@@ -73,12 +73,6 @@ const FormLogin = ({
             <div className="text-[14px] text-textTwo">Log In with Google</div>
           </div>
         </div>
-        {/* <button
-          type="button"
-          onClick={() => setIsOpenregister(true)}
-          className="flex mt-2 mx-auto px-7 justify-center text-[24px] text-white rounded-md bg-[gray] py-1">
-          Register
-        </button> */}
       </div>
       <div className="text-[18px] text-textOne flex flex-col items-start mt-[auto]">
         <span>Creators keeps 94% of their earnings!</span>
