@@ -1,10 +1,11 @@
+import titleWeb from "/Users/apple/Desktop/westride/final project/final-project-react/src/assets/svg/titleWeb.svg";
+
 const LoginLeftSide = () => {
   return (
-    <div className="flex justify-center gap-5 md:flex-col items-center md:flex-1 mb-6 md:mb-0">
-      <></>
-      <h1 className="font-mono text-[#ffbc12] font-extrabold text-[48px] drop-shadow-md text-center md:text-start">
-        BumBleBee
-      </h1>
+    <div className="bg-bgLogin flex-1 bg-no-repeat bg-cover bg-center min-w-[50%]">
+      <div>
+        <img src={titleWeb} alt="title-web" />
+      </div>
     </div>
   );
 };
