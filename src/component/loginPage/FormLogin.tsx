@@ -56,7 +56,9 @@ const FormLogin = ({
         </div>
         <div>
           <span className="text-[14px]">{"Don’t have an account? "}</span>{" "}
-          <span className="text-[14px] font-semibold text-textOne">
+          <span
+            className="text-[14px] font-semibold text-textOne hover:cursor-pointer hover:underline"
+            onClick={() => setIsOpenregister(true)}>
             {"Sign Up"}
           </span>
         </div>

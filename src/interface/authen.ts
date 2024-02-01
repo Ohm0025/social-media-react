@@ -14,4 +14,21 @@ interface FormLoginObj {
   setIsOpenregister: (bool: boolean) => void;
 }
 
-export type { LoginObj, FormLoginObj };
+interface RegisterObj {
+  FirstName: string;
+  LastName: string;
+  EmailAddressOrPhoneNumber: string;
+  Password: string;
+  ConfirmPassword: string;
+  BirthDate: Date;
+}
+
+interface FormRegisterObj {
+  handleSubmit: (
+    e?: React.BaseSyntheticEvent<object, any, any> | undefined
+  ) => Promise<void>;
+  register: UseFormRegister<LoginObj>;
+  errors: FieldErrors<LoginObj>;
+}
+
+export type { LoginObj, FormLoginObj, RegisterObj, FormRegisterObj };
