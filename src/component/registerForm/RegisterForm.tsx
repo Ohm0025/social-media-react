@@ -1,5 +1,6 @@
 import InputText from "../loginPage/InputText";
 import { useRegisterForm } from "./RegisterForm.hook";
+import iconGoogle from "/Users/apple/Desktop/westride/final project/final-project-react/src/assets/svg/googleIcon.svg";
 
 type Props = {
   handleClose: () => void;
@@ -15,7 +16,7 @@ const RegisterForm = ({ handleClose }: Props) => {
         handleSubmit();
         handleClose();
       }}
-      className="flex-1 min-w-[50%] bg-white z-[2] p-[8.75%] flex flex-col">
+      className="flex-1 min-w-[50%] bg-white z-[2] px-[8.75%] py-[5%] flex flex-col">
       <div className="w-[320px]">
         <div className="text-textOne font-bold text-[26px] mb-[29px]">
           Sign Up
@@ -105,13 +106,40 @@ const RegisterForm = ({ handleClose }: Props) => {
           />
         </div>
       </div>
-
-      <button type="submit" className="bg-[#ffcb08] py-2 rounded-md">
-        Submit
-      </button>
-      <button type="reset" className="bg-[#d3d3d3] py-2 rounded-md">
-        Clear
-      </button>
+      <div className="mt-[23px] w-[320px]">
+        <button
+          type="submit"
+          className="bg-primary text-white py-2 px-3 rounded-[18px] text-[16px]">
+          Sign up
+        </button>
+        <div className="text-[14px] mt-[23px]">
+          By signing up you agree to our{" "}
+          <span className="text-textOne underline">Terms of Service</span> and
+          <span className="text-textOne underline">Privacy Policy</span> and
+          confirm that you are at least 18 years old.
+        </div>
+        <div className="text-[14px] mt-[23px]">
+          Already have an account?{" "}
+          <button
+            className="font-semibold text-textOne hover:underline"
+            onClick={() => handleClose()}>
+            Log In
+          </button>
+        </div>
+      </div>
+      <hr className="border border-line mt-[35px]" />
+      <div className="mt-[18px] text-textTwo text-[14px]">Or</div>
+      <div className="mt-[15px]">
+        <span className="text-textThree text-[16px] font-medium">
+          Sign up with
+        </span>
+        <button className="rounded-[4px] mt-[20px] w-[203px] h-[40px] border border-strokeOne bg-fillOne flex items-center gap-[15px] px-[11px] py-[10px]">
+          <div>
+            <img src={iconGoogle} alt="icon-google" />
+          </div>
+          <div className="text-[14px] text-textTwo">Sign up with Google</div>
+        </button>
+      </div>
     </form>
   );
 };

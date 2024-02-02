@@ -11,7 +11,7 @@ const FormLogin = ({
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex-1 min-w-[50%] bg-white z-[2] p-[8.75%] flex flex-col">
+      className="flex-1 min-w-[50%] bg-white z-[2] px-[8.75%] py-[5%] flex flex-col">
       <div className="w-[320px]">
         <div className="text-textOne font-bold text-[26px] mb-[29px]">
           Log In
@@ -68,15 +68,15 @@ const FormLogin = ({
           <span className="text-textThree text-[16px] font-medium">
             Log In with
           </span>
-          <div className="rounded-[4px] mt-[20px] w-[203px] h-[40px] border border-strokeOne bg-fillOne flex items-center gap-[15px] px-[11px] py-[10px]">
+          <button className="rounded-[4px] mt-[20px] w-[203px] h-[40px] border border-strokeOne bg-fillOne flex items-center gap-[15px] px-[11px] py-[10px]">
             <div>
               <img src={iconGoogle} alt="icon-google" />
             </div>
             <div className="text-[14px] text-textTwo">Log In with Google</div>
-          </div>
+          </button>
         </div>
       </div>
-      <div className="text-[18px] text-textOne flex flex-col items-start mt-[auto]">
+      <div className="text-[18px] text-textOne flex flex-col items-start mt-[35px]">
         <span>Creators keeps 94% of their earnings!</span>
         <span>Creators pay $25/mth or $240 yearly.</span>
       </div>
