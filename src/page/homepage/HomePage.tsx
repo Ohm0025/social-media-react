@@ -6,6 +6,7 @@ import ModalPostPic from "../../component/postModal/ModalPostPic";
 import { getStandardPost } from "../../api/post";
 import UserBar from "../../component/homepage/newUI/UserBar";
 import HomeBar from "../../component/homepage/newUI/HomeBar";
+import FriendFinding from "../../component/friendPage/FriendFinding";
 
 const HomePage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -55,6 +56,7 @@ const HomePage = () => {
           />
         </div>
       </div>
+      <FriendFinding />
     </div>
   );
 };

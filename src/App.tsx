@@ -87,7 +87,7 @@ function App() {
   ]);
 
   return (
-    <div className="">
+    <>
       <DelayBox>
         <RouterProvider router={router}></RouterProvider>
       </DelayBox>
@@ -104,7 +104,7 @@ function App() {
         theme="colored"
       />
       <BackDropLoading open={isLoading} handleClose={closeIsLoading} />
-    </div>
+    </>
   );
 }
 
