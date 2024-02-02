@@ -6,6 +6,9 @@ import CommentBox from "../commentBox/CommentBox";
 import PostTopBtn from "../etc/PostTopBtn";
 import { useUser } from "../../store/user";
 import { toggleLike } from "../../api/like";
+import EditPostBtn from "../etc/EditPostBtn";
+import LikeBtn from "../etc/likeBtn";
+import CommentBtn from "../etc/CommentBtn";
 
 const PostCard = ({ postItem, updateCountOne }: any) => {
   const [isComment, setIsComment] = useState(false);
@@ -30,88 +33,38 @@ const PostCard = ({ postItem, updateCountOne }: any) => {
   };
 
   return (
-    <div className="bg-white w-full rounded-md shadow-md py-4 mb-5">
-      {/* top */}
-      <div className="flex justify-between px-4">
-        {/* top-start */}
-        <div className="flex items-center gap-3">
-          <ProfileIcon
-            radius="40px"
-            textSize="20px"
-            bgColor="gray"
-            profilePicture={postItem.profile_picture || userObj.profile_picture}
-          />
-          <div className="flex flex-col">
-            <div>
-              <b>{`${postItem.firstname + " " + postItem.lastname}`}</b>
+    <div className="w-full">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-[10px]">
+          <ProfileIcon radius="60px" />
+          <div>
+            <div className="text-[14px] font-bold">
+              {postItem.firstname + " " + postItem.lastname}
             </div>
-            <div>
-              <span>{calDiffHr(postItem.post_date)}</span>
-              <i className="fa-solid fa-earth-americas"></i>
-            </div>
+            <div className="text-[14px]">{"public"}</div>
           </div>
         </div>
-        {/* top-end */}
-        {userObj.userid === postItem.userid && (
-          <PostTopBtn postItem={postItem} />
-        )}
+        <div className="flex items-start gap-[10px]">
+          <div className="text-[14px] text-textFour">{"May 19 2040"}</div>
+
+          <EditPostBtn />
+        </div>
       </div>
 
-      {/* middle - content */}
-      <div className="flex flex-col w-full">
-        {postItem.post_content && (
-          <div className="py-2 px-4">{`${postItem.post_content}`}</div>
-        )}
-        {postItem.post_picture && (
-          <div className="flex justify-center items-center">
-            <img
-              className="w-full"
-              src={`${
-                postItem.post_picture &&
-                API_URL + "/" + postItem.post_picture.split("public/")[1]
-              }`}
-              alt="sample-picture"
-            />
-          </div>
-        )}
-        <div className="px-3">
-          <div className="flex justify-between my-2">
-            <div className="flex items-center gap-2">
-              <div className="bg-[#ffbc12] rounded-full p-[5px] flex justify-center items-center">
-                <i className="fa-solid fa-thumbs-up text-[white] text-[18px]"></i>
-              </div>
-              <small className="text-[gray]">{postItem.count_like || 0}</small>
-            </div>
-            <div className="">
-              <small className="text-[gray]">
-                {(postItem.count_comment || 0) + " comments"}
-              </small>
-            </div>
-          </div>
-          <hr />
-          <div className="mt-3 flex items-center justify-between">
-            <button
-              className={`flex flex-1 gap-2 items-baseline justify-center hover:bg-[#f7f7f7] hover:outline outline-8 outline-[#f7f7f7] rounded-md px-2 py-1 ${
-                isLike ? "text-[orange]" : ""
-              }`}
-              onClick={handleToggle}>
-              <i className="fa-regular fa-thumbs-up text-[24px]"></i>
-              <span>LIKE</span>
-            </button>
-            <button
-              onClick={() => setIsComment((prev) => !prev)}
-              className={`flex flex-1 gap-2 items-baseline justify-center hover:bg-[#f7f7f7] hover:outline outline-8 outline-[#f7f7f7] rounded-md px-2 py-1 ${
-                isComment ? "bg-[#f7f7f7]" : ""
-              }`}>
-              <i className="fa-regular fa-comment text-[24px]"></i>
-              <span>COMMENT</span>
-            </button>
-          </div>
-          {isComment && (
-            <CommentBox postItem={postItem} updateCountOne={updateCountOne} />
-          )}
+      <div className="w-full mt-[16px] mb-[18px]">
+        <div className="border p-5">
+          <p>Post Content</p>
         </div>
       </div>
+      <div className="px-[30px] flex items-center gap-[50px]">
+        <LikeBtn />
+        <CommentBtn />
+      </div>
+      <div className="mt-[20px] text-[14px] text-textFive ml-[25px]">
+        {"122 likes this"}
+      </div>
+
+      <hr className="border-t-[1px] border-line2 my-[20px] w-auto ml-[-15px] mr-[-15px]" />
     </div>
   );
 };

@@ -13,6 +13,8 @@ export default {
         textOne: "#150AA1",
         textTwo: "#7B7B7B",
         textThree: "#595959",
+        textFour: "#d3d3d3",
+        textFive: "#a8a8a8",
         strokeOne: "#E4E4E4",
         strokeTwo: "#D9D9D9",
         fillOne: "#F1F1F1",
