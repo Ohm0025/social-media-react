@@ -5,7 +5,14 @@
 @tailwind utilities;
 
 body {
-  background-color: #d5d5d5;
   font-family: "Rubik", sans-serif;
   box-sizing: border-box;
+}
+
+.userbarIcon:hover div {
+  background-color: #a9a9a9 !important;
+}
+
+.userbarIcon:hover span {
+  color: #a9a9a9;
 }

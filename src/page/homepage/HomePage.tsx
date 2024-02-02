@@ -4,6 +4,7 @@ import PostBoard from "../../component/homepage/PostBoard";
 import ModalPost from "../../component/postModal/ModalPost";
 import ModalPostPic from "../../component/postModal/ModalPostPic";
 import { getStandardPost } from "../../api/post";
+import UserBar from "../../component/homepage/newUI/UserBar";
 
 const HomePage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,8 +21,6 @@ const HomePage = () => {
       console.log(err);
     }
   };
-
-  console.log(postArr);
 
   const updateCountOne = (postid: number, targetKey: string, value: number) => {
     setPostArr((prev: any) => {
@@ -41,21 +40,10 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="min-h-[100vh]">
-      <PostBoard
-        openModal={() => setIsOpen(true)}
-        openPicModal={() => setIsOpenPic(true)}
-      />
-      <FeedBoard postArr={postArr} updateCountOne={updateCountOne} />
-      <ModalPost
-        isOpen={isOpen}
-        handleClose={() => setIsOpen(false)}
-        aftersubmit={callData}
-      />
-      <ModalPostPic
-        isOpen={isOpenPic}
-        aftersubmit={callData}
-        handleClose={() => setIsOpenPic(false)}></ModalPostPic>
+    <div className="min-h-[100vh] grid grid-cols-[2fr,4fr,2fr]">
+      <UserBar />
+      <div className="bg-[blue]">bU</div>
+      <div className="bg-[green]">g</div>
     </div>
   );
 };

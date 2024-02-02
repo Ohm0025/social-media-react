@@ -3,7 +3,7 @@ import { formatPicName } from "../../utils/formatPicName";
 
 type Props = {
   radius: string;
-  textSize: string;
+  textSize?: string;
   bgColor?: string;
   openDropdown?: () => void;
   isOpen?: boolean | undefined;
@@ -26,7 +26,7 @@ const ProfileIcon = ({
         height: radius,
         fontSize: textSize,
       }}
-      className={`rounded-full text-[${textSize}] overflow-hidden bg-[${
+      className={`rounded-full border border-strokeTwo text-[${textSize}] overflow-hidden bg-[${
         isOpen ? "#ffbc12" : bgColor
       }] text-center`}>
       {profilePicture ? (

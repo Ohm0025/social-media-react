@@ -50,18 +50,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/final-project/",
-      element: (
-        <>
-          {isValidUser ? (
-            <LayoutHome
-              removeCookie={removeCookie}
-              changeValidUser={(value: boolean) => setIsValidUser(value)}
-            />
-          ) : (
-            <LoginPage />
-          )}
-        </>
-      ),
+      element: <>{true ? <LayoutHome /> : <LoginPage />}</>,
       children: [
         {
           path: "",
