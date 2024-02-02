@@ -62,7 +62,7 @@ const FormLogin = ({
             {"Sign Up"}
           </span>
         </div>
-        <hr className="border border-line mt-[35px]" />
+        <hr className="border-t-[1px] border-line mt-[35px]" />
         <div className="mt-[18px] text-textTwo text-[14px]">Or</div>
         <div className="mt-[15px]">
           <span className="text-textThree text-[16px] font-medium">

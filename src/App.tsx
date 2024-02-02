@@ -12,7 +12,6 @@ import { useLoading } from "./store/loading";
 import BackDropLoading from "./component/backDropLoaing/BackDropLoading";
 import DelayBox from "./component/delayBox/DelayBox";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useUser } from "./store/user";
 
 function App() {

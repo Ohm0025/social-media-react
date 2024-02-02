@@ -6,8 +6,8 @@ type Props = {
 
 const IconUserBar = (props: Props) => {
   const sx = {
-    "background-color": `${props.color}`,
-    "-webkit-mask": `url(${props.iconSrc}) no-repeat center`,
+    backgroundColor: `${props.color}`,
+    WebkitMask: `url(${props.iconSrc}) no-repeat center`,
     mask: `url(${props.iconSrc}) no-repeat center`,
     width: "20px",
     height: "20px",

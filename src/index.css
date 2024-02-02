@@ -45,3 +45,21 @@ body {
 .ql-editor.ql-blank::before {
   font-style: normal !important;
 }
+.Dropdown-root {
+}
+.Dropdown-control {
+  border: none !important;
+  padding: 0 !important;
+}
+.Dropdown-control:hover {
+  cursor: pointer;
+  box-shadow: none !important;
+}
+.Dropdown-placeholder {
+  display: none;
+}
+.Dropdown-menu {
+  left: 0;
+  min-width: 100px;
+  transform: translate(-82%, 5px);
+}

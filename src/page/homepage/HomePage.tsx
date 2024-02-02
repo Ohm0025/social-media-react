@@ -47,6 +47,12 @@ const HomePage = () => {
         <HomeBar />
         <div className="mt-[15px]">
           <PostBoard />
+          <FeedBoard
+            postArr={[
+              { firstname: "porramat", lastname: "thapeg" },
+              { firstname: "porramat", lastname: "thapeg" },
+            ]}
+          />
         </div>
       </div>
     </div>
