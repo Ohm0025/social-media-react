@@ -1,64 +1,74 @@
-import { useUser } from "../../store/user";
-import { API_URL } from "../../utils/constant";
+import { Component } from "react";
+import ReactQuill from "react-quill";
 
-type Props = {
-  isProfile?: boolean;
-  openModal?: () => void;
-  openPicModal?: () => void;
+type MyProps = {};
+
+type MyState = {
+  text: string;
 };
 
-const PostBoard = ({
-  isProfile = false,
-  openModal = () => {},
-  openPicModal = () => {},
-}: Props) => {
-  const {
-    userObj: { profile_picture },
-  } = useUser();
+class MyComponent extends Component<MyProps, MyState> {
+  constructor(props: {}) {
+    super(props);
+    this.state = {
+      text: "",
+    };
+  }
 
-  return (
-    <div
-      className={`bg-[white] text-center rounded-md ${
-        isProfile ? "" : "mt-[30px]"
-      } py-3 ${
-        isProfile ? "" : "w-[80%]"
-      } min-w-[300px] shadow-md mx-auto px-3 ${isProfile ? "" : "sm:w-[50%]"} ${
-        isProfile ? "w-full" : ""
-      }`}>
-      <div className="flex justify-center gap-4 items-center">
-        <div className="w-[45px] h-[45px] bg-[#d5d5d5] flex justify-center items-center rounded-full overflow-hidden">
-          {profile_picture ? (
-            <img
-              src={`${
-                profile_picture &&
-                API_URL + "/" + profile_picture.split("public/")[1]
-              }`}
-              alt=""
-            />
-          ) : (
-            <i className="fa-solid fa-user"></i>
-          )}
+  modules = {
+    toolbar: [
+      [{ header: [1, 2, 3, 4, false] }],
+      ["bold", "italic", "underline", "strike", "blockquote"],
+      [
+        { list: "ordered" },
+        { list: "bullet" },
+        { indent: "-1" },
+        { indent: "+1" },
+      ],
+      ["link", "image"],
+      ["clean"],
+    ],
+  };
+
+  formats = [
+    "header",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "blockquote",
+    "list",
+    "bullet",
+    "indent",
+    "link",
+    "image",
+  ];
+
+  render() {
+    return (
+      <div className="editor-container">
+        <ReactQuill
+          value={this.state.text}
+          onChange={(value) =>
+            this.setState({
+              text: value,
+            })
+          }
+          placeholder="Compose new post"
+          className="editor-toolbar"
+          theme="snow"
+          modules={this.modules}
+          formats={this.formats}></ReactQuill>
+        <div className="flex justify-end mt-[15px]">
+          <button
+            onClick={() => console.log(this.state.text)}
+            className="bg-textOne text-white text-[14px] font-medium px-[35px] py-[9px] rounded-[4px]">
+            Post
+          </button>
         </div>
-
-        <button
-          type="button"
-          onClick={() => openModal()}
-          className="flex flex-grow rounded-3xl px-4 py-2 bg-[#f7f7f7]">
-          <span>What 's in your mind ?</span>
-        </button>
       </div>
-      <hr className="my-4" />
-      <div>
-        <button
-          type="button"
-          onClick={() => openPicModal()}
-          className="flex mx-auto items-center gap-3 hover:bg-[#f7f7f7] py-2 px-3 rounded-md">
-          <i className="fa-solid fa-image text-[green] text-[22px]"></i>
-          <span>photo</span>
-        </button>
-      </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
-export default PostBoard;
+export default MyComponent;
