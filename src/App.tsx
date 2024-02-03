@@ -13,6 +13,7 @@ import BackDropLoading from "./component/backDropLoaing/BackDropLoading";
 import DelayBox from "./component/delayBox/DelayBox";
 import { ToastContainer } from "react-toastify";
 import { useUser } from "./store/user";
+import ChatPage from "./page/ChatPage";
 
 function App() {
   const [cookies, setCookie, removeCookie]: any = useCookies([BBB_COOKIES]);
@@ -68,6 +69,10 @@ function App() {
         {
           path: "friend",
           element: <FriendPage />,
+        },
+        {
+          path: "demochat",
+          element: <ChatPage />,
         },
       ],
     },
