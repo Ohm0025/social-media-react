@@ -1,4 +1,5 @@
 import React from "react";
+import ProfileIcon from "../etc/ProfileIcon";
 
 type Props = {};
 
@@ -22,6 +23,27 @@ const ChatContact = (props: Props) => {
             />
           </svg>
         </div>
+      </div>
+
+      <div className="flex flex-col">
+        {["user1", "user2"].map((item, index) => {
+          return (
+            <div
+              className="flex items-start gap-[15px] py-[15px] px-[15px] border-b-[1px] border-line"
+              key={`chatcontact-item-${index}`}>
+              <div>
+                <ProfileIcon radius="40px" />
+              </div>
+              <div className="text-[14px] flex flex-col gap-[5px] w-full">
+                <div className="flex items-center justify-between">
+                  <div className="font-semibold">{item}</div>
+                  <div>{"March 2040"}</div>
+                </div>
+                <div>{"simple text kagpojepgjreglajgoja;..."}</div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
