@@ -74,50 +74,16 @@ const ProfilePage = ({}: Props) => {
     }
   }, []);
   return (
-    <div className="min-h-[100vh] pb-6">
+    <div className="min-h-[100vh]">
       <ProfileCover
         isOther={isOther}
         otherObj={otherObj}
         otherCover={otherObj?.profile_cover}
         otherPicture={otherObj?.prpfile_picture}
       />
-      <div className="w-[80%] min-w-[300px] flex flex-col md:flex-row gap-4 justify-between mx-auto mt-4">
-        <div className="flex-1">
-          <DescriptionBoard
-            isOther={isOther}
-            otherDes={otherObj?.description}
-          />
-          <PictureBoard myPostArr={isOther ? postArr : myPostArr} />
-        </div>
-        <div className="flex-1">
-          {!isOther && (
-            <PostBoard
-              isProfile={true}
-              openModal={() => setIsOpen(true)}
-              openPicModal={() => setIsOpenPic(true)}
-            />
-          )}
-          {postArr.length > 0 || myPostArr.length > 0 ? (
-            <FeedBoard
-              updateCountOne={updateCountOne}
-              isProfile={true}
-              postArr={isOther ? postArr : myPostArr}
-              isOther={isOther}
-            />
-          ) : (
-            <div
-              className={`bg-white w-full flex justify-center items-center rounded-md shadow-md py-4 ${
-                isOther ? "" : "mt-4"
-              }`}>
-              <h1 className="">Empty Post</h1>
-            </div>
-          )}
-        </div>
+      <div className="w-full min-w-[300px]">
+        <DescriptionBoard isOther={isOther} otherDes={otherObj?.description} />
       </div>
-      <ModalPost isOpen={isOpen} handleClose={() => setIsOpen(false)} />
-      <ModalPostPic
-        isOpen={isOpenPic}
-        handleClose={() => setIsOpenPic(false)}></ModalPostPic>
     </div>
   );
 };

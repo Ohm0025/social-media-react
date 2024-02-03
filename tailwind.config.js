@@ -21,6 +21,7 @@ export default {
         line: "#EEEEEE",
         line2: "#F2F2F2",
         hover1: "#A9A9A9",
+        bgCover: "#F1F1FF",
       },
     },
   },

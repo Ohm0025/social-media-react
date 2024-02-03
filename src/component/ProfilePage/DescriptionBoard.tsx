@@ -55,52 +55,10 @@ const DescriptionBoard = ({ otherDes, isOther }: Props) => {
   };
 
   return (
-    <div className="rounded-md p-2 bg-white mb-5 shadow-md">
-      <h1 className="text-center mb-3">Description</h1>
-      {isOther ? (
-        <div className="w-full h-[150px] flex border rounded-md p-3">
-          {otherDes || (
-            <p className="flex w-full justify-center items-center text-[gray]">
-              Empty
-            </p>
-          )}
-        </div>
-      ) : userObj.description ? (
-        <div
-          className="w-full h-[150px] flex border rounded-md p-3 hover:cursor-pointer"
-          onClick={() => setIsOpen(true)}>
-          {userObj.description}
-        </div>
-      ) : (
-        <div className="w-full h-[150px] flex justify-center items-center border rounded-md">
-          <button
-            className="px-3 py-1 rounded-md bg-[orange]"
-            onClick={() => setIsOpen(true)}>
-            Add Description
-          </button>
-        </div>
-      )}
-      <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-        <Box sx={style}>
-          <div className="flex flex-col">
-            <textarea
-              className="flex p-2 h-[150px]"
-              value={desText}
-              onChange={(e) => setDesText(e.target.value)}
-              placeholder="เพิ่มรายละเอียดเกี่ยวกับตัวคุณ"></textarea>
-            <div className="flex items-center gap-4 mt-4">
-              <button
-                onClick={handleSubmit}
-                className="bg-[orange] rounded-md flex flex-1 justify-center py-2">
-                submit
-              </button>
-              <button className="bg-[orange] rounded-md flex flex-1 justify-center py-2">
-                clear
-              </button>
-            </div>
-          </div>
-        </Box>
-      </Modal>
+    <div className="bg-white shadow-md flex p-3">
+      <div className="border rounded-[4px] flex justify-center items-center w-full min-h-[200px] mb-[40px]">
+        Empthy
+      </div>
     </div>
   );
 };

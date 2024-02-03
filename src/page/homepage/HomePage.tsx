@@ -42,21 +42,15 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="min-h-[100vh] grid grid-cols-[2fr,4fr,2fr]">
-      <UserBar />
-      <div className="border-l-[1px] border-r-[1px] border-strokeOne py-[20px] px-[15px]">
-        <HomeBar />
-        <div className="mt-[15px]">
-          <PostBoard />
-          <FeedBoard
-            postArr={[
-              { firstname: "porramat", lastname: "thapeg" },
-              { firstname: "porramat", lastname: "thapeg" },
-            ]}
-          />
-        </div>
-      </div>
-      <FriendFinding />
+    <div className="mt-[15px] px-[15px]">
+      <HomeBar />
+      <PostBoard />
+      <FeedBoard
+        postArr={[
+          { firstname: "porramat", lastname: "thapeg" },
+          { firstname: "porramat", lastname: "thapeg" },
+        ]}
+      />
     </div>
   );
 };
