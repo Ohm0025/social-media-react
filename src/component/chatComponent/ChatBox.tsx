@@ -17,36 +17,16 @@ class MyComponent extends Component<MyProps, MyState> {
 
   modules = {
     toolbar: [
-      [{ header: [1, 2, 3, 4, false] }],
-      ["bold", "italic", "underline", "strike", "blockquote"],
-      [
-        { list: "ordered" },
-        { list: "bullet" },
-        { indent: "-1" },
-        { indent: "+1" },
-      ],
+      ["bold", "italic", "underline"],
       ["link", "image"],
-      ["clean"],
     ],
   };
 
-  formats = [
-    "header",
-    "bold",
-    "italic",
-    "underline",
-    "strike",
-    "blockquote",
-    "list",
-    "bullet",
-    "indent",
-    "link",
-    "image",
-  ];
+  formats = ["bold", "italic", "underline", "link", "image"];
 
   render() {
     return (
-      <div className="editor-container">
+      <div className="editor-container relative">
         <ReactQuill
           value={this.state.text}
           onChange={(value) =>
@@ -54,16 +34,16 @@ class MyComponent extends Component<MyProps, MyState> {
               text: value,
             })
           }
-          placeholder="Compose new post"
-          className="editor-toolbar post-box"
+          placeholder="type message"
+          className="editor-toolbar chat-box"
           theme="snow"
           modules={this.modules}
           formats={this.formats}></ReactQuill>
-        <div className="flex justify-end mt-[15px]">
+        <div className="flex justify-end top-[-5px] right-[5px] relative">
           <button
             onClick={() => console.log(this.state.text)}
             className="bg-textOne text-white text-[14px] font-medium px-[35px] py-[9px] rounded-[4px]">
-            Post
+            Send
           </button>
         </div>
       </div>

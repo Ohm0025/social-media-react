@@ -5,6 +5,7 @@ import HomeBar from "../component/homepage/newUI/HomeBar";
 import UserBar from "../component/homepage/newUI/UserBar";
 import { useEffect, useState } from "react";
 import { getPathName } from "../utils/getUrl";
+import Footer from "../component/etc/Footer";
 
 const LayoutHome = () => {
   const param = useLocation();
@@ -33,6 +34,7 @@ const LayoutHome = () => {
           <FriendFinding />
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

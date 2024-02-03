@@ -25,7 +25,7 @@ const ChatContact = (props: Props) => {
         </div>
       </div>
 
-      <div className="flex flex-col">
+      <div className="flex flex-col overflow-y-auto">
         {["user1", "user2"].map((item, index) => {
           return (
             <div
