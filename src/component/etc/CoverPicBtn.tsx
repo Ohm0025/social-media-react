@@ -1,8 +1,8 @@
 import { Component, ReactNode } from "react";
 import ReactQuill from "react-quill";
 
-class CoverPicBtn extends Component<{}> {
-  constructor(props: {}) {
+class CoverPicBtn extends Component<{ callback: (str: string) => void }> {
+  constructor(props: { callback: (str: string) => void }) {
     super(props);
   }
 
@@ -15,6 +15,7 @@ class CoverPicBtn extends Component<{}> {
   render(): ReactNode {
     return (
       <ReactQuill
+        onChange={this.props.callback}
         className="btn-coverImage"
         theme="snow"
         modules={this.modules}

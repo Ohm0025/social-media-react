@@ -8,18 +8,51 @@ import PostBoard from "../homepage/PostBoard";
 import ReactQuill from "react-quill";
 import CoverPicBtn from "../etc/CoverPicBtn";
 import BioWriter from "../etc/BioWriter";
+import { updateUser } from "../../api/user";
+import { AxiosError } from "axios";
+import { toast } from "react-toastify";
+import { render } from "react-dom";
+import { renderMatches } from "react-router-dom";
+import ReactHtmlParser from "react-html-parser";
 
 const ProfileCover = (props: any) => {
   const [isEdit, setIsEdit] = useState(false);
   const { userObj } = useUser();
 
+  const [cover, setCover] = useState("");
+  const [picture, setPicture] = useState("");
+  const [des, setDes] = useState("");
+
+  const handleUpdateUser = async () => {
+    console.log(cover);
+    console.log(picture);
+    console.log(des);
+    try {
+      const formData = new FormData();
+      formData.append("profile_cover", cover);
+      formData.append(" profile_picture", picture);
+      formData.append("description", des);
+      const res = await updateUser(formData);
+      if (res.status === 201) {
+        toast.success("update success");
+      } else {
+        toast.error(res.data);
+      }
+    } catch (err: AxiosError | any) {
+      console.log(err.message);
+    } finally {
+      setIsEdit(false);
+    }
+  };
+
   return (
     <div className="bg-white shadow-md">
       <div className="w-full h-[300px] bg-bgCover cover center relative">
+        {ReactHtmlParser(cover)}
         {isEdit && (
           <button className="text-[16px] text-primary absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
             <div>
-              <CoverPicBtn />
+              <CoverPicBtn callback={(str: string) => setCover(str)} />
               {userObj.profile_cover ? "Edit photo cover" : "Add photo cover"}
             </div>
           </button>
@@ -30,7 +63,7 @@ const ProfileCover = (props: any) => {
           {isEdit ? (
             <div className="w-[60px] h-[60px] rounded-full border border-strokeTwo overflow-hidden relative bg-fillTwo">
               <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[20%]">
-                <CoverPicBtn />
+                <CoverPicBtn callback={(str: string) => setPicture(str)} />
               </div>
             </div>
           ) : (
@@ -69,7 +102,7 @@ const ProfileCover = (props: any) => {
             ) : (
               <button
                 className="rounded-[60px] bg-fillOne px-[16px] py-[10px] border border-strokeOne text-[16px] text-textOne flex items-center gap-[15px]"
-                onClick={() => setIsEdit(false)}>
+                onClick={handleUpdateUser}>
                 Save
               </button>
             )}
