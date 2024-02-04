@@ -7,14 +7,22 @@ type Props = {
 };
 
 const RegisterForm = ({ handleClose }: Props) => {
-  const { handleSubmit, fieldRegister: register, errors } = useRegisterForm();
+  const {
+    handleSubmit,
+    fieldRegister: register,
+    errors,
+  } = useRegisterForm(handleClose);
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
         handleSubmit();
-        handleClose();
+        console.log(errors);
+        // if (!errors) {
+        //   handleSubmit();
+        //   handleClose();
+        // }
       }}
       className="flex-1 min-w-[50%] bg-white z-[2] px-[8.75%] py-[5%] flex flex-col">
       <div className="w-[320px]">

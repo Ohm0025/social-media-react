@@ -5,34 +5,37 @@ import ProfilePage from "./page/ProfilePage";
 import LayoutHome from "./layout/LayoutHome";
 import FriendPage from "./page/FriendPage";
 import { useCookies } from "react-cookie";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { callToken } from "./api/callToken";
 import { BBB_COOKIES } from "./utils/constant";
 import { useLoading } from "./store/loading";
 import BackDropLoading from "./component/backDropLoaing/BackDropLoading";
 import DelayBox from "./component/delayBox/DelayBox";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { useUser } from "./store/user";
 import ChatPage from "./page/ChatPage";
+import { AxiosError } from "axios";
 
 function App() {
   const [cookies, setCookie, removeCookie]: any = useCookies([BBB_COOKIES]);
-  const [isValidUser, setIsValidUser] = useState(false);
+
   const { isLoading, openIsLoading, closeIsLoading } = useLoading();
-  const { setUserObj } = useUser();
+  const { setUserObj, userObj, resetObj } = useUser();
 
   const callData = async () => {
     try {
       openIsLoading();
       callToken(cookies[BBB_COOKIES])
         .then((res) => {
-          setIsValidUser(res.data?.cookies);
           if (res.data?.data) {
             setUserObj({ ...res.data.data });
+          } else {
+            resetObj();
           }
         })
-        .catch((err) => {
+        .catch((err: AxiosError) => {
           console.log(err);
+          toast.error(err.message);
         });
 
       setTimeout(() => {
@@ -50,7 +53,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/final-project/",
-      element: <>{true ? <LayoutHome /> : <LoginPage />}</>,
+      element: <>{userObj.userid ? <LayoutHome /> : <LoginPage />}</>,
       children: [
         {
           path: "",

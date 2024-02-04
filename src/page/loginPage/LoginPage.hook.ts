@@ -6,6 +6,7 @@ import { LoginObj } from "../../interface/authen";
 import { BBB_COOKIES } from "../../utils/constant";
 import { AxiosError } from "axios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const useLoginPage = () => {
   const {
@@ -14,6 +15,7 @@ const useLoginPage = () => {
     formState: { errors },
   } = useForm<LoginObj>();
 
+  const navigate = useNavigate();
   const [, setCookies] = useCookies();
 
   const [isOpenRegister, setIsOpenregister] = useState<boolean>(false);
@@ -24,6 +26,7 @@ const useLoginPage = () => {
       if (res.status === 200) {
         setCookies(BBB_COOKIES, res.data?.data);
         toast.success(res.data?.message);
+        navigate("/final-project/");
       }
     } catch (err: AxiosError | any) {
       console.log(err);

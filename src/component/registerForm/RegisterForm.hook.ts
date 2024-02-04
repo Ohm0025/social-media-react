@@ -4,7 +4,7 @@ import { userRegister } from "../../api/authenticate";
 import { RegisterObj } from "../../interface/authen";
 import { AxiosError } from "axios";
 
-const useRegisterForm = () => {
+const useRegisterForm = (callback: () => void) => {
   const {
     register,
     handleSubmit,
@@ -17,6 +17,7 @@ const useRegisterForm = () => {
 
       if (res.status === 201) {
         toast.success(res.data?.message);
+        callback();
       }
     } catch (err: AxiosError | any) {
       console.log(err.response?.data?.message);

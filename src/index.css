@@ -45,6 +45,49 @@ body {
   font-size: 20px !important;
   height: 123px !important;
 }
+
+.btn-coverImage .ql-container {
+  display: none;
+}
+
+.btn-coverImage .ql-formats {
+  background: none !important;
+}
+
+.btn-coverImage .ql-toolbar {
+  padding: 0 !important;
+  background: none !important;
+}
+.btn-coverImage .ql-toolbar span {
+  margin: 0 !important;
+}
+
+.btn-coverImage .ql-image {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  padding: 0 !important;
+  background: none !important;
+}
+.btn-coverImage .ql-image::before {
+  /* content: url("/Users/apple/Desktop/westride/final project/final-project-react/src/assets/svg/camera.svg") !important; */
+  content: url("src/assets/svg/camera.svg");
+  width: 80px;
+  height: 70px;
+}
+/* .btn-coverImage .ql-image::after {
+  content: "" !important;
+} */
+.btn-coverImage .ql-image svg {
+  display: none !important;
+}
+.btn-coverImage input[type="file"] {
+  display: none !important;
+}
+.btn-coverImage.quill {
+  background: none !important;
+  border: none !important;
+}
 .post-box .ql-editor {
   text-wrap: wrap !important;
   max-width: 640px;
@@ -58,6 +101,17 @@ body {
 .ql-editor.ql-blank::before {
   font-style: normal !important;
 }
+
+.bio-text .ql-container {
+  height: 250px !important;
+}
+
+.bio-text .ql-editor {
+  text-wrap: wrap !important;
+  max-width: 640px;
+  width: 100%;
+}
+
 .Dropdown-root {
 }
 .Dropdown-control {
@@ -82,4 +136,16 @@ body {
   -moz-box-shadow: inset 0px 0px 0px 2px #000;
   box-shadow: inset 0px 0px 0px 2px #000;
   clip-path: inset(3px 3px 0px 3px);
+}
+
+@media screen and (min-width: 1800px) {
+  .post-box .ql-editor {
+    max-width: 880px !important;
+  }
+  .chat-box .ql-editor {
+    max-width: 880px !important;
+  }
+  .bio-text .ql-editor {
+    max-width: 880px !important;
+  }
 }

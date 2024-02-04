@@ -8,6 +8,8 @@ import logoutIcon from "/Users/apple/Desktop/westride/final project/final-projec
 import ModalPost from "../../postModal/ModalPost";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { BBB_COOKIES } from "../../../utils/constant";
 
 type Props = {
   currentPage: string;
@@ -16,6 +18,7 @@ type Props = {
 const UserBar = ({ currentPage }: Props) => {
   const [openPostModal, setOpenPostModal] = useState(false);
   const navigate = useNavigate();
+  const [cookies, setCookie, removeCookie] = useCookies([BBB_COOKIES]);
   return (
     <div className="flex flex-col items-end">
       <div className="mt-[26px] flex flex-col w-[190px]">
@@ -48,7 +51,11 @@ const UserBar = ({ currentPage }: Props) => {
           <IconUserBar
             iconSrc={logoutIcon}
             labelName="Log out"
-            cb={() => navigate("/final-project/")}
+            color="black"
+            cb={() => {
+              removeCookie(BBB_COOKIES);
+              navigate("/final-project/authen/login");
+            }}
           />
           <button
             className="rounded-[4px] bg-textOne text-white text-center py-2 w-[60%]"

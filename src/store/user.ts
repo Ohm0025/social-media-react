@@ -9,6 +9,7 @@ const initUserObj = {
   profile_picture: "",
   profile_cover: "",
   description: "",
+  countfriend: "",
 };
 
 type UseUser = {
