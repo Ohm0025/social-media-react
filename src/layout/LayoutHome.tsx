@@ -23,7 +23,7 @@ const LayoutHome = () => {
             ? "grid-cols-[2fr,4fr,2fr]"
             : "grid-cols-[2fr,6fr]"
         }`}>
-        <UserBar />
+        <UserBar currentPage={currentPage} />
         <div className="border-l-[1px] border-r-[1px] border-strokeOne">
           <Outlet />
         </div>

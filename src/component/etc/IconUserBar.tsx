@@ -2,6 +2,7 @@ type Props = {
   iconSrc: string;
   labelName: string;
   color?: string;
+  cb?: () => void;
 };
 
 const IconUserBar = (props: Props) => {
@@ -13,9 +14,11 @@ const IconUserBar = (props: Props) => {
     height: "20px",
   };
   return (
-    <button className="flex items-start gap-[20px] userbarIcon">
+    <button
+      className="flex items-start gap-[20px] userbarIcon"
+      onClick={props.cb}>
       <div style={sx}></div>
-      <span>{props.labelName}</span>
+      <span style={{ color: `${props.color}` }}>{props.labelName}</span>
     </button>
   );
 };

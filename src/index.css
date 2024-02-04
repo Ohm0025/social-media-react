@@ -15,7 +15,7 @@ body {
 }
 
 .userbarIcon:hover span {
-  color: #a9a9a9;
+  color: #a9a9a9 !important;
 }
 
 .editor-container {

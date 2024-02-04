@@ -7,7 +7,7 @@ import PostTopBtn from "../etc/PostTopBtn";
 import { useUser } from "../../store/user";
 import { toggleLike } from "../../api/like";
 import EditPostBtn from "../etc/EditPostBtn";
-import LikeBtn from "../etc/likeBtn";
+import LikeBtn from "../etc/LikeBtn";
 import CommentBtn from "../etc/CommentBtn";
 
 const PostCard = ({ postItem, updateCountOne }: any) => {

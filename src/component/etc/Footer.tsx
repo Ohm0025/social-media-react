@@ -5,7 +5,7 @@ import lineLogo from "/Users/apple/Desktop/westride/final project/final-project-
 
 const Footer = () => {
   return (
-    <div className="w-full px-[11.8%] pt-[40px] bg-white">
+    <div className="w-full px-[11.8%] pt-[40px] bg-white border-line border-t-[1px]">
       <div className="min-h-[380px] border-t-[1px] border-line pt-[40px] flex justify-between items-start">
         <div className="text-[14px]">
           <div className="text-textThree mb-[20px]">About</div>
