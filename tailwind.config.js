@@ -18,6 +18,7 @@ export default {
         strokeOne: "#E4E4E4",
         strokeTwo: "#D9D9D9",
         fillOne: "#F1F1F1",
+        fillTwo: "#C7C7F9",
         line: "#EEEEEE",
         line2: "#F2F2F2",
         hover1: "#A9A9A9",

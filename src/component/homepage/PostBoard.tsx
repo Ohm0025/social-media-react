@@ -6,6 +6,7 @@ type MyProps = {};
 type BtnProps = {
   typePostBtn: string;
   cb: (typePost: string) => void;
+  stateCheck: string;
 };
 
 type MyState = {
@@ -13,13 +14,32 @@ type MyState = {
   typePost: string;
 };
 
+const BtnFilterItem = ({ typePostBtn, cb, stateCheck }: BtnProps) => {
+  return (
+    <button
+      onClick={() => cb(typePostBtn)}
+      className={`${
+        typePostBtn === stateCheck ? "bg-textOne" : "bg-textFour"
+      } text-white rounded-[60px] py-1 px-3`}>
+      {typePostBtn}
+    </button>
+  );
+};
+
 class MyComponent extends Component<MyProps, MyState> {
+  handleCallback = (data: string) => {
+    this.setState({
+      ...this.state,
+      typePost: data,
+    });
+  };
   constructor(props: {}) {
     super(props);
     this.state = {
       text: "",
       typePost: "only_friends",
     };
+    this.handleCallback = this.handleCallback.bind(this);
   }
 
   modules = {
@@ -69,35 +89,21 @@ class MyComponent extends Component<MyProps, MyState> {
           formats={this.formats}></ReactQuill>
         <div className="flex justify-between items-center mt-[15px]">
           <div className="text-[14px] font-medium flex items-center gap-[10px]">
-            <button
-              onClick={() =>
-                this.setState({ ...this.state, typePost: "public" })
-              }
-              className={`${
-                this.state.typePost === "public" ? "bg-textOne" : "bg-textFour"
-              } text-white rounded-[60px] py-1 px-3`}>
-              public
-            </button>
-            <button
-              onClick={() =>
-                this.setState({ ...this.state, typePost: "only_friends" })
-              }
-              className={`${
-                this.state.typePost === "only_friends"
-                  ? "bg-textOne"
-                  : "bg-textFour"
-              } text-white rounded-[60px] py-1 px-3`}>
-              only friends
-            </button>
-            <button
-              onClick={() =>
-                this.setState({ ...this.state, typePost: "private" })
-              }
-              className={`${
-                this.state.typePost === "private" ? "bg-textOne" : "bg-textFour"
-              } text-white rounded-[60px] py-1 px-3`}>
-              private
-            </button>
+            <BtnFilterItem
+              typePostBtn="public"
+              cb={this.handleCallback}
+              stateCheck={this.state.typePost}
+            />
+            <BtnFilterItem
+              typePostBtn="only_friends"
+              cb={this.handleCallback}
+              stateCheck={this.state.typePost}
+            />
+            <BtnFilterItem
+              typePostBtn="private"
+              cb={this.handleCallback}
+              stateCheck={this.state.typePost}
+            />
           </div>
           <button
             onClick={() => console.log(this.state.text)}

@@ -1,32 +1,32 @@
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../../utils/constant";
+import ProfileIcon from "../etc/ProfileIcon";
 
 const FriendCard = ({ item, btn1, btn2, cb }: any) => {
   console.log(item);
   const navigate = useNavigate();
   return (
-    <div className="bg-white rounded-md flex flex-col w-[240px] shadow-md overflow-hidden">
-      <div
-        className="flex h-[200px] hover:cursor-pointer"
-        onClick={() => navigate("/final-project/profile/" + item.userid)}>
-        <img
-          src={`${
-            item.profile_picture
-              ? API_URL + "/" + item.profile_picture.split("public/")[1]
-              : "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/2048px-Windows_10_Default_Profile_Picture.svg.png"
-          }`}
-          alt="profile-img"
-        />
+    <div className="bg-fillOne border border-strokeOne rounded-[4px] flex flex-col w-[240px] shadow-sm overflow-hidden">
+      <div className="w-full h-[150px] bg-bgCover cover center"></div>
+      <div className="flex justify-between items-center px-8 translate-y-[-50%]">
+        <div className="flex items-center gap-3">
+          <ProfileIcon radius="60px" />
+          <div className="flex flex-col">
+            <span className="text-[14px] font-bold text-textOne">
+              {"Jessica Alba"}
+            </span>
+            <small className="text-[14px] text-textTwo">Friend 10</small>
+          </div>
+        </div>
       </div>
-      <div className="p-2 text-center">
-        {item.firstname + " " + item.lastname}
-      </div>
-      <div className="flex flex-col items-center mb-2 gap-2">
-        <button className="p-2 bg-[orange] w-[80%] rounded-md" onClick={cb}>
+      <div className="flex flex-col items-center m-[12px] gap-2">
+        <button
+          className="p-2 bg-textOne text-white w-full rounded-[4px]"
+          onClick={cb}>
           {btn1}
         </button>
         {btn2 && (
-          <button className="p-2 bg-[#cacaca] w-[80%] rounded-md">
+          <button className="p-2 bg-textTwo text-white w-full rounded-[4px]">
             {btn2}
           </button>
         )}

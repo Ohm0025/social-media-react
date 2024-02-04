@@ -8,6 +8,7 @@ import { useLoading } from "../../store/loading";
 import { useMyPost } from "../../store/myPost";
 import { useUser } from "../../store/user";
 import { toFormData } from "../../utils/toFormData";
+import PostBoard from "../../component/homepage/PostBoard";
 
 type Props = {
   isOpen: boolean;
@@ -104,30 +105,7 @@ const ModalPost = ({ isOpen, handleClose, aftersubmit }: Props) => {
                 </select>
               </div>
             </div>
-            <div className="text-center py-3 px-3 border my-3">
-              <textarea
-                name=""
-                id=""
-                value={postText}
-                onChange={(e) => setPostText(e.target.value)}
-                placeholder="What's on your mind?"
-                rows={5}
-                className="w-full outline-none text-[25px]"></textarea>
-            </div>
-            <div className="flex flex-col gap-3">
-              <button
-                type="button"
-                onClick={handleSubmit}
-                className="bg-[#ffcb08] py-2 text-[18px] rounded-md">
-                Post
-              </button>
-              <button
-                type="button"
-                onClick={clearText}
-                className="bg-[#dadada] py-2 text-[18px] rounded-md">
-                Clear
-              </button>
-            </div>
+            <PostBoard />
           </div>
         </div>
       </Box>

@@ -8,6 +8,7 @@ import { useFriendList } from "../store/friendList";
 import { fetchAllFriend } from "../api/friend";
 import { useLoading } from "../store/loading";
 import DelayBox from "../component/delayBox/DelayBox";
+import FriendHeader from "../component/friendPage/FriendHeader";
 
 const FriendPage = () => {
   const [page, setPage] = useState(1);
@@ -46,6 +47,7 @@ const FriendPage = () => {
 
   return (
     <div className="flex flex-col min-h-[100vh] min-w-[300px]">
+      <FriendHeader />
       <FriendFilter changePage={(page) => setPage(page)} page={page} />
       <DelayBox>{selectPage(page)}</DelayBox>
     </div>
