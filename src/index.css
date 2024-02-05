@@ -131,7 +131,8 @@ body {
   transform: translate(-82%, 5px);
 }
 
-.select-profile:hover {
+.select-profile:hover,
+.select-profile.selected-topic {
   -webkit-box-shadow: inset 0px 0px 0px 2px #000;
   -moz-box-shadow: inset 0px 0px 0px 2px #000;
   box-shadow: inset 0px 0px 0px 2px #000;

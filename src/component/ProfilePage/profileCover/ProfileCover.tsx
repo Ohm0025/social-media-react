@@ -7,6 +7,7 @@ import SaveOrCancel from "../../etc/SaveOrCancel";
 import CoverBg from "../../etc/CoverBg";
 import useProfileCover from "./ProfileCover.hook";
 import AlterProfilePicture from "../../etc/AlterProfilePicture";
+import { usePageProfile } from "../../../store/pageProfile";
 
 const ProfileCover = (props: any) => {
   const {
@@ -22,12 +23,10 @@ const ProfileCover = (props: any) => {
   } = useProfileCover(props.callData);
   const { userObj } = useUser();
 
+  const { currentPageProfile, changePageProfile } = usePageProfile();
+
   return (
     <div className="bg-white shadow-md">
-      {/* <div
-        dangerouslySetInnerHTML={{ __html: cover }}
-        className="absolute top-0 left-0 w-auto z-[-1]"
-      /> */}
       <CoverBg
         isEdit={isEdit}
         cb={(str: string) => setCover(str)}
@@ -80,7 +79,10 @@ const ProfileCover = (props: any) => {
           <PostBoard />
         )}
       </div>
-      <FilterProfile />
+      <FilterProfile
+        selected={currentPageProfile}
+        setFilterPage={changePageProfile}
+      />
     </div>
   );
 };

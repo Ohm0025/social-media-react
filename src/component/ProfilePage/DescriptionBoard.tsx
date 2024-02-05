@@ -56,9 +56,15 @@ const DescriptionBoard = ({ otherDes, isOther }: Props) => {
 
   return (
     <div className="bg-white shadow-md flex p-3">
-      <div className="border rounded-[4px] flex justify-center items-center w-full min-h-[200px] mb-[40px]">
-        Empthy
-      </div>
+      {userObj.description ? (
+        <div
+          className="border rounded-[4px] flex justify-center items-center w-full min-h-[200px] mb-[40px]"
+          dangerouslySetInnerHTML={{ __html: userObj.description }}></div>
+      ) : (
+        <div className="border rounded-[4px] flex justify-center items-center w-full min-h-[200px] mb-[40px]">
+          Empty
+        </div>
+      )}
     </div>
   );
 };

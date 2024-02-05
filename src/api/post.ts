@@ -4,11 +4,15 @@ export const createPost = (postObj: FormData) => axios.post("/post", postObj);
 
 //export const createPost = (postObj: FormData) => console.log(postObj);
 
-export const getMyPost = () => axios.get("/post/postMy");
+export const getMyPost = (limit: number, postType: string) =>
+  axios.post("/post/postMy", { limit, postType });
 
 export const removePost = (postid: number) => axios.delete("/post/" + postid);
 
-export const getStandardPost = () => axios.get("/post");
+export const getStandardPost = (
+  limit: number = 5,
+  postType: string = "only_friend"
+) => axios.post("/post/standardpost", { limit, postType });
 
 export const getOtherUserPost = (otherid: number) =>
   axios.get("/post/" + otherid);

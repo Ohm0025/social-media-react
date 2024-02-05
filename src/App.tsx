@@ -1,7 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import HomePage from "./page/homepage/HomePage";
 import LoginPage from "./page/loginPage/LoginPage";
-import ProfilePage from "./page/ProfilePage";
+import ProfilePage from "./page/profilePage/ProfilePage";
 import LayoutHome from "./layout/LayoutHome";
 import FriendPage from "./page/FriendPage";
 import { useCookies } from "react-cookie";

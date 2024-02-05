@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
-import { getMyPost, getOtherUserPost } from "../api/post";
-import PictureBoard from "../component/ProfilePage/PictureBoard";
-import ProfileCover from "../component/ProfilePage/profileCover/ProfileCover";
-import FeedBoard from "../component/homepage/newUI/feedBoard/FeedBoard";
-import PostBoard from "../component/homepage/newUI/postBoard/PostBoard";
-import ModalPost from "../component/postModal/ModalPost";
-import ModalPostPic from "../component/postModal/ModalPostPic";
-import { useMyPost } from "../store/myPost";
-import DescriptionBoard from "../component/ProfilePage/DescriptionBoard";
+import { getMyPost, getOtherUserPost } from "../../api/post";
+import PictureBoard from "../../component/ProfilePage/PictureBoard";
+import ProfileCover from "../../component/ProfilePage/profileCover/ProfileCover";
+import FeedBoard from "../../component/homepage/newUI/feedBoard/FeedBoard";
+import PostBoard from "../../component/homepage/newUI/postBoard/PostBoard";
+import ModalPost from "../../component/postModal/ModalPost";
+import ModalPostPic from "../../component/postModal/ModalPostPic";
+import { useMyPost } from "../../store/myPost";
+import DescriptionBoard from "../../component/ProfilePage/DescriptionBoard";
 import { useParams } from "react-router-dom";
-import { useUser } from "../store/user";
+import { useUser } from "../../store/user";
+import { usePageProfile } from "../../store/pageProfile";
 
 type Props = {
   searchUserId?: number;
@@ -23,19 +24,20 @@ const ProfilePage = (props: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenPic, setIsOpenPic] = useState(false);
   const { userObj } = useUser();
+  const { currentPageProfile } = usePageProfile();
 
   let isOther = searchUserId ? searchUserId !== userObj.userid : false;
 
   const [otherObj, setOtherObj] = useState<any>(null);
   const [postArr, setPostArr] = useState<any>([]);
-  const callMyPost = async () => {
-    try {
-      const res = await getMyPost();
-      res.data?.data.length > 0 && setMyPostArr([...res.data?.data]);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const callMyPost = async () => {
+  //   try {
+  //     const res = await getMyPost();
+  //     res.data?.data.length > 0 && setMyPostArr([...res.data?.data]);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   const callUserPost = async () => {
     try {
@@ -66,14 +68,18 @@ const ProfilePage = (props: Props) => {
     }
   };
 
-  useEffect(() => {
-    if (searchUserId) {
-      callUserPost();
-      console.log(searchUserId);
-    } else {
-      callMyPost();
+  const selectElement = () => {
+    if (currentPageProfile === "post") {
+      return <FeedBoard isProfile={true} />;
+    } else if (currentPageProfile === "bio") {
+      return (
+        <DescriptionBoard isOther={isOther} otherDes={otherObj?.description} />
+      );
+    } else if (currentPageProfile === "picture") {
+      return <h2>All Picture Post</h2>;
     }
-  }, []);
+  };
+
   return (
     <div className="min-h-[100vh]">
       <ProfileCover
@@ -83,8 +89,8 @@ const ProfilePage = (props: Props) => {
         otherCover={otherObj?.profile_cover}
         otherPicture={otherObj?.prpfile_picture}
       />
-      <div className="w-full min-w-[300px]">
-        <DescriptionBoard isOther={isOther} otherDes={otherObj?.description} />
+      <div className="w-full min-w-[300px] mt-[15px] px-[15px]">
+        {selectElement()}
       </div>
     </div>
   );

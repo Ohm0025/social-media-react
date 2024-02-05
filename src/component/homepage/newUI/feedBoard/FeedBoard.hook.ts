@@ -9,22 +9,19 @@ const useFeedBoard = (isMine: boolean) => {
   const { myPostArr, setMyPostArr } = useMyPost();
   const { openIsLoading, closeIsLoading } = useLoading();
   const [filterPost, setFilterPost] = useState("All");
-  const [finalPost, setFinalPost] = useState([...myPostArr]);
 
   const callPostData = async () => {
     try {
       openIsLoading();
       if (isMine) {
-        const res = await getMyPost();
+        const res = await getMyPost(5, filterPost);
         if (res.status === 200) {
-          res.data && setMyPostArr([...res.data?.data]);
+          res.data?.data && setMyPostArr([...res.data?.data.rows]);
         } else {
           setMyPostArr([]);
         }
       } else {
-        const res = await getStandardPost();
-
-        console.log(res.data);
+        const res = await getStandardPost(5, filterPost);
         if (res.status === 200) {
           res.data?.data && setMyPostArr([...res.data?.data.rows]);
         } else {
@@ -45,24 +42,10 @@ const useFeedBoard = (isMine: boolean) => {
 
   useEffect(() => {
     callPostData();
-  }, []);
-
-  useEffect(() => {
-    setFinalPost([
-      ...myPostArr.filter((item) => {
-        if (filterPost === "Friends") {
-          return item.post_type === "only_friend";
-        }
-        if (filterPost === "Private") {
-          return item.post_type === "private";
-        }
-        return true;
-      }),
-    ]);
   }, [filterPost]);
 
   return {
-    postDataArr: [...finalPost],
+    postDataArr: [...myPostArr],
     setMyPostArr,
     callPostData,
     filterPost,

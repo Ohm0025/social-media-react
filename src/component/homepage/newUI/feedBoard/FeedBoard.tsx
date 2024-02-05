@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
 import PostCard from "../../PostCard";
 import filterIcon from "/Users/apple/Desktop/westride/final project/final-project-react/src/assets/svg/filterIcon.svg";
 import Dropdown from "react-dropdown";
 import useFeedBoard from "./FeedBoard.hook";
+import DelayBox from "../../../delayBox/DelayBox";
 
 type Props = {
   isProfile?: boolean;
@@ -26,31 +26,38 @@ const FeedBoard = ({ isProfile = false, isOther, updateCountOne }: Props) => {
   };
 
   return (
-    <div className="w-full">
-      <div className="flex items-center mt-[25px] justify-between px-[24px]">
-        <span className="text-[16px] text-textTwo">{filterPost}</span>
-        <Dropdown
-          options={options}
-          onChange={(e) => {
-            setFilterPost(e.value);
-          }}
-          arrowClosed={<div className="arrow-closed" style={sx} />}
-          arrowOpen={<div className="arrow-open" style={sx} />}
-        />
-      </div>
-      <hr className="border-t-[1px] border-line2 my-[20px] w-auto ml-[-15px] mr-[-15px]" />
-      <div>
-        {postDataArr.map((item: any, index: number) => {
-          return (
-            <PostCard
-              postItem={item}
-              updateCountOne={updateCountOne}
-              key={"postcard_" + index}
-            />
-          );
-        })}
-      </div>
-    </div>
+    <>
+      {
+        // postDataArr.length > 0
+        true && (
+          <div className="w-full">
+            <div className="flex items-center mt-[25px] justify-between px-[24px]">
+              <span className="text-[16px] text-textTwo">{filterPost}</span>
+              <Dropdown
+                options={options}
+                onChange={(e) => {
+                  setFilterPost(e.value);
+                }}
+                arrowClosed={<div className="arrow-closed" style={sx} />}
+                arrowOpen={<div className="arrow-open" style={sx} />}
+              />
+            </div>
+            <hr className="border-t-[1px] border-line2 my-[20px] w-auto ml-[-15px] mr-[-15px]" />
+            <div>
+              {postDataArr.map((item: any, index: number) => {
+                return (
+                  <PostCard
+                    postItem={item}
+                    updateCountOne={updateCountOne}
+                    key={"postcard_" + index}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        )
+      }
+    </>
   );
 };
 
