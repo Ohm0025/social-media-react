@@ -41,21 +41,24 @@ const PostCard = ({ postItem, updateCountOne }: any) => {
             <div className="text-[14px] font-bold">
               {postItem.firstname + " " + postItem.lastname}
             </div>
-            <div className="text-[14px]">{"public"}</div>
+            <div className="text-[14px]">{postItem.post_type}</div>
           </div>
         </div>
         <div className="flex items-start gap-[10px]">
-          <div className="text-[14px] text-textFour">{"May 19 2040"}</div>
+          <div className="text-[14px] text-textFour">
+            {calDiffHr(postItem.post_date)}
+          </div>
 
           <EditPostBtn />
         </div>
       </div>
 
       <div className="w-full mt-[16px] mb-[18px]">
-        <div className="border p-5">
-          <p>Post Content</p>
-        </div>
+        <div
+          className="border p-5"
+          dangerouslySetInnerHTML={{ __html: postItem.post_content }}></div>
       </div>
+
       <div className="px-[30px] flex items-center gap-[50px]">
         <LikeBtn />
         <CommentBtn />

@@ -3,8 +3,12 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { createPost } from "../../../../api/post";
 import { checkEmpty } from "../../../../utils/checkRichText";
+import { useMyPost } from "../../../../store/myPost";
+import { useUser } from "../../../../store/user";
 
 const usePostBoard = () => {
+  const { addMyPostArr } = useMyPost();
+  const { userObj } = useUser();
   const [text, setText] = useState("");
   const [typePost, setTypePost] = useState("only_friend");
   const [error, setError] = useState("");
@@ -27,6 +31,11 @@ const usePostBoard = () => {
         const res = await createPost(formData);
         if (res.status === 201) {
           setText("");
+          addMyPostArr({
+            ...res.data.data,
+            firstname: userObj.firstname,
+            lastname: userObj.lastname,
+          });
           toast.success(res.data.message);
         } else {
           toast.error(res.data.message);

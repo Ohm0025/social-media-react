@@ -10,6 +10,9 @@ export const calDiffHr = (startDateStr: string) => {
     }
     return matnInMin + " min";
   }
+  if (formatTohr >= 24) {
+    return Math.round(formatTohr / 24) + " day";
+  }
   return Math.round(formatTohr) + " hr";
 };
 

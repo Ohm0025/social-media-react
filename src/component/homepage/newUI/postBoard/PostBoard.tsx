@@ -24,7 +24,6 @@ const PostBoard = () => {
     text,
     setText,
     typePost,
-    setTypePost,
     modules,
     formats,
     handleChangeType,

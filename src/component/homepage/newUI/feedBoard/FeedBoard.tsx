@@ -1,24 +1,20 @@
 import { useEffect, useState } from "react";
-import PostCard from "./PostCard";
+import PostCard from "../../PostCard";
 import filterIcon from "/Users/apple/Desktop/westride/final project/final-project-react/src/assets/svg/filterIcon.svg";
 import Dropdown from "react-dropdown";
+import useFeedBoard from "./FeedBoard.hook";
 
 type Props = {
   isProfile?: boolean;
-  postArr: any[];
   isOther?: boolean;
   updateCountOne?: (postid: number, targetKey: string, value: number) => void;
 };
 
 const options = ["All", "Friends", "Private"];
 
-const FeedBoard = ({
-  isProfile = false,
-  postArr,
-  isOther,
-  updateCountOne,
-}: Props) => {
-  const [filterPost, setFilterPost] = useState("All");
+const FeedBoard = ({ isProfile = false, isOther, updateCountOne }: Props) => {
+  const { postDataArr, setMyPostArr, filterPost, setFilterPost } =
+    useFeedBoard(isProfile);
 
   const sx = {
     backgroundColor: `#7B7B7B`,
@@ -44,7 +40,7 @@ const FeedBoard = ({
       </div>
       <hr className="border-t-[1px] border-line2 my-[20px] w-auto ml-[-15px] mr-[-15px]" />
       <div>
-        {postArr.map((item, index) => {
+        {postDataArr.map((item: any, index: number) => {
           return (
             <PostCard
               postItem={item}

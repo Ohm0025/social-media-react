@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getMyPost, getOtherUserPost } from "../api/post";
 import PictureBoard from "../component/ProfilePage/PictureBoard";
 import ProfileCover from "../component/ProfilePage/profileCover/ProfileCover";
-import FeedBoard from "../component/homepage/FeedBoard";
+import FeedBoard from "../component/homepage/newUI/feedBoard/FeedBoard";
 import PostBoard from "../component/homepage/newUI/postBoard/PostBoard";
 import ModalPost from "../component/postModal/ModalPost";
 import ModalPostPic from "../component/postModal/ModalPostPic";
