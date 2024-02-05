@@ -1,6 +1,4 @@
 import { useUser } from "../../store/user";
-import { API_URL } from "../../utils/constant";
-import { formatPicName } from "../../utils/formatPicName";
 
 type Props = {
   radius: string;

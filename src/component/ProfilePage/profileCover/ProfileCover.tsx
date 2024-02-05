@@ -1,5 +1,5 @@
 import { useUser } from "../../../store/user";
-import PostBoard from "../../homepage/PostBoard";
+import PostBoard from "../../homepage/newUI/postBoard/PostBoard";
 import BioWriter from "../../etc/BioWriter";
 import EditBtn from "../../etc/EditBtn";
 import FilterProfile from "../../etc/FilterProfile";

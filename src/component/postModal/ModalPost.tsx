@@ -8,7 +8,7 @@ import { useLoading } from "../../store/loading";
 import { useMyPost } from "../../store/myPost";
 import { useUser } from "../../store/user";
 import { toFormData } from "../../utils/toFormData";
-import PostBoard from "../../component/homepage/PostBoard";
+import PostBoard from "../homepage/newUI/postBoard/PostBoard";
 
 type Props = {
   isOpen: boolean;

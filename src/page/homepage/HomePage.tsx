@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import FeedBoard from "../../component/homepage/FeedBoard";
-import PostBoard from "../../component/homepage/PostBoard";
+import PostBoard from "../../component/homepage/newUI/postBoard/PostBoard";
 import ModalPost from "../../component/postModal/ModalPost";
 import ModalPostPic from "../../component/postModal/ModalPostPic";
 import { getStandardPost } from "../../api/post";
