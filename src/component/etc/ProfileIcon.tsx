@@ -15,6 +15,7 @@ const ProfileIcon = ({
   bgColor = "#f7f7f7",
   openDropdown = () => {},
   isOpen,
+  profilePicture,
 }: Props) => {
   const { userObj } = useUser();
   return (
@@ -28,7 +29,9 @@ const ProfileIcon = ({
       className={`rounded-full border border-strokeTwo text-[${textSize}] overflow-hidden bg-[${
         isOpen ? "#ffbc12" : bgColor
       }] text-center`}>
-      {userObj.profile_picture ? (
+      {profilePicture ? (
+        <div dangerouslySetInnerHTML={{ __html: profilePicture }}></div>
+      ) : userObj.profile_picture ? (
         <div
           dangerouslySetInnerHTML={{ __html: userObj.profile_picture }}></div>
       ) : (

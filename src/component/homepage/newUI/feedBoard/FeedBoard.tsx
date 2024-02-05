@@ -27,36 +27,37 @@ const FeedBoard = ({ isProfile = false, isOther, updateCountOne }: Props) => {
 
   return (
     <>
-      {
-        // postDataArr.length > 0
-        true && (
-          <div className="w-full">
-            <div className="flex items-center mt-[25px] justify-between px-[24px]">
-              <span className="text-[16px] text-textTwo">{filterPost}</span>
-              <Dropdown
-                options={options}
-                onChange={(e) => {
-                  setFilterPost(e.value);
-                }}
-                arrowClosed={<div className="arrow-closed" style={sx} />}
-                arrowOpen={<div className="arrow-open" style={sx} />}
-              />
-            </div>
-            <hr className="border-t-[1px] border-line2 my-[20px] w-auto ml-[-15px] mr-[-15px]" />
-            <div>
-              {postDataArr.map((item: any, index: number) => {
-                return (
-                  <PostCard
-                    postItem={item}
-                    updateCountOne={updateCountOne}
-                    key={"postcard_" + index}
-                  />
-                );
-              })}
-            </div>
+      {postDataArr.length > 0 ? (
+        <div className="w-full">
+          <div className="flex items-center mt-[25px] justify-between px-[24px]">
+            <span className="text-[16px] text-textTwo">{filterPost}</span>
+            <Dropdown
+              options={options}
+              onChange={(e) => {
+                setFilterPost(e.value);
+              }}
+              arrowClosed={<div className="arrow-closed" style={sx} />}
+              arrowOpen={<div className="arrow-open" style={sx} />}
+            />
           </div>
-        )
-      }
+          <hr className="border-t-[1px] border-line2 my-[20px] w-auto ml-[-15px] mr-[-15px]" />
+          <div>
+            {postDataArr.map((item: any, index: number) => {
+              return (
+                <PostCard
+                  postItem={item}
+                  updateCountOne={updateCountOne}
+                  key={"postcard_" + index}
+                />
+              );
+            })}
+          </div>
+        </div>
+      ) : (
+        <div className="w-full h-[300px] flex flex-col justify-center items-center">
+          <div>{"No post found"}</div>
+        </div>
+      )}
     </>
   );
 };

@@ -36,7 +36,10 @@ const PostCard = ({ postItem, updateCountOne }: any) => {
     <div className="w-full">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-[10px]">
-          <ProfileIcon radius="60px" />
+          <ProfileIcon
+            radius="60px"
+            profilePicture={postItem.profile_picture}
+          />
           <div>
             <div className="text-[14px] font-bold">
               {postItem.firstname + " " + postItem.lastname}
