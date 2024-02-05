@@ -1,12 +1,12 @@
-import { Component, ReactNode } from "react";
 import ReactQuill from "react-quill";
 
-class BioWriter extends Component<{}> {
-  constructor(props: {}) {
-    super(props);
-  }
+type Props = {
+  des: string;
+  cb: (str: string) => void;
+};
 
-  modules = {
+const BioWriter = ({ des, cb }: Props) => {
+  let modules = {
     toolbar: [
       [{ header: [1, 2, 3, 4, false] }],
       ["bold", "italic", "underline", "strike", "blockquote"],
@@ -21,7 +21,7 @@ class BioWriter extends Component<{}> {
     ],
   };
 
-  formats = [
+  let formats = [
     "header",
     "bold",
     "italic",
@@ -34,18 +34,17 @@ class BioWriter extends Component<{}> {
     "link",
     "image",
   ];
-
-  render(): ReactNode {
-    return (
-      <div className="bio-text rounded-[4px] border-strokeOne">
-        <ReactQuill
-          placeholder="Write about yourself"
-          theme="snow"
-          modules={this.modules}
-          formats={this.formats}></ReactQuill>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="bio-text rounded-[4px] border-strokeOne">
+      <ReactQuill
+        value={des}
+        onChange={cb}
+        placeholder="Write about yourself"
+        theme="snow"
+        modules={modules}
+        formats={formats}></ReactQuill>
+    </div>
+  );
+};
 
 export default BioWriter;

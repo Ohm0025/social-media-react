@@ -1,27 +1,24 @@
 import { Component, ReactNode } from "react";
 import ReactQuill from "react-quill";
 
-class CoverPicBtn extends Component<{ callback: (str: string) => void }> {
-  constructor(props: { callback: (str: string) => void }) {
-    super(props);
-  }
+type Props = {
+  callback: (str: string) => void;
+};
 
-  modules = {
+function CoverPicBtn({ callback }: Props) {
+  let modules = {
     toolbar: ["image"],
   };
 
-  formats = ["image"];
-
-  render(): ReactNode {
-    return (
-      <ReactQuill
-        onChange={this.props.callback}
-        className="btn-coverImage"
-        theme="snow"
-        modules={this.modules}
-        formats={this.formats}></ReactQuill>
-    );
-  }
+  let formats = ["image"];
+  return (
+    <ReactQuill
+      onChange={(value) => callback(value)}
+      className="btn-coverImage"
+      theme="snow"
+      modules={modules}
+      formats={formats}></ReactQuill>
+  );
 }
 
 export default CoverPicBtn;

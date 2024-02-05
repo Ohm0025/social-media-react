@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getMyPost, getOtherUserPost } from "../api/post";
 import PictureBoard from "../component/ProfilePage/PictureBoard";
-import ProfileCover from "../component/ProfilePage/ProfileCover";
+import ProfileCover from "../component/ProfilePage/profileCover/ProfileCover";
 import FeedBoard from "../component/homepage/FeedBoard";
 import PostBoard from "../component/homepage/PostBoard";
 import ModalPost from "../component/postModal/ModalPost";
@@ -14,9 +14,10 @@ import { useUser } from "../store/user";
 type Props = {
   searchUserId?: number;
   isOther?: boolean;
+  callData?: () => void;
 };
 
-const ProfilePage = ({}: Props) => {
+const ProfilePage = (props: Props) => {
   const { searchUserId } = useParams();
   const { myPostArr, setMyPostArr, modPostArr } = useMyPost();
   const [isOpen, setIsOpen] = useState(false);
@@ -76,6 +77,7 @@ const ProfilePage = ({}: Props) => {
   return (
     <div className="min-h-[100vh]">
       <ProfileCover
+        callData={props.callData}
         isOther={isOther}
         otherObj={otherObj}
         otherCover={otherObj?.profile_cover}

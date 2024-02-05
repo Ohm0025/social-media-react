@@ -1,3 +1,4 @@
+import { useUser } from "../../store/user";
 import { API_URL } from "../../utils/constant";
 import { formatPicName } from "../../utils/formatPicName";
 
@@ -16,8 +17,8 @@ const ProfileIcon = ({
   bgColor = "#f7f7f7",
   openDropdown = () => {},
   isOpen,
-  profilePicture,
 }: Props) => {
+  const { userObj } = useUser();
   return (
     <button
       onClick={openDropdown}
@@ -29,8 +30,9 @@ const ProfileIcon = ({
       className={`rounded-full border border-strokeTwo text-[${textSize}] overflow-hidden bg-[${
         isOpen ? "#ffbc12" : bgColor
       }] text-center`}>
-      {profilePicture ? (
-        <img src={`${API_URL}/images${formatPicName(profilePicture)}`} alt="" />
+      {userObj.profile_picture ? (
+        <div
+          dangerouslySetInnerHTML={{ __html: userObj.profile_picture }}></div>
       ) : (
         <i className="fa-solid fa-user"></i>
       )}

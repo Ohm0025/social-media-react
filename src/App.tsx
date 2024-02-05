@@ -62,7 +62,7 @@ function App() {
 
         {
           path: "profile",
-          element: <ProfilePage />,
+          element: <ProfilePage callData={callData} />,
         },
 
         {
