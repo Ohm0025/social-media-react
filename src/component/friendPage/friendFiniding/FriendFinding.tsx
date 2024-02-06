@@ -1,7 +1,8 @@
 import FriendCard from "../FriendCard";
 import TagSearchFriend from "./TagSearchFriend";
 import useFriendFinding from "./FriendFinding.hook";
-import { SuggestItem } from "../FriendSuggest";
+import { SuggestItem } from "../friendSuggest/FriendSuggest";
+import FriendSuggestBox from "../friendSuggest/FriendSuggestBox";
 
 type Props = {};
 
@@ -14,43 +15,27 @@ const FriendFinding = ({}: Props) => {
         searchName={searchName}
         setSearchName={(str: string) => setSearchName(str)}
       />
-      {arrFriend.length > 0 ? (
-        <div className="flex gap-4 mt-6">
-          {arrFriend.map((item: any, index: number) => {
-            return (
-              <FriendCard
-                item={item}
-                btn1={"Add"}
-                btn2={""}
-                key={`friend-item-` + index}
-                cb={() => console.log("request friend to " + item.userid)}
-              />
-            );
-          })}
-        </div>
-      ) : (
-        <div className="pt-7">
-          <h1 className="text-[20px] text-textOne font-medium px-5">
-            Finding result
-          </h1>
-          <div className="text-[18px] text-center text-textTwo flex flex-col items-center justify-center min-h-[300px] max-h-[500px] overflow-y-auto">
+      <div className="pt-7">
+        <h1 className="text-[20px] text-textOne font-medium px-5">
+          Finding result
+        </h1>
+      </div>
+      <div className="min-h-[200px] max-h-[500px] overflow-y-auto">
+        {arrFriend.length > 0 ? (
+          <div className="flex flex-col gap-4 mt-6">
+            {arrFriend.map((item: any, index: number) => {
+              return <SuggestItem item={item} key={`friend-item-` + index} />;
+            })}
+          </div>
+        ) : (
+          <div className="text-[18px] text-center text-textTwo pt-[25px]">
             no friend found
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
       {/* suggestion zone */}
-      <div className="min-h-[300px] max-h-[500px] overflow-y-auto">
-        <div className="mb-[8px] flex items-center justify-between px-[10x]">
-          <h1 className="text-[16px] text-textThree font-medium">
-            Suggestions
-          </h1>
-          <h1 className="text-[14px] text-textFive">See all</h1>
-        </div>
-        <div>
-          <SuggestItem item={{ firstname: "kio", lastname: "opi" }} />
-        </div>
-      </div>
+      <FriendSuggestBox />
     </div>
   );
 };

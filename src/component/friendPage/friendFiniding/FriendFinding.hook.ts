@@ -9,7 +9,7 @@ const useFriendFinding = () => {
     try {
       const res = await fetchSearchFriend(searchName);
       if (res.data?.data.length > 0) {
-        setArrFriend(res.data?.data);
+        setArrFriend([...res.data?.data]);
       }
     } catch (err) {
       console.log(err);
@@ -33,8 +33,10 @@ const useFriendFinding = () => {
   //   };
 
   useEffect(() => {
-    callData();
-  }, []);
+    if (searchName.trim() !== "") {
+      callData();
+    }
+  }, [searchName]);
 
   return {
     searchName,

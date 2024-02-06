@@ -1,4 +1,4 @@
-import ProfileIcon from "../etc/ProfileIcon";
+import ProfileIcon from "../../etc/ProfileIcon";
 
 type Props2 = {
   item: any;
@@ -6,7 +6,7 @@ type Props2 = {
 
 const SuggestItem = (props: Props2) => {
   return (
-    <div className="flex items-center h-[120px] border border-strokeOne rounded-[4px]">
+    <div className="flex items-center h-[120px] border border-strokeOne rounded-[4px] relative">
       <div className="flex flex-col px-[20px] justify-center items-center gap-[5px]">
         <ProfileIcon
           radius="60px"
@@ -17,6 +17,9 @@ const SuggestItem = (props: Props2) => {
           <span>{props.item.lastname}</span>
         </div>
       </div>
+      <div
+        dangerouslySetInnerHTML={{ __html: props.item.profile_cover }}
+        className="absolute top-0 left-0 h-full overflow-hidden flex justify-center items-center z-[-1]"></div>
     </div>
   );
 };
