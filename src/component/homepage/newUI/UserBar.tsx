@@ -22,7 +22,7 @@ const UserBar = ({ currentPage }: Props) => {
   return (
     <div className="flex flex-col items-end">
       <div className="mt-[26px] flex flex-col w-[190px]">
-        <ProfileIcon radius="40px" />
+        <ProfileIcon radius="40px" isProfile={true} />
         <div className="mt-[26px] text-[16px] font-medium flex flex-col gap-[40px]">
           <IconUserBar
             iconSrc={homeIcon}

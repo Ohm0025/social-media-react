@@ -7,6 +7,7 @@ type Props = {
   openDropdown?: () => void;
   isOpen?: boolean | undefined;
   profilePicture?: string | undefined;
+  isProfile?: boolean;
 };
 
 const ProfileIcon = ({
@@ -16,6 +17,7 @@ const ProfileIcon = ({
   openDropdown = () => {},
   isOpen,
   profilePicture,
+  isProfile,
 }: Props) => {
   const { userObj } = useUser();
   return (
@@ -31,7 +33,7 @@ const ProfileIcon = ({
       }] text-center`}>
       {profilePicture ? (
         <div dangerouslySetInnerHTML={{ __html: profilePicture }}></div>
-      ) : userObj.profile_picture ? (
+      ) : isProfile ? (
         <div
           dangerouslySetInnerHTML={{ __html: userObj.profile_picture }}></div>
       ) : (

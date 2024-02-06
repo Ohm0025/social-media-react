@@ -25,7 +25,7 @@ const AlterProfilePicture = (props: Props) => {
           </div>
         </div>
       ) : (
-        <ProfileIcon radius="60px" />
+        <ProfileIcon radius="60px" isProfile={true} />
       )}
     </>
   );
