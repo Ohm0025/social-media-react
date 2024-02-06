@@ -1,17 +1,23 @@
-import { useState } from "react";
-import { updateUser } from "../../../api/user";
+import { useEffect, useState } from "react";
+import { getOtherUser, updateUser } from "../../../api/user";
 import { toast } from "react-toastify";
 import { AxiosError } from "axios";
 import { useLoading } from "../../../store/loading";
 import { useUser } from "../../../store/user";
 
-const useProfileCover = (callData: () => void) => {
+const useProfileCover = (
+  callData: () => void,
+  isOther: boolean,
+  otherUserId: number
+) => {
   const { userObj } = useUser();
   const { openIsLoading, closeIsLoading } = useLoading();
   const [isEdit, setIsEdit] = useState(false);
   const [cover, setCover] = useState("");
   const [picture, setPicture] = useState("");
   const [des, setDes] = useState(userObj.description);
+
+  const [otherObj, setOtherObj] = useState<any>(null);
 
   const handleUpdateUser = async () => {
     try {
@@ -47,6 +53,30 @@ const useProfileCover = (callData: () => void) => {
     }
   };
 
+  const callOtherUser = async () => {
+    try {
+      openIsLoading();
+      const res = await getOtherUser(otherUserId);
+      if (res.status === 200) {
+        setOtherObj({ ...res.data?.data });
+      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      closeIsLoading();
+    }
+  };
+
+  useEffect(() => {
+    if (isOther) {
+      callOtherUser();
+    }
+  }, [otherUserId]);
+
+  useEffect(() => {
+    console.log("update user profile");
+  }, [otherObj]);
+
   return {
     isEdit,
     setIsEdit,
@@ -57,6 +87,7 @@ const useProfileCover = (callData: () => void) => {
     des,
     setDes,
     handleUpdateUser,
+    otherObj,
   };
 };
 

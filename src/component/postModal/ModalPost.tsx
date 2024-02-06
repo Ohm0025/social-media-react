@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import ProfileIcon from "../etc/ProfileIcon";
+import ProfileIcon from "../etc/profileIcon/ProfileIcon";
 import { useState } from "react";
 import { createPost } from "../../api/post";
 import { toast } from "react-toastify";

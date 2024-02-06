@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../../utils/constant";
-import ProfileIcon from "../etc/ProfileIcon";
+import ProfileIcon from "../etc/profileIcon/ProfileIcon";
 
 const FriendCard = ({ item, btn1, btn2, cb }: any) => {
   const navigate = useNavigate();
@@ -16,7 +16,11 @@ const FriendCard = ({ item, btn1, btn2, cb }: any) => {
       )}
       <div className="flex justify-between items-center px-8 translate-y-[-50%]">
         <div className="flex items-center gap-3">
-          <ProfileIcon radius="60px" profilePicture={item.profile_picture} />
+          <ProfileIcon
+            radius="60px"
+            profilePicture={item.profile_picture}
+            otherUserId={item.userid}
+          />
           <div className="flex flex-col">
             <span className="text-[14px] font-bold text-textOne">
               {item.firstname + " " + item.lastname}

@@ -1,4 +1,5 @@
-import { useUser } from "../../store/user";
+import { useUser } from "../../../store/user";
+import useProfileIcon from "./ProfileIcon.hook";
 
 type Props = {
   radius: string;
@@ -8,6 +9,7 @@ type Props = {
   isOpen?: boolean | undefined;
   profilePicture?: string | undefined;
   isProfile?: boolean;
+  otherUserId?: number;
 };
 
 const ProfileIcon = ({
@@ -18,11 +20,19 @@ const ProfileIcon = ({
   isOpen,
   profilePicture,
   isProfile,
+  otherUserId,
 }: Props) => {
   const { userObj } = useUser();
+
+  const { clickToOther } = useProfileIcon();
+
   return (
     <button
-      onClick={openDropdown}
+      onClick={() => {
+        if (!isProfile && otherUserId !== userObj.userid) {
+          otherUserId && clickToOther(otherUserId);
+        }
+      }}
       style={{
         width: radius,
         height: radius,

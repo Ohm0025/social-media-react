@@ -18,21 +18,27 @@ const FilterProfileItem = ({ selected, itemName, cb }: Item) => {
 type Props = {
   selected: string;
   setFilterPage: (str: string) => void;
+  isFriend?: boolean;
 };
 
-const FilterProfile = ({ selected, setFilterPage }: Props) => {
+const FilterProfile = ({ selected, setFilterPage, isFriend }: Props) => {
   return (
-    <div className="grid grid-cols-3 text-[16px]">
+    <div
+      className={`grid ${
+        isFriend ? "grid-cols-3" : "grid-cols-2"
+      } text-[16px]`}>
       <FilterProfileItem
         itemName={"Post"}
         selected={selected === "post"}
         cb={() => setFilterPage("post")}
       />
-      <FilterProfileItem
-        itemName={"Picture"}
-        selected={selected === "picture"}
-        cb={() => setFilterPage("picture")}
-      />
+      {isFriend && (
+        <FilterProfileItem
+          itemName={"Picture"}
+          selected={selected === "picture"}
+          cb={() => setFilterPage("picture")}
+        />
+      )}
       <FilterProfileItem
         itemName={"Bio"}
         selected={selected === "bio"}

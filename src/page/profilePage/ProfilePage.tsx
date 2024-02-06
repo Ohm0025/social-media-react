@@ -1,11 +1,6 @@
-import { useEffect, useState } from "react";
-import { getMyPost, getOtherUserPost } from "../../api/post";
-import PictureBoard from "../../component/ProfilePage/PictureBoard";
+import { useState } from "react";
 import ProfileCover from "../../component/ProfilePage/profileCover/ProfileCover";
 import FeedBoard from "../../component/homepage/newUI/feedBoard/FeedBoard";
-import PostBoard from "../../component/homepage/newUI/postBoard/PostBoard";
-import ModalPost from "../../component/postModal/ModalPost";
-import ModalPostPic from "../../component/postModal/ModalPostPic";
 import { useMyPost } from "../../store/myPost";
 import DescriptionBoard from "../../component/ProfilePage/DescriptionBoard";
 import { useParams } from "react-router-dom";
@@ -20,61 +15,39 @@ type Props = {
 
 const ProfilePage = (props: Props) => {
   const { searchUserId } = useParams();
-  const { myPostArr, setMyPostArr, modPostArr } = useMyPost();
-  const [isOpen, setIsOpen] = useState(false);
-  const [isOpenPic, setIsOpenPic] = useState(false);
+  const { modPostArr } = useMyPost();
+
   const { userObj } = useUser();
   const { currentPageProfile } = usePageProfile();
 
-  let isOther = searchUserId ? searchUserId !== userObj.userid : false;
+  let isOther = searchUserId ? Number(searchUserId) !== userObj.userid : false;
 
   const [otherObj, setOtherObj] = useState<any>(null);
   const [postArr, setPostArr] = useState<any>([]);
-  // const callMyPost = async () => {
-  //   try {
-  //     const res = await getMyPost();
-  //     res.data?.data.length > 0 && setMyPostArr([...res.data?.data]);
-  //   } catch (err) {
-  //     console.log(err);
+
+  // const updateCountOne = (postid: number, targetKey: string, value: number) => {
+  //   console.log("update count");
+  //   if (isOther) {
+  //     setPostArr((prev: any) => {
+  //       return [
+  //         ...prev.map((item: any) => {
+  //           if (item.postid === postid) {
+  //             return { ...item, [targetKey]: Number(item[targetKey]) + value };
+  //           }
+  //           return item;
+  //         }),
+  //       ];
+  //     });
+  //   } else {
+  //     modPostArr(postid, targetKey, value);
   //   }
   // };
-
-  const callUserPost = async () => {
-    try {
-      const res = await getOtherUserPost(Number(searchUserId));
-      console.log(res);
-      res.data?.data.length > 0 && setPostArr([...res.data?.data]);
-      isOther && setOtherObj({ ...res.data?.userObj });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const updateCountOne = (postid: number, targetKey: string, value: number) => {
-    console.log("update count");
-    if (isOther) {
-      setPostArr((prev: any) => {
-        return [
-          ...prev.map((item: any) => {
-            if (item.postid === postid) {
-              return { ...item, [targetKey]: Number(item[targetKey]) + value };
-            }
-            return item;
-          }),
-        ];
-      });
-    } else {
-      modPostArr(postid, targetKey, value);
-    }
-  };
 
   const selectElement = () => {
     if (currentPageProfile === "post") {
       return <FeedBoard isProfile={true} />;
     } else if (currentPageProfile === "bio") {
-      return (
-        <DescriptionBoard isOther={isOther} otherDes={otherObj?.description} />
-      );
+      return <DescriptionBoard isOther={false} />;
     } else if (currentPageProfile === "picture") {
       return <h2>All Picture Post</h2>;
     }
@@ -85,6 +58,7 @@ const ProfilePage = (props: Props) => {
       <ProfileCover
         callData={props.callData}
         isOther={isOther}
+        otherUserId={Number(searchUserId)}
         otherObj={otherObj}
         otherCover={otherObj?.profile_cover}
         otherPicture={otherObj?.prpfile_picture}

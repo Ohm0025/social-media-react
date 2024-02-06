@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { calDiffHr } from "../../utils/calDiffTime";
 import { API_URL } from "../../utils/constant";
-import ProfileIcon from "../etc/ProfileIcon";
+import ProfileIcon from "../etc/profileIcon/ProfileIcon";
 import CommentBox from "../commentBox/CommentBox";
 import PostTopBtn from "../etc/PostTopBtn";
 import { useUser } from "../../store/user";
@@ -39,6 +39,7 @@ const PostCard = ({ postItem, updateCountOne }: any) => {
           <ProfileIcon
             radius="60px"
             profilePicture={postItem.profile_picture}
+            otherUserId={postItem.userid}
           />
           <div>
             <div className="text-[14px] font-bold">

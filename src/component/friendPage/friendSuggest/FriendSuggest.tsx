@@ -1,4 +1,4 @@
-import ProfileIcon from "../../etc/ProfileIcon";
+import ProfileIcon from "../../etc/profileIcon/ProfileIcon";
 
 type Props2 = {
   item: any;
@@ -9,6 +9,7 @@ const SuggestItem = (props: Props2) => {
     <div className="flex items-center h-[120px] border border-strokeOne rounded-[4px] relative">
       <div className="flex flex-col px-[20px] justify-center items-center gap-[5px]">
         <ProfileIcon
+          otherUserId={props.item.userid}
           radius="60px"
           profilePicture={props.item.profile_picture}
         />

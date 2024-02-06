@@ -2,7 +2,6 @@ import PostCard from "../../PostCard";
 import filterIcon from "/Users/apple/Desktop/westride/final project/final-project-react/src/assets/svg/filterIcon.svg";
 import Dropdown from "react-dropdown";
 import useFeedBoard from "./FeedBoard.hook";
-import DelayBox from "../../../delayBox/DelayBox";
 
 type Props = {
   isProfile?: boolean;

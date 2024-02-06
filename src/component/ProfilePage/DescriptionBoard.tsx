@@ -4,6 +4,7 @@ import { useUser } from "../../store/user";
 import { updateUser } from "../../api/user";
 import { toast } from "react-toastify";
 import { useLoading } from "../../store/loading";
+import { checkEmpty } from "../../utils/checkRichText";
 
 type Props = {
   otherDes?: string;
@@ -23,7 +24,7 @@ const style = {
   p: 4,
 };
 
-const DescriptionBoard = ({ otherDes, isOther }: Props) => {
+const DescriptionBoard = (props: Props) => {
   const { userObj, updateObj } = useUser();
   const { openIsLoading, closeIsLoading } = useLoading();
 
@@ -56,7 +57,7 @@ const DescriptionBoard = ({ otherDes, isOther }: Props) => {
 
   return (
     <div className="bg-white shadow-md flex p-3">
-      {userObj.description ? (
+      {!checkEmpty(userObj.description) ? (
         <div
           className="border rounded-[4px] flex justify-center items-center w-full min-h-[200px] mb-[40px]"
           dangerouslySetInnerHTML={{ __html: userObj.description }}></div>

@@ -5,17 +5,27 @@ type Props = {
   isEdit: boolean;
   cb: (str: string) => void;
   cover: string;
+  isOther?: boolean;
+  otherObj?: any;
 };
 
 const CoverBg = (props: Props) => {
   const { userObj } = useUser();
   return (
     <>
-      {props.cover || userObj.profile_cover ? (
+      {props.isOther ? (
         <div className="relative">
           <div
             dangerouslySetInnerHTML={{
-              __html: props.cover || userObj.profile_cover,
+              __html: props.otherObj?.profile_cover,
+            }}
+            className="z-[-1] h-[300px] overflow-hidden flex justify-center items-center"></div>
+        </div>
+      ) : userObj.profile_cover ? (
+        <div className="relative">
+          <div
+            dangerouslySetInnerHTML={{
+              __html: userObj.profile_cover,
             }}
             className="z-[-1] h-[300px] overflow-hidden flex justify-center items-center"></div>
           {props.isEdit && (

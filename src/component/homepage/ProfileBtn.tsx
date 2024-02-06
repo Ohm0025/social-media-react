@@ -1,4 +1,4 @@
-import ProfileIcon from "../etc/ProfileIcon";
+import ProfileIcon from "../etc/profileIcon/ProfileIcon";
 
 const chatBtn = "chatBtn";
 const notiBtn = "notiBtn";

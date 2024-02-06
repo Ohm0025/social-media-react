@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import ProfileIcon from "../etc/ProfileIcon";
+import ProfileIcon from "../etc/profileIcon/ProfileIcon";
 import { createCommentPost, getCommentPost } from "../../api/comment";
 import { toast } from "react-toastify";
 import { useUser } from "../../store/user";

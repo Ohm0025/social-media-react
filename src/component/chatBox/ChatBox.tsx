@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import io from "socket.io-client";
 import { API_URL } from "../../utils/constant";
 import { useFriendList } from "../../store/friendList";
-import ProfileIcon from "../etc/ProfileIcon";
+import ProfileIcon from "../etc/profileIcon/ProfileIcon";
 import { useUser } from "../../store/user";
 
 type Props = {

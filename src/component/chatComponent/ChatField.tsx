@@ -1,6 +1,6 @@
 import React from "react";
 import { TargetChatObj } from "../../interface/otherComponent";
-import ProfileIcon from "../etc/ProfileIcon";
+import ProfileIcon from "../etc/profileIcon/ProfileIcon";
 import ChatBox from "./ChatBox";
 
 type Props = {

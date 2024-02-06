@@ -1,5 +1,5 @@
 import IconUserBar from "../../etc/IconUserBar";
-import ProfileIcon from "../../etc/ProfileIcon";
+import ProfileIcon from "../../etc/profileIcon/ProfileIcon";
 import homeIcon from "/Users/apple/Desktop/westride/final project/final-project-react/src/assets/svg/homeIcon.svg";
 import friendIcon from "/Users/apple/Desktop/westride/final project/final-project-react/src/assets/svg/friendIcon.svg";
 import profileIcon from "/Users/apple/Desktop/westride/final project/final-project-react/src/assets/svg/profileIcon.svg";

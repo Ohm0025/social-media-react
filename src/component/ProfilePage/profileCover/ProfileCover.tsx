@@ -20,7 +20,8 @@ const ProfileCover = (props: any) => {
     des,
     setDes,
     handleUpdateUser,
-  } = useProfileCover(props.callData);
+    otherObj,
+  } = useProfileCover(props.callData, props.isOther, props.otherUserId);
   const { userObj } = useUser();
 
   const { currentPageProfile, changePageProfile } = usePageProfile();
@@ -31,6 +32,8 @@ const ProfileCover = (props: any) => {
         isEdit={isEdit}
         cb={(str: string) => setCover(str)}
         cover={cover}
+        isOther={props.isOther}
+        otherObj={otherObj}
       />
       <div className="flex justify-between items-center px-8 translate-y-[-50%] z-[1]">
         <div className="flex items-center gap-3">
@@ -38,13 +41,19 @@ const ProfileCover = (props: any) => {
             isEdit={isEdit}
             cb={(str: string) => setPicture(str)}
             picture={picture}
+            isOther={props.isOther}
+            otherObj={otherObj}
           />
           <div className="flex flex-col">
             <span className="text-[20px] font-bold text-textOne">
-              {userObj.firstname + " " + userObj.lastname}
+              {props.isOther
+                ? otherObj?.firstname + " " + otherObj?.lastname
+                : userObj.firstname + " " + userObj.lastname}
             </span>
             <small className="text-[16px] text-textTwo">{`Friend ${
-              userObj.countfriend || 0
+              props.isOther
+                ? otherObj?.countfriend || 0
+                : userObj.countfriend || 0
             }`}</small>
           </div>
         </div>
@@ -72,16 +81,19 @@ const ProfileCover = (props: any) => {
           </>
         )}
       </div>
-      <div className="px-[15px] mb-[10px]">
-        {isEdit ? (
-          <BioWriter des={des} cb={(str: string) => setDes(str)} />
-        ) : (
-          <PostBoard />
-        )}
-      </div>
+      {!props.isOther && (
+        <div className="px-[15px] mb-[10px]">
+          {isEdit ? (
+            <BioWriter des={des} cb={(str: string) => setDes(str)} />
+          ) : (
+            <PostBoard />
+          )}
+        </div>
+      )}
       <FilterProfile
         selected={currentPageProfile}
         setFilterPage={changePageProfile}
+        isFriend={otherObj?.userStatus}
       />
     </div>
   );
