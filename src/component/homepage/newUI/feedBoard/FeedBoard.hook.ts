@@ -31,7 +31,7 @@ const useFeedBoard = (isMine: boolean) => {
     } catch (err: AxiosError | any) {
       console.log(err);
       if (err.response.status === 400) {
-        toast.error("no any post found");
+        // toast.error("no any post found");
         setMyPostArr([]);
       } else {
         toast.error(err.message);

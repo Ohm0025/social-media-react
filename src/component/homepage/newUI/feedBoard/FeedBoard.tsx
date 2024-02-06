@@ -27,20 +27,20 @@ const FeedBoard = ({ isProfile = false, isOther, updateCountOne }: Props) => {
 
   return (
     <>
-      {postDataArr.length > 0 ? (
-        <div className="w-full">
-          <div className="flex items-center mt-[25px] justify-between px-[24px]">
-            <span className="text-[16px] text-textTwo">{filterPost}</span>
-            <Dropdown
-              options={options}
-              onChange={(e) => {
-                setFilterPost(e.value);
-              }}
-              arrowClosed={<div className="arrow-closed" style={sx} />}
-              arrowOpen={<div className="arrow-open" style={sx} />}
-            />
-          </div>
-          <hr className="border-t-[1px] border-line2 my-[20px] w-auto ml-[-15px] mr-[-15px]" />
+      <div className="w-full">
+        <div className="flex items-center mt-[25px] justify-between px-[24px]">
+          <span className="text-[16px] text-textTwo">{filterPost}</span>
+          <Dropdown
+            options={options}
+            onChange={(e) => {
+              setFilterPost(e.value);
+            }}
+            arrowClosed={<div className="arrow-closed" style={sx} />}
+            arrowOpen={<div className="arrow-open" style={sx} />}
+          />
+        </div>
+        <hr className="border-t-[1px] border-line2 my-[20px] w-auto ml-[-15px] mr-[-15px]" />
+        {postDataArr.length > 0 ? (
           <div>
             {postDataArr.map((item: any, index: number) => {
               return (
@@ -52,12 +52,12 @@ const FeedBoard = ({ isProfile = false, isOther, updateCountOne }: Props) => {
               );
             })}
           </div>
-        </div>
-      ) : (
-        <div className="w-full h-[300px] flex flex-col justify-center items-center">
-          <div>{"No post found"}</div>
-        </div>
-      )}
+        ) : (
+          <div className="w-full h-[300px] flex flex-col justify-center items-center">
+            <div>{"No post found"}</div>
+          </div>
+        )}
+      </div>
     </>
   );
 };

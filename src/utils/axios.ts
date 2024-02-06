@@ -17,22 +17,26 @@ axios.interceptors.request.use(
       configObj.headers.Authorization = `Bearer ${token}`;
     }
 
-    // if (configObj.url === "/post" && configObj.method === "post") {
-    //   configObj.headers["Content-Type"] = "multipart/form-data";
-    //   // console.log("this taget");
-    //   // console.log(configObj.headers["Content-Type"]);
-    // }
-    //configObj.headers["Content-Type"] = "multipart/form-data";
-    //  const config = {
-    //    headers: {
-    //      "Content-Type": "multipart/form-data",
-    //    },
-    // //  };
-    // console.log(configObj);
     return configObj;
   },
   (errObj) => {
     return Promise.reject(errObj);
+  }
+);
+
+axios.interceptors.response.use(
+  (response) => {
+    // If the response is successful, return it as is
+    return response;
+  },
+  (error) => {
+    // Check if the error is an internal server error (status code 500)
+    if (error.response && error.response.status === 500) {
+      // Replace the error message with your custom error message
+      error.message = "Internal server error. Please try again later.";
+    }
+    // Pass the error along to be handled by the caller
+    return Promise.reject(error);
   }
 );
 

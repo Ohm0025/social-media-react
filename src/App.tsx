@@ -3,7 +3,7 @@ import HomePage from "./page/homepage/HomePage";
 import LoginPage from "./page/loginPage/LoginPage";
 import ProfilePage from "./page/profilePage/ProfilePage";
 import LayoutHome from "./layout/LayoutHome";
-import FriendPage from "./page/FriendPage";
+import FriendPage from "./page/friendPage/FriendPage";
 import { useCookies } from "react-cookie";
 import { useEffect } from "react";
 import { callToken } from "./api/callToken";
