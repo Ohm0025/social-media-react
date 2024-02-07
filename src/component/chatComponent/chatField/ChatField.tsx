@@ -4,6 +4,7 @@ import ProfileIcon from "../../etc/profileIcon/ProfileIcon";
 import ChatBox from "../ChatBox";
 import { calDiffHr } from "../../../utils/calDiffTime";
 import useChatField from "./ChatField.hook";
+import ChatFormater from "./ChatFormater";
 
 type Props = {
   targetObj: TargetChatObj;
@@ -12,7 +13,7 @@ type Props = {
 
 const ChatField = ({ targetObj, currentChat }: Props) => {
   const { chatArr } = useChatField(currentChat);
-  console.log(chatArr);
+
   return (
     <div className="flex flex-col">
       <div className="flex items-center justify-between gap-[20px] py-[10px] px-[20px] border-b-[1px] border-line">
@@ -28,7 +29,7 @@ const ChatField = ({ targetObj, currentChat }: Props) => {
         </div>
       </div>
       <div className="overflow-y-auto min-h-[400px] border-b-[1px] border-line">
-        eg
+        <ChatFormater chatArr={chatArr} currentChat={currentChat} />
       </div>
       <div className="p-[18px]">
         <ChatBox />

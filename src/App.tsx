@@ -33,9 +33,9 @@ function App() {
             resetObj();
           }
         })
-        .catch((err: AxiosError) => {
+        .catch((err: AxiosError | any) => {
           console.log(err);
-          toast.error(err.message);
+          toast.error(err.response?.data?.message);
         });
 
       setTimeout(() => {
