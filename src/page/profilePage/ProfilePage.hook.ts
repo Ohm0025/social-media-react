@@ -22,7 +22,9 @@ const useProfilePageHook = () => {
     } catch (err) {
       console.log(err);
     } finally {
-      closeIsLoading();
+      setTimeout(() => {
+        closeIsLoading();
+      }, 700);
     }
   };
 
@@ -45,7 +47,7 @@ const useProfilePageHook = () => {
     if (isOther) {
       callOtherUser();
     }
-  }, [searchUserId]);
+  }, [searchUserId, isOther]);
 
   return { isOther, otherUserId: Number(searchUserId), otherObj };
 };
