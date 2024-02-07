@@ -3,11 +3,13 @@ import ProfileIcon from "../../etc/profileIcon/ProfileIcon";
 import useChatContact from "./ChatContact.hook";
 import ChatIcon from "./ChatIcon";
 
-type Props = {};
+type Props = {
+  selectChat: (obj: any) => void;
+};
 
 const ChatContact = (props: Props) => {
   const { contactArr } = useChatContact();
-  console.log(contactArr);
+
   return (
     <div>
       <div className="flex justify-between items-center px-[15px] my-[25px]">
@@ -20,6 +22,7 @@ const ChatContact = (props: Props) => {
           contactArr.map((item: any, index: number) => {
             return (
               <div
+                onClick={() => props.selectChat({ ...item })}
                 className="flex items-start gap-[15px] py-[15px] px-[15px] border-b-[1px] border-line"
                 key={`chatcontact-item-${index}`}>
                 <div>

@@ -13,7 +13,7 @@ import BackDropLoading from "./component/backDropLoaing/BackDropLoading";
 import DelayBox from "./component/delayBox/DelayBox";
 import { ToastContainer, toast } from "react-toastify";
 import { useUser } from "./store/user";
-import ChatPage from "./page/ChatPage";
+import ChatPage from "./page/chagePage/ChatPage";
 import { AxiosError } from "axios";
 
 function App() {
