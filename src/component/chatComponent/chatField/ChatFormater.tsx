@@ -14,7 +14,9 @@ const ChatFormater = (props: Props) => {
       {props.chatArr?.map((item: any, index: number) => {
         if (userObj.userid === item.senderid) {
           return (
-            <div className="flex items-center px-[15px] gap-[7px]">
+            <div
+              className="flex items-center px-[15px] gap-[7px]"
+              key={`chatItem-${index}`}>
               <ProfileIcon
                 radius="40px"
                 profilePicture={props.currentChat.profile_picture}

@@ -1,7 +1,6 @@
-import React from "react";
 import { TargetChatObj } from "../../../interface/otherComponent";
 import ProfileIcon from "../../etc/profileIcon/ProfileIcon";
-import ChatBox from "../ChatBox";
+import ChatBox from "../chatBox/ChatBox";
 import { calDiffHr } from "../../../utils/calDiffTime";
 import useChatField from "./ChatField.hook";
 import ChatFormater from "./ChatFormater";
@@ -32,7 +31,7 @@ const ChatField = ({ targetObj, currentChat }: Props) => {
         <ChatFormater chatArr={chatArr} currentChat={currentChat} />
       </div>
       <div className="p-[18px]">
-        <ChatBox />
+        <ChatBox currentChat={currentChat} />
       </div>
     </div>
   );
