@@ -1,5 +1,5 @@
 import React from "react";
-import ChatContact from "../component/chatComponent/ChatContact";
+import ChatContact from "../component/chatComponent/chatContact/ChatContact";
 import ChatField from "../component/chatComponent/ChatField";
 
 type Props = {};
