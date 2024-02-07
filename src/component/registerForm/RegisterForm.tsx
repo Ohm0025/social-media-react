@@ -1,6 +1,7 @@
 import InputText from "../loginPage/InputText";
 import { useRegisterForm } from "./RegisterForm.hook";
 import iconGoogle from "/Users/apple/Desktop/westride/final project/final-project-react/src/assets/svg/googleIcon.svg";
+import { GoogleLogin } from "@react-oauth/google";
 
 type Props = {
   handleClose: () => void;
@@ -139,14 +140,11 @@ const RegisterForm = ({ handleClose }: Props) => {
       <div className="mt-[18px] text-textTwo text-[14px]">Or</div>
       <div className="mt-[15px]">
         <span className="text-textThree text-[16px] font-medium">
-          Sign up with
+          Login with
         </span>
-        <button className="rounded-[4px] mt-[20px] w-[203px] h-[40px] border border-strokeOne bg-fillOne flex items-center gap-[15px] px-[11px] py-[10px]">
-          <div>
-            <img src={iconGoogle} alt="icon-google" />
-          </div>
-          <div className="text-[14px] text-textTwo">Sign up with Google</div>
-        </button>
+        <div className="rounded-[4px] mt-[20px] w-[203px] h-[40px] flex justify-center items-center">
+          <GoogleLogin onSuccess={(value) => console.log(value)}></GoogleLogin>
+        </div>
       </div>
     </form>
   );

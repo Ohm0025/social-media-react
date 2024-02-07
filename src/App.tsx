@@ -15,6 +15,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { useUser } from "./store/user";
 import ChatPage from "./page/chagePage/ChatPage";
 import { AxiosError } from "axios";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 function App() {
   const [cookies, setCookie, removeCookie]: any = useCookies([BBB_COOKIES]);
@@ -95,7 +96,7 @@ function App() {
   ]);
 
   return (
-    <>
+    <GoogleOAuthProvider clientId="634049119439-mb4g4heqfgjdg4cannj51a1knlqjbeqe.apps.googleusercontent.com">
       <DelayBox>
         <RouterProvider router={router}></RouterProvider>
       </DelayBox>
@@ -112,7 +113,7 @@ function App() {
         theme="colored"
       />
       <BackDropLoading open={isLoading} handleClose={closeIsLoading} />
-    </>
+    </GoogleOAuthProvider>
   );
 }
 

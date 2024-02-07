@@ -1,6 +1,7 @@
 import InputText from "./InputText";
 import { FormLoginObj } from "../../interface/authen";
 import iconGoogle from "/Users/apple/Desktop/westride/final project/final-project-react/src/assets/svg/googleIcon.svg";
+import { GoogleLogin } from "@react-oauth/google";
 
 const FormLogin = ({
   handleSubmit,
@@ -68,12 +69,10 @@ const FormLogin = ({
           <span className="text-textThree text-[16px] font-medium">
             Log In with
           </span>
-          <button className="rounded-[4px] mt-[20px] w-[203px] h-[40px] border border-strokeOne bg-fillOne flex items-center gap-[15px] px-[11px] py-[10px]">
-            <div>
-              <img src={iconGoogle} alt="icon-google" />
-            </div>
-            <div className="text-[14px] text-textTwo">Log In with Google</div>
-          </button>
+          <div className="rounded-[4px] mt-[20px] w-[203px] h-[40px] flex justify-center items-center">
+            <GoogleLogin
+              onSuccess={(value) => console.log(value)}></GoogleLogin>
+          </div>
         </div>
       </div>
       <div className="text-[18px] text-textOne flex flex-col items-start mt-[35px]">
