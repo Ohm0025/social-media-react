@@ -23,7 +23,7 @@ const ChatContact = (props: Props) => {
             return (
               <div
                 onClick={() => props.selectChat({ ...item })}
-                className="flex items-start gap-[15px] py-[15px] px-[15px] border-b-[1px] border-line"
+                className="flex items-start gap-[15px] py-[15px] px-[15px] border-b-[1px] border-line hover:cursor-pointer"
                 key={`chatcontact-item-${index}`}>
                 <div>
                   <ProfileIcon
@@ -36,9 +36,10 @@ const ChatContact = (props: Props) => {
                     <div className="font-semibold">
                       {item.firstname + " " + item.lastname}
                     </div>
-                    <div>{calDiffHr(item.dateChat)}</div>
+                    <div>{item.dateChat ? calDiffHr(item.dateChat) : ""}</div>
                   </div>
-                  <div>{item.lastChat}</div>
+                  <div
+                    dangerouslySetInnerHTML={{ __html: item.lastChat }}></div>
                 </div>
               </div>
             );

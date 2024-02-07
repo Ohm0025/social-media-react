@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { getAllContact } from "../../../api/chat";
-import { useFriendList } from "../../../store/friendList";
 import { useLoading } from "../../../store/loading";
 
 const useChatContact = () => {
@@ -27,6 +26,7 @@ const useChatContact = () => {
 
   return {
     contactArr,
+    callListFriend,
   };
 };
 

@@ -1,4 +1,3 @@
-import React from "react";
 import ChatContact from "../../component/chatComponent/chatContact/ChatContact";
 import ChatField from "../../component/chatComponent/chatField/ChatField";
 import useChatPage from "./ChatPage.hook";

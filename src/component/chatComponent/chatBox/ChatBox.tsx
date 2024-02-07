@@ -4,11 +4,15 @@ import useChatBox from "./ChatBox.hook";
 
 type Props = {
   currentChat: any;
+  addChatArr: (newChat: any) => void;
+  callData: () => void;
 };
 
-const ChatBox = ({ currentChat }: Props) => {
+const ChatBox = ({ currentChat, addChatArr, callData }: Props) => {
   const { message, setMessage, handleSendMessage } = useChatBox(
-    currentChat.userid
+    currentChat.userid,
+    addChatArr,
+    callData
   );
   let modules = {
     toolbar: [

@@ -11,7 +11,7 @@ type Props = {
 };
 
 const ChatField = ({ targetObj, currentChat }: Props) => {
-  const { chatArr } = useChatField(currentChat);
+  const { chatArr, setChatArr, callData } = useChatField(currentChat);
 
   return (
     <div className="flex flex-col">
@@ -24,14 +24,24 @@ const ChatField = ({ targetObj, currentChat }: Props) => {
         </div>
         <div className="flex items-center justify-between w-full">
           <div>{currentChat.firstname + " " + currentChat.lastname}</div>
-          <div>{calDiffHr(currentChat.dateChat)}</div>
+          <div>
+            {currentChat.dateChat ? calDiffHr(currentChat.dateChat) : ""}
+          </div>
         </div>
       </div>
-      <div className="overflow-y-auto min-h-[400px] border-b-[1px] border-line">
+      <div className="min-h-[400px] border-b-[1px] border-line">
         <ChatFormater chatArr={chatArr} currentChat={currentChat} />
       </div>
       <div className="p-[18px]">
-        <ChatBox currentChat={currentChat} />
+        <ChatBox
+          callData={callData}
+          currentChat={currentChat}
+          addChatArr={(newChat) =>
+            setChatArr((prev: any) => {
+              return [...prev, newChat];
+            })
+          }
+        />
       </div>
     </div>
   );

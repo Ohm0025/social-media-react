@@ -4,7 +4,11 @@ import { useEffect, useState } from "react";
 import { useUser } from "../../../store/user";
 import { createChat } from "../../../api/chat";
 
-const useChatBox = (targetId: number) => {
+const useChatBox = (
+  targetId: number,
+  addChatArr: (newChat: any) => void,
+  callData: () => void
+) => {
   const socket = io(API_URL);
   const { userObj } = useUser();
   const [message, setMessage] = useState("");
@@ -15,7 +19,8 @@ const useChatBox = (targetId: number) => {
       socket.emit("registChatUser", userid);
     });
     socket.on("chat", (data) => {
-      alert(data);
+      console.log("receive data");
+      callData();
     });
     return () => {
       socket.disconnect();
@@ -29,6 +34,7 @@ const useChatBox = (targetId: number) => {
       const res = await createChat(targetId, chatObj);
       if (res.status === 201) {
         setMessage("");
+        callData();
       }
     } catch (err) {
       console.log(err);
