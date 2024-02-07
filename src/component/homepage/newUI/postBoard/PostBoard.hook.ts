@@ -35,6 +35,7 @@ const usePostBoard = () => {
             ...res.data.data,
             firstname: userObj.firstname,
             lastname: userObj.lastname,
+            profile_picture: userObj.profile_picture,
           });
           toast.success(res.data.message);
         } else {
