@@ -20,7 +20,6 @@ const ProfileCover = (props: any) => {
     des,
     setDes,
     handleUpdateUser,
-    otherObj,
   } = useProfileCover(props.callData, props.isOther, props.otherUserId);
   const { userObj } = useUser();
 
@@ -33,7 +32,7 @@ const ProfileCover = (props: any) => {
         cb={(str: string) => setCover(str)}
         cover={cover}
         isOther={props.isOther}
-        otherObj={otherObj}
+        otherObj={props.otherObj}
       />
       <div className="flex justify-between items-center px-8 translate-y-[-50%] z-[1]">
         <div className="flex items-center gap-3">
@@ -42,17 +41,17 @@ const ProfileCover = (props: any) => {
             cb={(str: string) => setPicture(str)}
             picture={picture}
             isOther={props.isOther}
-            otherObj={otherObj}
+            otherObj={props.otherObj}
           />
           <div className="flex flex-col">
             <span className="text-[20px] font-bold text-textOne">
               {props.isOther
-                ? otherObj?.firstname + " " + otherObj?.lastname
+                ? props.otherObj?.firstname + " " + props.otherObj?.lastname
                 : userObj.firstname + " " + userObj.lastname}
             </span>
             <small className="text-[16px] text-textTwo">{`Friend ${
               props.isOther
-                ? otherObj?.countfriend || 0
+                ? props.otherObj?.countfriend || 0
                 : userObj.countfriend || 0
             }`}</small>
           </div>
@@ -93,7 +92,7 @@ const ProfileCover = (props: any) => {
       <FilterProfile
         selected={currentPageProfile}
         setFilterPage={changePageProfile}
-        isFriend={otherObj?.userStatus}
+        isFriend={props.otherObj?.userStatus}
       />
     </div>
   );

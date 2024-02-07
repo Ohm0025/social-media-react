@@ -7,11 +7,15 @@ type Props = {
   isProfile?: boolean;
   isOther?: boolean;
   updateCountOne?: (postid: number, targetKey: string, value: number) => void;
+  isFriend?: boolean;
 };
 
-const options = ["All", "Friends", "Private"];
-
-const FeedBoard = ({ isProfile = false, isOther, updateCountOne }: Props) => {
+const FeedBoard = ({
+  isProfile = false,
+  isOther,
+  isFriend,
+  updateCountOne,
+}: Props) => {
   const { postDataArr, setMyPostArr, filterPost, setFilterPost } =
     useFeedBoard(isProfile);
 
@@ -24,13 +28,30 @@ const FeedBoard = ({ isProfile = false, isOther, updateCountOne }: Props) => {
     height: "20px",
   };
 
+  console.log(
+    !isOther
+      ? ["All", "Friends", "Private"]
+      : isFriend
+      ? ["All", "Friends"]
+      : ["All"]
+  );
+
+  console.log("isOther ", isOther);
+  console.log("isFriend ", isFriend);
+
   return (
     <>
       <div className="w-full">
         <div className="flex items-center mt-[25px] justify-between px-[24px]">
           <span className="text-[16px] text-textTwo">{filterPost}</span>
           <Dropdown
-            options={options}
+            options={
+              !isOther
+                ? ["All", "Friends", "Private"]
+                : isFriend
+                ? ["All", "Friends"]
+                : ["All"]
+            }
             onChange={(e) => {
               setFilterPost(e.value);
             }}

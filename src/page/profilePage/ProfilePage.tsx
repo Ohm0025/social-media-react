@@ -1,11 +1,9 @@
-import { useState } from "react";
 import ProfileCover from "../../component/ProfilePage/profileCover/ProfileCover";
 import FeedBoard from "../../component/homepage/newUI/feedBoard/FeedBoard";
-import { useMyPost } from "../../store/myPost";
 import DescriptionBoard from "../../component/ProfilePage/DescriptionBoard";
-import { useParams } from "react-router-dom";
-import { useUser } from "../../store/user";
 import { usePageProfile } from "../../store/pageProfile";
+import useProfilePageHook from "./ProfilePage.hook";
+import DelayBox from "../../component/delayBox/DelayBox";
 
 type Props = {
   searchUserId?: number;
@@ -14,16 +12,8 @@ type Props = {
 };
 
 const ProfilePage = (props: Props) => {
-  const { searchUserId } = useParams();
-  const { modPostArr } = useMyPost();
-
-  const { userObj } = useUser();
+  const { isOther, otherUserId, otherObj } = useProfilePageHook();
   const { currentPageProfile } = usePageProfile();
-
-  let isOther = searchUserId ? Number(searchUserId) !== userObj.userid : false;
-
-  const [otherObj, setOtherObj] = useState<any>(null);
-  const [postArr, setPostArr] = useState<any>([]);
 
   // const updateCountOne = (postid: number, targetKey: string, value: number) => {
   //   console.log("update count");
@@ -45,7 +35,13 @@ const ProfilePage = (props: Props) => {
 
   const selectElement = () => {
     if (currentPageProfile === "post") {
-      return <FeedBoard isProfile={true} />;
+      return (
+        <FeedBoard
+          isFriend={otherObj?.userStatus}
+          isProfile={true}
+          isOther={isOther}
+        />
+      );
     } else if (currentPageProfile === "bio") {
       return <DescriptionBoard isOther={false} />;
     } else if (currentPageProfile === "picture") {
@@ -54,19 +50,19 @@ const ProfilePage = (props: Props) => {
   };
 
   return (
-    <div className="min-h-[100vh]">
-      <ProfileCover
-        callData={props.callData}
-        isOther={isOther}
-        otherUserId={Number(searchUserId)}
-        otherObj={otherObj}
-        otherCover={otherObj?.profile_cover}
-        otherPicture={otherObj?.prpfile_picture}
-      />
-      <div className="w-full min-w-[300px] mt-[15px] px-[15px]">
-        {selectElement()}
+    <DelayBox>
+      <div className="min-h-[100vh]">
+        <ProfileCover
+          callData={props.callData}
+          isOther={isOther}
+          otherUserId={otherUserId}
+          otherObj={otherObj}
+        />
+        <div className="w-full min-w-[300px] mt-[15px] px-[15px]">
+          {selectElement()}
+        </div>
       </div>
-    </div>
+    </DelayBox>
   );
 };
 

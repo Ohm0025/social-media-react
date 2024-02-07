@@ -17,8 +17,6 @@ const useProfileCover = (
   const [picture, setPicture] = useState("");
   const [des, setDes] = useState(userObj.description);
 
-  const [otherObj, setOtherObj] = useState<any>(null);
-
   const handleUpdateUser = async () => {
     try {
       openIsLoading();
@@ -53,30 +51,6 @@ const useProfileCover = (
     }
   };
 
-  const callOtherUser = async () => {
-    try {
-      openIsLoading();
-      const res = await getOtherUser(otherUserId);
-      if (res.status === 200) {
-        setOtherObj({ ...res.data?.data });
-      }
-    } catch (err) {
-      console.log(err);
-    } finally {
-      closeIsLoading();
-    }
-  };
-
-  useEffect(() => {
-    if (isOther) {
-      callOtherUser();
-    }
-  }, [otherUserId]);
-
-  useEffect(() => {
-    console.log("update user profile");
-  }, [otherObj]);
-
   return {
     isEdit,
     setIsEdit,
@@ -87,7 +61,6 @@ const useProfileCover = (
     des,
     setDes,
     handleUpdateUser,
-    otherObj,
   };
 };
 
