@@ -10,7 +10,7 @@ import EditPostBtn from "../etc/EditPostBtn";
 import LikeBtn from "../etc/LikeBtn";
 import CommentBtn from "../etc/CommentBtn";
 
-const PostCard = ({ postItem, updateCountOne }: any) => {
+const PostCard = ({ postItem, callPostData }: any) => {
   const [isComment, setIsComment] = useState(false);
   const [isLike, setIsLike] = useState(postItem.thisUserLike);
   const { userObj } = useUser();
@@ -19,13 +19,7 @@ const PostCard = ({ postItem, updateCountOne }: any) => {
     try {
       const res = await toggleLike(Number(postItem.postid));
       if (res.status === 201) {
-        if (!isLike) {
-          updateCountOne(postItem.postid, "count_like", 1);
-          setIsLike(true);
-        } else {
-          updateCountOne(postItem.postid, "count_like", -1);
-          setIsLike(false);
-        }
+        callPostData();
       }
     } catch (err) {
       console.log(err);
@@ -64,11 +58,14 @@ const PostCard = ({ postItem, updateCountOne }: any) => {
       </div>
 
       <div className="px-[30px] flex items-center gap-[50px]">
-        <LikeBtn />
+        <LikeBtn
+          thisUserLike={postItem.thisUserLike}
+          handleToggle={handleToggle}
+        />
         <CommentBtn />
       </div>
       <div className="mt-[20px] text-[14px] text-textFive ml-[25px]">
-        {"122 likes this"}
+        {postItem.count_like + " likes this"}
       </div>
 
       <hr className="border-t-[1px] border-line2 my-[20px] w-auto ml-[-15px] mr-[-15px]" />

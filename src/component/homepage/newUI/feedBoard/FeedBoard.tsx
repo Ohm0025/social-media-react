@@ -18,7 +18,7 @@ const FeedBoard = ({
   otherId,
   updateCountOne,
 }: Props) => {
-  const { postDataArr, setMyPostArr, filterPost, setFilterPost } = useFeedBoard(
+  const { postDataArr, callPostData, filterPost, setFilterPost } = useFeedBoard(
     isProfile,
     isOther,
     otherId
@@ -60,7 +60,7 @@ const FeedBoard = ({
               return (
                 <PostCard
                   postItem={item}
-                  updateCountOne={updateCountOne}
+                  callPostData={callPostData}
                   key={"postcard_" + index}
                 />
               );
