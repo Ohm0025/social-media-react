@@ -1,14 +1,19 @@
 import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
-import { getMyPost, getStandardPost } from "../../../../api/post";
+import {
+  getMyPost,
+  getOtherUserPost,
+  getStandardPost,
+} from "../../../../api/post";
 import { useLoading } from "../../../../store/loading";
 import { toast } from "react-toastify";
 import { useMyPost } from "../../../../store/myPost";
 
-const useFeedBoard = (isMine: boolean) => {
+const useFeedBoard = (isMine: boolean, isOther?: boolean, otherId?: number) => {
   const { myPostArr, setMyPostArr } = useMyPost();
   const { openIsLoading, closeIsLoading } = useLoading();
   const [filterPost, setFilterPost] = useState("All");
+  const [otherPostArr, setOtherPostArr] = useState<any>([]);
 
   const callPostData = async () => {
     try {
@@ -41,12 +46,32 @@ const useFeedBoard = (isMine: boolean) => {
     }
   };
 
+  const callOtherPost = async () => {
+    try {
+      if (otherId) {
+        const res = await getOtherUserPost(otherId);
+        if (res.status === 200) {
+          console.log(res.data);
+          setOtherPostArr([...res.data?.data]);
+        }
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     callPostData();
   }, [filterPost]);
 
+  useEffect(() => {
+    if (isOther) {
+      callOtherPost();
+    }
+  }, [isOther, otherId]);
+
   return {
-    postDataArr: [...myPostArr],
+    postDataArr: isOther && otherId ? [...otherPostArr] : [...myPostArr],
     setMyPostArr,
     callPostData,
     filterPost,

@@ -40,6 +40,7 @@ const ProfilePage = (props: Props) => {
           isFriend={otherObj?.userStatus}
           isProfile={true}
           isOther={isOther}
+          otherId={otherObj?.userid}
         />
       );
     } else if (currentPageProfile === "bio") {

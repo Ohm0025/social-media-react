@@ -8,16 +8,21 @@ type Props = {
   isOther?: boolean;
   updateCountOne?: (postid: number, targetKey: string, value: number) => void;
   isFriend?: boolean;
+  otherId?: number;
 };
 
 const FeedBoard = ({
   isProfile = false,
   isOther,
   isFriend,
+  otherId,
   updateCountOne,
 }: Props) => {
-  const { postDataArr, setMyPostArr, filterPost, setFilterPost } =
-    useFeedBoard(isProfile);
+  const { postDataArr, setMyPostArr, filterPost, setFilterPost } = useFeedBoard(
+    isProfile,
+    isOther,
+    otherId
+  );
 
   const sx = {
     backgroundColor: `#7B7B7B`,
@@ -27,17 +32,6 @@ const FeedBoard = ({
     width: "20px",
     height: "20px",
   };
-
-  console.log(
-    !isOther
-      ? ["All", "Friends", "Private"]
-      : isFriend
-      ? ["All", "Friends"]
-      : ["All"]
-  );
-
-  console.log("isOther ", isOther);
-  console.log("isFriend ", isFriend);
 
   return (
     <>
