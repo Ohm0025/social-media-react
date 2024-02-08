@@ -1,4 +1,8 @@
-import { TargetChatObj } from "../../../interface/otherComponent";
+import {
+  ChatArrSocket,
+  ChatObjType,
+  CurrentChatType,
+} from "../../../interface/chat";
 import ProfileIcon from "../../etc/profileIcon/ProfileIcon";
 import ChatBox from "../chatBox/ChatBox";
 import { calDiffHr } from "../../../utils/calDiffTime";
@@ -6,11 +10,10 @@ import useChatField from "./ChatField.hook";
 import ChatFormater from "./ChatFormater";
 
 type Props = {
-  targetObj: TargetChatObj;
-  currentChat: any;
+  currentChat: CurrentChatType;
 };
 
-const ChatField = ({ targetObj, currentChat }: Props) => {
+const ChatField = ({ currentChat }: Props) => {
   const { chatArr, setChatArr, callData } = useChatField(currentChat);
 
   return (
@@ -36,8 +39,8 @@ const ChatField = ({ targetObj, currentChat }: Props) => {
         <ChatBox
           callData={callData}
           currentChat={currentChat}
-          addChatArr={(newChat) =>
-            setChatArr((prev: any) => {
+          addChatArr={(newChat: ChatArrSocket | ChatObjType) =>
+            setChatArr((prev) => {
               return [...prev, newChat];
             })
           }

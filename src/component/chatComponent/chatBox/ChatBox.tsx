@@ -1,9 +1,10 @@
 import ReactQuill from "react-quill";
 import useChatBox from "./ChatBox.hook";
+import { CurrentChatType, NewChatItem } from "../../../interface/chat";
 
 type Props = {
-  currentChat: any;
-  addChatArr: (newChat: any) => void;
+  currentChat: CurrentChatType;
+  addChatArr: (newChat: NewChatItem) => void;
   callData: () => void;
 };
 
@@ -22,6 +23,7 @@ const ChatBox = ({ currentChat, addChatArr, callData }: Props) => {
     addChatArr,
     callData
   );
+
   return (
     <div className="editor-container relative">
       <ReactQuill

@@ -3,10 +3,11 @@ import { API_URL } from "../../../utils/constant";
 import { useEffect, useState } from "react";
 import { useUser } from "../../../store/user";
 import { createChat } from "../../../api/chat";
+import { NewChatItem } from "../../../interface/chat";
 
 const useChatBox = (
   targetId: number,
-  addChatArr: (newChat: any) => void,
+  addChatArr: (newChat: NewChatItem) => void,
   callData: () => void
 ) => {
   const socket = io(API_URL);
@@ -19,9 +20,7 @@ const useChatBox = (
       socket.emit("registChatUser", userid);
     });
     socket.on("chat", (data) => {
-      console.log(data);
       addChatArr({ chatcontent: data });
-      //callData();
     });
     return () => {
       socket.disconnect();

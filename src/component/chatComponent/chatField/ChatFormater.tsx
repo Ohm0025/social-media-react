@@ -1,15 +1,21 @@
 import { useEffect, useRef } from "react";
 import { useUser } from "../../../store/user";
 import ProfileIcon from "../../etc/profileIcon/ProfileIcon";
+import {
+  ChatArrSocket,
+  ChatArrType,
+  ChatObjType,
+  CurrentChatType,
+} from "../../../interface/chat";
 
 type Props = {
-  chatArr: any;
-  currentChat: any;
+  chatArr: ChatArrType;
+  currentChat: CurrentChatType;
 };
 
 const ChatFormater = (props: Props) => {
   const { userObj } = useUser();
-  const lastmessageRef = useRef<any>(null);
+  const lastmessageRef = useRef<null | HTMLDivElement>(null);
 
   const scrollToBottom = () => {
     lastmessageRef.current?.scrollIntoView({
@@ -25,7 +31,7 @@ const ChatFormater = (props: Props) => {
 
   return (
     <div className="flex flex-col p-[15px] w-full gap-[7px] max-h-[600px] overflow-y-auto">
-      {props.chatArr?.map((item: any, index: number) => {
+      {props.chatArr?.map((item, index) => {
         if (userObj.userid !== item.senderid) {
           return (
             <div

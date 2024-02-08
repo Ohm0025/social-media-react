@@ -1,10 +1,11 @@
+import { CurrentChatType } from "../../../interface/chat";
 import { calDiffHr } from "../../../utils/calDiffTime";
 import ProfileIcon from "../../etc/profileIcon/ProfileIcon";
 import useChatContact from "./ChatContact.hook";
 import ChatIcon from "./ChatIcon";
 
 type Props = {
-  selectChat: (obj: any) => void;
+  selectChat: (obj: CurrentChatType) => void;
 };
 
 const ChatContact = (props: Props) => {
@@ -19,7 +20,7 @@ const ChatContact = (props: Props) => {
 
       <div className="flex flex-col overflow-y-auto">
         {contactArr.length > 0 &&
-          contactArr.map((item: any, index: number) => {
+          contactArr.map((item: CurrentChatType, index: number) => {
             return (
               <div
                 onClick={() => props.selectChat({ ...item })}
