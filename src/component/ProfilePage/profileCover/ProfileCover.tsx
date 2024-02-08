@@ -8,6 +8,7 @@ import CoverBg from "../../etc/CoverBg";
 import useProfileCover from "./ProfileCover.hook";
 import AlterProfilePicture from "../../etc/AlterProfilePicture";
 import { usePageProfile } from "../../../store/pageProfile";
+import AddFriendBtn from "../../etc/AddFriendBtn";
 
 const ProfileCover = (props: any) => {
   const {
@@ -56,7 +57,15 @@ const ProfileCover = (props: any) => {
             }`}</small>
           </div>
         </div>
-        {!props.isOther && (
+        {props.isOther ? (
+          <>
+            {props.otherObj?.userStatus ? (
+              <></>
+            ) : (
+              <AddFriendBtn callback={() => console.log("add frienf")} />
+            )}
+          </>
+        ) : (
           <>
             {!isEdit ? (
               <EditBtn callback={() => setIsEdit(true)} />

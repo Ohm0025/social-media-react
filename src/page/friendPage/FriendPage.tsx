@@ -1,6 +1,5 @@
 import FriendFilter from "../../component/friendPage/FriendFilter";
 import FriendList from "../../component/friendPage/FriendList";
-import FriendFinding from "../../component/friendPage/friendFiniding/FriendFinding";
 import FriendRequest from "../../component/friendPage/FriendRequest";
 import FriendAccept from "../../component/friendPage/FriendAccept";
 import DelayBox from "../../component/delayBox/DelayBox";

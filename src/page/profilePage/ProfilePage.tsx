@@ -15,24 +15,6 @@ const ProfilePage = (props: Props) => {
   const { isOther, otherUserId, otherObj } = useProfilePageHook();
   const { currentPageProfile } = usePageProfile();
 
-  // const updateCountOne = (postid: number, targetKey: string, value: number) => {
-  //   console.log("update count");
-  //   if (isOther) {
-  //     setPostArr((prev: any) => {
-  //       return [
-  //         ...prev.map((item: any) => {
-  //           if (item.postid === postid) {
-  //             return { ...item, [targetKey]: Number(item[targetKey]) + value };
-  //           }
-  //           return item;
-  //         }),
-  //       ];
-  //     });
-  //   } else {
-  //     modPostArr(postid, targetKey, value);
-  //   }
-  // };
-
   const selectElement = () => {
     if (currentPageProfile === "post") {
       return (
