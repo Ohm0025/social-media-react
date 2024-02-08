@@ -1,5 +1,6 @@
 import { useUser } from "../../../store/user";
 import useProfileIcon from "./ProfileIcon.hook";
+import userIcon from "/Users/apple/Desktop/westride/final project/final-project-react/src/assets/svg/user.svg";
 
 type Props = {
   radius: string;
@@ -15,9 +16,6 @@ type Props = {
 const ProfileIcon = ({
   radius,
   textSize,
-  bgColor = "#f7f7f7",
-  openDropdown = () => {},
-  isOpen,
   profilePicture,
   isProfile,
   otherUserId,
@@ -38,16 +36,19 @@ const ProfileIcon = ({
         height: radius,
         fontSize: textSize,
       }}
-      className={`rounded-full border border-strokeTwo text-[${textSize}] overflow-hidden bg-[${
-        isOpen ? "#ffbc12" : bgColor
-      }] text-center`}>
+      className={`rounded-full border border-strokeTwo text-[${textSize}] overflow-hidden text-center`}>
       {profilePicture ? (
         <div dangerouslySetInnerHTML={{ __html: profilePicture }}></div>
-      ) : isProfile ? (
+      ) : isProfile && userObj.profile_picture ? (
         <div
           dangerouslySetInnerHTML={{ __html: userObj.profile_picture }}></div>
       ) : (
-        <i className="fa-solid fa-user"></i>
+        <img
+          src={userIcon}
+          style={{
+            width: radius,
+            height: radius,
+          }}></img>
       )}
     </button>
   );

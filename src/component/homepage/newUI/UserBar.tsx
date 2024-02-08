@@ -18,7 +18,7 @@ type Props = {
 const UserBar = ({ currentPage }: Props) => {
   const [openPostModal, setOpenPostModal] = useState(false);
   const navigate = useNavigate();
-  const [cookies, setCookie, removeCookie] = useCookies([BBB_COOKIES]);
+  const [, , removeCookie] = useCookies([BBB_COOKIES]);
   return (
     <div className="flex flex-col items-end">
       <div className="mt-[26px] flex flex-col w-[190px]">
