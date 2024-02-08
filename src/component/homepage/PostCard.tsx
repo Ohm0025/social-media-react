@@ -5,9 +5,14 @@ import EditPostBtn from "../etc/EditPostBtn";
 import LikeBtn from "../etc/LikeBtn";
 import CommentBtn from "../etc/CommentBtn";
 import { useUser } from "../../store/user";
+import { useState } from "react";
+import CommentBox from "../commentBox/CommentBox";
 
 const PostCard = ({ postItem, callPostData }: any) => {
   const { userObj } = useUser();
+
+  const [isComment, setIsComment] = useState(false);
+
   const handleToggle = async () => {
     try {
       const res = await toggleLike(Number(postItem.postid));
@@ -18,7 +23,7 @@ const PostCard = ({ postItem, callPostData }: any) => {
       console.log(err);
     }
   };
-  console.log(postItem);
+
   return (
     <div className="w-full">
       <div className="flex items-center justify-between">
@@ -56,15 +61,27 @@ const PostCard = ({ postItem, callPostData }: any) => {
           handleToggle={handleToggle}
         />
         <div className="flex items-center gap-[10px]">
-          <CommentBtn />
-          <span className="text-[14px] text-[#A8A8A8]">
-            {postItem.count_comment || 0}
-          </span>
+          <CommentBtn
+            isComment={isComment}
+            setIsComment={() => {
+              isComment && callPostData();
+              setIsComment((prev) => !prev);
+            }}
+          />
+          {!isComment && (
+            <span className="text-[14px] text-[#A8A8A8]">
+              {postItem.count_comment || 0}
+            </span>
+          )}
         </div>
       </div>
-      <div className="mt-[20px] text-[14px] text-textFive ml-[25px]">
-        {(postItem.count_like || 0) + " likes this"}
-      </div>
+      {isComment ? (
+        <CommentBox postItem={postItem} />
+      ) : (
+        <div className="mt-[20px] text-[14px] text-textFive ml-[25px]">
+          {(postItem.count_like || 0) + " likes this"}
+        </div>
+      )}
 
       <hr className="border-t-[1px] border-line2 my-[20px] w-auto ml-[-15px] mr-[-15px]" />
     </div>

@@ -20,7 +20,7 @@ const SuggestItem = (props: Props2) => {
       </div>
       <div
         dangerouslySetInnerHTML={{ __html: props.item.profile_cover }}
-        className="absolute top-0 left-0 h-full overflow-hidden flex justify-center items-center z-[-1]"></div>
+        className="absolute top-0 left-0 h-full w-full overflow-hidden flex justify-center items-center z-[-1]"></div>
     </div>
   );
 };

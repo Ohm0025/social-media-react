@@ -25,7 +25,7 @@ const CoverBg = (props: Props) => {
         <div className="relative">
           <div
             dangerouslySetInnerHTML={{
-              __html: userObj.profile_cover,
+              __html: props.cover || userObj.profile_cover,
             }}
             className="z-[-1] h-[300px] overflow-hidden flex justify-center items-center"></div>
           {props.isEdit && (

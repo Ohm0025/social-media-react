@@ -1,4 +1,3 @@
-import { Component, ReactNode } from "react";
 import ReactQuill from "react-quill";
 
 type Props = {
