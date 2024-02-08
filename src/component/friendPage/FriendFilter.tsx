@@ -11,7 +11,7 @@ type FilterItemType = {
 const FilterItem = ({ text, selected }: FilterItemType) => {
   return (
     <div
-      className={`rounded-[60px] px-4 py-1 ${
+      className={`rounded-[60px] px-4 py-1 w-[100px] text-center ${
         selected ? "bg-fillTwo" : "bg-fillOne"
       } text-textThree`}>
       {text}

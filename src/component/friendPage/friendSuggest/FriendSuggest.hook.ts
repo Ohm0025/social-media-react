@@ -1,6 +1,8 @@
 import { AxiosError } from "axios";
 import { fetchFriendSuggest } from "../../../api/friend";
 import { useEffect, useState } from "react";
+import { requestFriend } from "../../../api/friend";
+import { toast } from "react-toastify";
 
 const useFriendSuggest = () => {
   const [suggestArr, setSuggestArr] = useState<any>([]);
@@ -18,12 +20,24 @@ const useFriendSuggest = () => {
     }
   };
 
+  const handleRequestFriend = async (friendId: number) => {
+    try {
+      const res = await requestFriend(friendId);
+      if (res.status === 201) {
+        toast.success("Request sent");
+        callData();
+      }
+    } catch (err: AxiosError | any) {
+      console.log(err.message);
+    }
+  };
+
   useEffect(() => {
-    console.log("fetch suggest");
     callData();
   }, []);
   return {
     suggestArr,
+    handleRequestFriend,
   };
 };
 

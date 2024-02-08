@@ -23,10 +23,10 @@ const FriendCard = ({ item, btn1, btn2, cb }: any) => {
           />
           <div className="flex flex-col">
             <span className="text-[14px] font-bold text-textOne">
-              {item.firstname + " " + item.lastname}
+              {item.firstname}
             </span>
             <small className="text-[14px] text-textTwo">
-              {"Friend " + item.countfriend}
+              {"Friend " + (item.countfriend || 0)}
             </small>
           </div>
         </div>
