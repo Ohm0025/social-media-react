@@ -19,8 +19,9 @@ const useChatBox = (
       socket.emit("registChatUser", userid);
     });
     socket.on("chat", (data) => {
-      console.log("receive data");
-      callData();
+      console.log(data);
+      addChatArr({ chatcontent: data });
+      //callData();
     });
     return () => {
       socket.disconnect();

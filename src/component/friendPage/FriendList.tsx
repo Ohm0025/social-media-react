@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import FriendCard from "./FriendCard";
 import useFriendPage from "../../page/friendPage/FriendPage.hook";
+import { useNavigate } from "react-router-dom";
 
 const FriendList = ({ friendList }: any) => {
   const { callData } = useFriendPage();
+  const navigate = useNavigate();
 
   useEffect(() => {
     callData();
@@ -18,6 +20,7 @@ const FriendList = ({ friendList }: any) => {
               <FriendCard
                 item={item}
                 btn1={"Chat"}
+                cb={() => navigate("/final-project/demochat")}
                 btn2={"Remove"}
                 key={`list-friend-${index}`}
               />

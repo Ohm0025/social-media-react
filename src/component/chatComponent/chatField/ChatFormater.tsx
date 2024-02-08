@@ -9,20 +9,14 @@ type Props = {
 
 const ChatFormater = (props: Props) => {
   const { userObj } = useUser();
-  const endRef = useRef<any>(null);
-  const parentRef = useRef<any>(null);
+  const lastmessageRef = useRef<any>(null);
 
   const scrollToBottom = () => {
-    if (parentRef.current) {
-      let position = endRef.current?.getBoundingClientRect();
-      parentRef.current.scrollTo({
-        left: position.left,
-        bottom: position.bottom,
-        behavior: "smooth",
-      });
-
-      console.log("run auto scroll");
-    }
+    lastmessageRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "start",
+    });
   };
 
   useEffect(() => {
@@ -30,9 +24,7 @@ const ChatFormater = (props: Props) => {
   }, [props.chatArr]);
 
   return (
-    <div
-      className="flex flex-col p-[15px] w-full gap-[7px] max-h-[600px] overflow-y-auto"
-      ref={parentRef}>
+    <div className="flex flex-col p-[15px] w-full gap-[7px] max-h-[600px] overflow-y-auto">
       {props.chatArr?.map((item: any, index: number) => {
         if (userObj.userid !== item.senderid) {
           return (
@@ -64,7 +56,7 @@ const ChatFormater = (props: Props) => {
           );
         }
       })}
-      <div ref={endRef}></div>
+      <div ref={lastmessageRef} />
     </div>
   );
 };

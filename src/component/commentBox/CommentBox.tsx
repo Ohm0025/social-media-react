@@ -18,8 +18,6 @@ const CommentBox = ({ postItem }: Props) => {
   const lastmessageRef = useRef<any>(null);
 
   const scrollToBottom = () => {
-    console.dir(lastmessageRef.current);
-    console.log(Boolean(lastmessageRef.current.scrollIntoView));
     lastmessageRef.current?.scrollIntoView({
       behavior: "smooth",
       block: "nearest",
