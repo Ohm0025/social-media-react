@@ -7,7 +7,7 @@ const HomePage = () => {
   return (
     <div className="mt-[15px] px-[15px]">
       <HomeBar />
-      <PostBoard />
+      <PostBoard isProfile={false} />
       <FeedBoard isProfile={false} />
     </div>
   );

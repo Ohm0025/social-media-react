@@ -5,13 +5,16 @@ import { createPost } from "../../../../api/post";
 import { checkEmpty } from "../../../../utils/checkRichText";
 import { useMyPost } from "../../../../store/myPost";
 import { useUser } from "../../../../store/user";
+import useFeedBoard from "../feedBoard/FeedBoard.hook";
 
-const usePostBoard = () => {
+const usePostBoard = (isProfile: boolean) => {
   const { addMyPostArr } = useMyPost();
   const { userObj } = useUser();
   const [text, setText] = useState("");
   const [typePost, setTypePost] = useState("only_friend");
   const [error, setError] = useState("");
+
+  const { callPostData } = useFeedBoard(isProfile);
 
   const handleChangeType = (typePost: string) => {
     setTypePost(typePost);
@@ -30,12 +33,13 @@ const usePostBoard = () => {
         const res = await createPost(formData);
         if (res.status === 201) {
           setText("");
-          addMyPostArr({
-            ...res.data.data,
-            firstname: userObj.firstname,
-            lastname: userObj.lastname,
-            profile_picture: userObj.profile_picture,
-          });
+          callPostData();
+          // addMyPostArr({
+          //   ...res.data.data,
+          //   firstname: userObj.firstname,
+          //   lastname: userObj.lastname,
+          //   profile_picture: userObj.profile_picture,
+          // });
           toast.success(res.data.message);
         } else {
           toast.error(res.data.message);

@@ -19,7 +19,7 @@ const BtnFilterItem = ({ typePostBtn, cb, stateCheck }: BtnProps) => {
   );
 };
 
-const PostBoard = () => {
+const PostBoard = ({ isProfile }: { isProfile: boolean }) => {
   const {
     text,
     setText,
@@ -29,7 +29,7 @@ const PostBoard = () => {
     handleChangeType,
     handleCreatePost,
     error,
-  } = usePostBoard();
+  } = usePostBoard(isProfile);
 
   return (
     <div className="editor-container">
