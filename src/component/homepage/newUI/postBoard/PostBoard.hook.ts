@@ -19,7 +19,6 @@ const usePostBoard = () => {
 
   const handleCreatePost = async () => {
     try {
-      console.log(typePost);
       if (checkEmpty(text)) {
         setError("post must not be empty");
         return;

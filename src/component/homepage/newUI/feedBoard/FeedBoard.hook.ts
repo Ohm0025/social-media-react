@@ -29,6 +29,7 @@ const useFeedBoard = (isMine: boolean, isOther?: boolean, otherId?: number) => {
         const res = await getStandardPost(5, filterPost);
         if (res.status === 200) {
           res.data?.data && setMyPostArr([...res.data?.data.rows]);
+          console.log(res.data?.data);
         } else {
           setMyPostArr([]);
         }

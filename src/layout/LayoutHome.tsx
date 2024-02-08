@@ -1,7 +1,6 @@
 import { Outlet, useLocation } from "react-router-dom";
 import TopBar from "../component/homepage/TopBar";
 import FriendFinding from "../component/friendPage/friendFiniding/FriendFinding";
-import HomeBar from "../component/homepage/newUI/HomeBar";
 import UserBar from "../component/homepage/newUI/UserBar";
 import { useEffect, useState } from "react";
 import { getPathName } from "../utils/getUrl";

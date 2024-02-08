@@ -16,7 +16,6 @@ const FeedBoard = ({
   isOther,
   isFriend,
   otherId,
-  updateCountOne,
 }: Props) => {
   const { postDataArr, callPostData, filterPost, setFilterPost } = useFeedBoard(
     isProfile,

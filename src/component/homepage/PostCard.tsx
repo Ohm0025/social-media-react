@@ -1,20 +1,11 @@
-import { useEffect, useState } from "react";
 import { calDiffHr } from "../../utils/calDiffTime";
-import { API_URL } from "../../utils/constant";
 import ProfileIcon from "../etc/profileIcon/ProfileIcon";
-import CommentBox from "../commentBox/CommentBox";
-import PostTopBtn from "../etc/PostTopBtn";
-import { useUser } from "../../store/user";
 import { toggleLike } from "../../api/like";
 import EditPostBtn from "../etc/EditPostBtn";
 import LikeBtn from "../etc/LikeBtn";
 import CommentBtn from "../etc/CommentBtn";
 
 const PostCard = ({ postItem, callPostData }: any) => {
-  const [isComment, setIsComment] = useState(false);
-  const [isLike, setIsLike] = useState(postItem.thisUserLike);
-  const { userObj } = useUser();
-
   const handleToggle = async () => {
     try {
       const res = await toggleLike(Number(postItem.postid));
@@ -65,7 +56,7 @@ const PostCard = ({ postItem, callPostData }: any) => {
         <CommentBtn />
       </div>
       <div className="mt-[20px] text-[14px] text-textFive ml-[25px]">
-        {postItem.count_like + " likes this"}
+        {(postItem.count_like || 0) + " likes this"}
       </div>
 
       <hr className="border-t-[1px] border-line2 my-[20px] w-auto ml-[-15px] mr-[-15px]" />

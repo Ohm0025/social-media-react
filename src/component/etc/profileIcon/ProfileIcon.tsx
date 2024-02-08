@@ -36,7 +36,7 @@ const ProfileIcon = ({
         height: radius,
         fontSize: textSize,
       }}
-      className={`rounded-full border border-strokeTwo text-[${textSize}] overflow-hidden text-center`}>
+      className={`rounded-full border border-strokeTwo text-[${textSize}] overflow-hidden text-center bg-white`}>
       {profilePicture ? (
         <div dangerouslySetInnerHTML={{ __html: profilePicture }}></div>
       ) : isProfile && userObj.profile_picture ? (
