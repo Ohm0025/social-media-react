@@ -1,10 +1,7 @@
-import { useNavigate } from "react-router-dom";
-import { API_URL } from "../../utils/constant";
 import ProfileIcon from "../etc/profileIcon/ProfileIcon";
 
 const FriendCard = ({ item, btn1, btn2, cb }: any) => {
-  const navigate = useNavigate();
-
+  console.log(item);
   return (
     <div className="bg-[transparent] border border-strokeOne rounded-[4px] flex flex-col w-[240px] shadow-sm overflow-hidden">
       {item.profile_cover ? (
@@ -32,11 +29,17 @@ const FriendCard = ({ item, btn1, btn2, cb }: any) => {
         </div>
       </div>
       <div className="flex flex-col items-center m-[12px] gap-2">
-        <button
-          className="p-2 bg-textOne text-white w-full rounded-[4px]"
-          onClick={cb}>
-          {btn1}
-        </button>
+        {btn1 !== "Pending" ? (
+          <button
+            className="p-2 bg-textOne text-white w-full rounded-[4px]"
+            onClick={cb}>
+            {btn1}
+          </button>
+        ) : (
+          <div className="p-2 bg-textTwo text-white w-full rounded-[4px] text-center">
+            Pending...
+          </div>
+        )}
         {btn2 && (
           <button className="p-2 bg-textTwo text-white w-full rounded-[4px]">
             {btn2}

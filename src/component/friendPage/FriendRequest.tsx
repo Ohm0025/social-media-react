@@ -40,7 +40,9 @@ const FriendRequest = ({}: Props) => {
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center min-h-[500px]">
-          <h1 className="text-[40px]">no friend found</h1>
+          <h1 className="text-[20px] font-semibold text-textTwo">
+            you have no pending request
+          </h1>
         </div>
       )}
     </div>

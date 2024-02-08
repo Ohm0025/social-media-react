@@ -55,7 +55,7 @@ const FriendSuggest = () => {
       ) : (
         <div className="flex flex-col items-center justify-center min-h-[500px]">
           <h1 className="text-[20px] font-semibold text-textTwo">
-            you have no friend
+            you have no suggest friend
           </h1>
         </div>
       )}

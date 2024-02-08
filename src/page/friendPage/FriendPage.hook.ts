@@ -22,14 +22,11 @@ const useFriendPage = () => {
     }
   };
 
-  useEffect(() => {
-    callData();
-  }, []);
-
   return {
     page,
     setPage,
     friendList,
+    callData,
   };
 };
 

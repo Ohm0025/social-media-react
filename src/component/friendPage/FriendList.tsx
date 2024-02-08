@@ -1,6 +1,14 @@
+import { useEffect } from "react";
 import FriendCard from "./FriendCard";
+import useFriendPage from "../../page/friendPage/FriendPage.hook";
 
 const FriendList = ({ friendList }: any) => {
+  const { callData } = useFriendPage();
+
+  useEffect(() => {
+    callData();
+  }, []);
+
   return (
     <div className="flex flex-col items-center min-w-[300px] mt-6">
       {friendList.length > 0 ? (
