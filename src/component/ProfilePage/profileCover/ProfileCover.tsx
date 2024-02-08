@@ -85,7 +85,7 @@ const ProfileCover = (props: any) => {
           {isEdit ? (
             <BioWriter des={des} cb={(str: string) => setDes(str)} />
           ) : (
-            <PostBoard />
+            <PostBoard isProfile={true} />
           )}
         </div>
       )}
@@ -93,6 +93,7 @@ const ProfileCover = (props: any) => {
         selected={currentPageProfile}
         setFilterPage={changePageProfile}
         isFriend={props.otherObj?.userStatus}
+        isOther={props.isOther}
       />
     </div>
   );

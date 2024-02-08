@@ -1,5 +1,4 @@
-import { Box, Modal } from "@mui/material";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useUser } from "../../store/user";
 import { updateUser } from "../../api/user";
 import { toast } from "react-toastify";
@@ -9,19 +8,6 @@ import { checkEmpty } from "../../utils/checkRichText";
 type Props = {
   otherDes?: string;
   isOther: boolean;
-};
-
-const style = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 500,
-  border: "0px",
-  borderRadius: "10px",
-  boxShadow: 24,
-  backgroundColor: "white",
-  p: 4,
 };
 
 const DescriptionBoard = (props: Props) => {
@@ -57,7 +43,11 @@ const DescriptionBoard = (props: Props) => {
 
   return (
     <div className="bg-white shadow-md flex p-3">
-      {!checkEmpty(userObj.description) ? (
+      {props.isOther && props.otherDes && !checkEmpty(props.otherDes) ? (
+        <div
+          className="border rounded-[4px] flex justify-center items-center w-full min-h-[200px] mb-[40px]"
+          dangerouslySetInnerHTML={{ __html: props.otherDes }}></div>
+      ) : !checkEmpty(userObj.description) ? (
         <div
           className="border rounded-[4px] flex justify-center items-center w-full min-h-[200px] mb-[40px]"
           dangerouslySetInnerHTML={{ __html: userObj.description }}></div>

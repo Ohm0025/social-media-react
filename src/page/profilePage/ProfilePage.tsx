@@ -44,7 +44,9 @@ const ProfilePage = (props: Props) => {
         />
       );
     } else if (currentPageProfile === "bio") {
-      return <DescriptionBoard isOther={false} />;
+      return (
+        <DescriptionBoard isOther={isOther} otherDes={otherObj?.description} />
+      );
     } else if (currentPageProfile === "picture") {
       return <h2>All Picture Post</h2>;
     }
