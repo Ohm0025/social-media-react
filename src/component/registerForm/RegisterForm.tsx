@@ -1,6 +1,5 @@
 import InputText from "../loginPage/InputText";
 import { useRegisterForm } from "./RegisterForm.hook";
-import iconGoogle from "/Users/apple/Desktop/westride/final project/final-project-react/src/assets/svg/googleIcon.svg";
 import { GoogleLogin } from "@react-oauth/google";
 
 type Props = {
@@ -19,11 +18,6 @@ const RegisterForm = ({ handleClose }: Props) => {
       onSubmit={(e) => {
         e.preventDefault();
         handleSubmit();
-        console.log(errors);
-        // if (!errors) {
-        //   handleSubmit();
-        //   handleClose();
-        // }
       }}
       className="flex-1 min-w-[50%] bg-white z-[2] px-[8.75%] py-[5%] flex flex-col">
       <div className="w-[320px]">

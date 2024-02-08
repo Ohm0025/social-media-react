@@ -6,7 +6,7 @@ import LayoutHome from "./layout/LayoutHome";
 import FriendPage from "./page/friendPage/FriendPage";
 import { useCookies } from "react-cookie";
 import { useEffect } from "react";
-import { callToken } from "./api/callToken";
+import { callToken } from "./api/authenticate";
 import { BBB_COOKIES } from "./utils/constant";
 import { useLoading } from "./store/loading";
 import BackDropLoading from "./component/backDropLoaing/BackDropLoading";
@@ -18,8 +18,7 @@ import { AxiosError } from "axios";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 function App() {
-  const [cookies, setCookie, removeCookie]: any = useCookies([BBB_COOKIES]);
-
+  const [cookies, ,] = useCookies<string>([BBB_COOKIES]);
   const { isLoading, openIsLoading, closeIsLoading } = useLoading();
   const { setUserObj, userObj, resetObj } = useUser();
 
@@ -102,7 +101,7 @@ function App() {
       </DelayBox>
       <ToastContainer
         position="top-center"
-        autoClose={3000}
+        autoClose={1000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick

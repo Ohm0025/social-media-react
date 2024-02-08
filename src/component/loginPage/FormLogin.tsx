@@ -1,6 +1,5 @@
 import InputText from "./InputText";
 import { FormLoginObj } from "../../interface/authen";
-import iconGoogle from "/Users/apple/Desktop/westride/final project/final-project-react/src/assets/svg/googleIcon.svg";
 import { GoogleLogin } from "@react-oauth/google";
 
 const FormLogin = ({
