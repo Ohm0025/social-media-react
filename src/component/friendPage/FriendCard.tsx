@@ -1,7 +1,6 @@
 import ProfileIcon from "../etc/profileIcon/ProfileIcon";
 
 const FriendCard = ({ item, btn1, btn2, cb }: any) => {
-  console.log(item);
   return (
     <div className="bg-[transparent] border border-strokeOne rounded-[4px] flex flex-col w-[240px] shadow-sm overflow-hidden">
       {item.profile_cover ? (

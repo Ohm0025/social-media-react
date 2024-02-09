@@ -20,7 +20,7 @@ const LayoutHome = () => {
         className={`min-h-[100vh] grid ${
           currentPage !== "demochat"
             ? "grid-cols-1 sm:grid-cols-[2fr,4fr] lg:grid-cols-[2fr,4fr,2fr]"
-            : "grid-cols-[2fr,6fr]"
+            : "grid-cols-1 sm:grid-cols-[2fr,4fr] max-sm:grid-rows-[1fr,5fr]"
         }`}>
         <UserBar currentPage={currentPage} />
         <div className="border-l-[1px] border-r-[1px] border-strokeOne">

@@ -25,7 +25,7 @@ const ChatFormater = (props: Props) => {
   }, [props.chatArr]);
 
   return (
-    <div className="flex flex-col p-[15px] w-full gap-[7px] max-h-[600px] overflow-y-auto">
+    <div className="flex flex-col p-[15px] w-full gap-[7px] max-h-[400px] lg:max-h-[600px] overflow-y-auto">
       {props.chatArr?.map((item, index) => {
         if (userObj.userid !== item.senderid) {
           return (

@@ -14,7 +14,7 @@ const LoginPage = () => {
   } = useLoginPage();
 
   return (
-    <div className="flex flex-col min-h-[100vh]">
+    <div className="flex flex-col min-h-[100vh] min-w-[320px]">
       <div className="flex flex-col md:flex-row min-h-[100vh] w-full">
         <LoginLeftSide />
         {isOpenRegister ? (

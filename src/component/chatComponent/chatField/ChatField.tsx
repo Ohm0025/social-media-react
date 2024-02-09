@@ -18,7 +18,7 @@ const ChatField = ({ currentChat }: Props) => {
 
   return (
     <div className="flex flex-col">
-      <div className="flex items-center justify-between gap-[20px] py-[10px] px-[20px] border-b-[1px] border-line">
+      <div className="flex items-center justify-between gap-[20px] py-[10px] px-[20px] border-b-[1px] border-line max-lg:border-t-[1px]">
         <div>
           <ProfileIcon
             radius="40px"

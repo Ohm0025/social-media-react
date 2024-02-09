@@ -16,6 +16,7 @@ const useChatField = (currentchat: CurrentChatType) => {
       }
     } catch (err) {
       console.log(err);
+      setChatArr([]);
     } finally {
       closeIsLoading();
     }

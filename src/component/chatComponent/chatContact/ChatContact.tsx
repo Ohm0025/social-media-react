@@ -13,18 +13,18 @@ const ChatContact = (props: Props) => {
 
   return (
     <div>
-      <div className="flex justify-between items-center px-[15px] my-[25px]">
+      <div className="flex justify-between items-center px-[15px] max-sm:mt-[10px] lg:my-[25px]">
         <span className="text-[20px] text-textOne font-bold">Messages</span>
         <ChatIcon />
       </div>
 
-      <div className="flex flex-col overflow-y-auto">
+      <div className="flex lg:flex-col overflow-y-auto">
         {contactArr.length > 0 &&
           contactArr.map((item: CurrentChatType, index: number) => {
             return (
               <div
                 onClick={() => props.selectChat({ ...item })}
-                className="flex items-start gap-[15px] py-[15px] px-[15px] border-b-[1px] border-line hover:cursor-pointer"
+                className="flex items-start lg:gap-[15px] lg:py-[15px] px-[15px] lg:border-b-[1px] border-line hover:cursor-pointer"
                 key={`chatcontact-item-${index}`}>
                 <div>
                   <ProfileIcon
@@ -32,7 +32,7 @@ const ChatContact = (props: Props) => {
                     profilePicture={item.profile_picture}
                   />
                 </div>
-                <div className="text-[14px] flex flex-col gap-[5px] w-full">
+                <div className="text-[14px] lg:flex flex-col gap-[5px] w-full hidden">
                   <div className="flex items-center justify-between">
                     <div className="font-semibold">
                       {item.firstname + " " + item.lastname}
