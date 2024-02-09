@@ -1,4 +1,3 @@
-import FriendCard from "../FriendCard";
 import TagSearchFriend from "./TagSearchFriend";
 import useFriendFinding from "./FriendFinding.hook";
 import { SuggestItem } from "../friendSuggest/FriendSuggest";

@@ -19,7 +19,7 @@ const LayoutHome = () => {
       <div
         className={`min-h-[100vh] grid ${
           currentPage !== "demochat"
-            ? "grid-cols-[2fr,4fr,2fr]"
+            ? "grid-cols-1 sm:grid-cols-[2fr,4fr] lg:grid-cols-[2fr,4fr,2fr]"
             : "grid-cols-[2fr,6fr]"
         }`}>
         <UserBar currentPage={currentPage} />
@@ -27,7 +27,7 @@ const LayoutHome = () => {
           <Outlet />
         </div>
         <div
-          className={`px-[15px] ${
+          className={`px-[15px] col-span-1 sm:col-span-2 lg:col-span-1 ${
             currentPage === "demochat" ? "hidden" : "block"
           }`}>
           <FriendFinding />

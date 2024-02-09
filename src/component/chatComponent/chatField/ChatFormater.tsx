@@ -1,12 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useUser } from "../../../store/user";
 import ProfileIcon from "../../etc/profileIcon/ProfileIcon";
-import {
-  ChatArrSocket,
-  ChatArrType,
-  ChatObjType,
-  CurrentChatType,
-} from "../../../interface/chat";
+import { ChatArrType, CurrentChatType } from "../../../interface/chat";
 
 type Props = {
   chatArr: ChatArrType;

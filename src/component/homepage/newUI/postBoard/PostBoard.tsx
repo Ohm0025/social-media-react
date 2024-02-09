@@ -46,7 +46,7 @@ const PostBoard = ({ isProfile }: { isProfile: boolean }) => {
           {error}
         </div>
       )}
-      <div className="flex justify-between items-center mt-[15px]">
+      <div className="flex justify-between items-center mt-[15px] flex-col sm:flex-row">
         <div className="text-[14px] font-medium flex items-center gap-[10px]">
           <BtnFilterItem
             typePostBtn="public"
@@ -66,7 +66,7 @@ const PostBoard = ({ isProfile }: { isProfile: boolean }) => {
         </div>
         <button
           onClick={() => handleCreatePost()}
-          className="bg-textOne text-white text-[14px] font-medium px-[35px] py-[9px] rounded-[4px]">
+          className="bg-textOne text-white text-[14px] font-medium px-[35px] py-[9px] rounded-[4px] mt-[10px] sm:mt-0">
           Post
         </button>
       </div>
