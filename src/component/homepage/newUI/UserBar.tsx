@@ -21,7 +21,7 @@ const UserBar = ({ currentPage }: Props) => {
   const [, , removeCookie] = useCookies([BBB_COOKIES]);
   return (
     <div className="flex sm:flex-col sm:items-end">
-      <div className="mt-[26px] flex flex-col items-center sm:items-start sm:w-[190px]">
+      <div className="mt-[26px] flex flex-col w-full items-center sm:items-start sm:w-[190px]">
         <ProfileIcon radius="40px" isProfile={true} />
         <div className="mt-[26px] text-[16px] font-medium grid grid-cols-5 gap-[10px] sm:flex sm:flex-col sm:gap-[40px] overflow-x-auto sm:overflow-x-hidden">
           <IconUserBar

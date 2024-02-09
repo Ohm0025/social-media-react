@@ -15,10 +15,12 @@ const IconUserBar = (props: Props) => {
   };
   return (
     <button
-      className="flex items-start gap-[20px] userbarIcon"
+      className="flex items-start gap-[5px] sm:gap-[20px] userbarIcon max-sm:justify-center"
       onClick={props.cb}>
-      <div style={sx}></div>
-      <span style={{ color: `${props.color}` }}>{props.labelName}</span>
+      <div style={sx} className="hidden sm:block"></div>
+      <span style={{ color: `${props.color}` }} className="max-sm:text-center">
+        {props.labelName}
+      </span>
     </button>
   );
 };
