@@ -62,11 +62,22 @@ const useFeedBoard = (isMine: boolean, isOther?: boolean, otherId?: number) => {
   };
 
   useEffect(() => {
-    callPostData();
+    if (!isOther) {
+      callPostData();
+    } else {
+      if (filterPost === "Friends") {
+        setOtherPostArr((prev: any) => {
+          return prev.filter((item: any) => item.post_type === "only_friend");
+        });
+      } else {
+        callOtherPost();
+      }
+    }
   }, [filterPost]);
 
   useEffect(() => {
     if (isOther) {
+      console.log("fetch other post");
       callOtherPost();
     }
   }, [isOther, otherId]);
