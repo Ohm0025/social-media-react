@@ -19,3 +19,6 @@ export const getOtherUserPost = (otherid: number) =>
 
 export const getPicturePost = (targetId: number) =>
   axios.post("/post/getPicture", { targetId });
+
+export const editPost = (postid: number, newPost: FormData) =>
+  axios.patch("/post/" + postid, newPost);

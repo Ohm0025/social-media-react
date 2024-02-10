@@ -1,17 +1,17 @@
 import { AxiosError } from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { createPost } from "../../../../api/post";
+import { createPost, editPost } from "../../../../api/post";
 import { checkEmpty } from "../../../../utils/checkRichText";
 import { useMyPost } from "../../../../store/myPost";
 import { useUser } from "../../../../store/user";
 import useFeedBoard from "../feedBoard/FeedBoard.hook";
 
-const usePostBoard = (isProfile: boolean) => {
-  const { addMyPostArr } = useMyPost();
-  const { userObj } = useUser();
-  const [text, setText] = useState("");
-  const [typePost, setTypePost] = useState("only_friend");
+const usePostBoard = (isProfile: boolean, fromEdit: any) => {
+  const [text, setText] = useState(fromEdit?.post_content || "");
+  const [typePost, setTypePost] = useState(
+    fromEdit?.post_type || "only_friend"
+  );
   const [error, setError] = useState("");
 
   const { callPostData } = useFeedBoard(isProfile);
@@ -30,16 +30,12 @@ const usePostBoard = (isProfile: boolean) => {
         const formData = new FormData();
         formData.append("postText", text);
         formData.append("postType", typePost);
-        const res = await createPost(formData);
+        const res = fromEdit?.postid
+          ? await editPost(fromEdit?.postid, formData)
+          : await createPost(formData);
         if (res.status === 201) {
           setText("");
           callPostData();
-          // addMyPostArr({
-          //   ...res.data.data,
-          //   firstname: userObj.firstname,
-          //   lastname: userObj.lastname,
-          //   profile_picture: userObj.profile_picture,
-          // });
           toast.success(res.data.message);
         } else {
           toast.error(res.data.message);

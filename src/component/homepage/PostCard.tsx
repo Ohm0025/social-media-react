@@ -45,7 +45,9 @@ const PostCard = ({ postItem, callPostData }: any) => {
             {calDiffHr(postItem.post_date)}
           </div>
 
-          {postItem.userid === userObj.userid && <EditPostBtn />}
+          {postItem.userid === userObj.userid && (
+            <EditPostBtn postItem={postItem} callNewData={callPostData} />
+          )}
         </div>
       </div>
 

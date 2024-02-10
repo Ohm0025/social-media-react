@@ -1,14 +1,14 @@
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import ProfileIcon from "../etc/profileIcon/ProfileIcon";
-import { useState } from "react";
 import { useUser } from "../../store/user";
 import PostBoard from "../homepage/newUI/postBoard/PostBoard";
 
 type Props = {
   isOpen: boolean;
   handleClose: () => void;
-  aftersubmit: () => void;
+  aftersubmit?: () => void;
+  fromEdit?: any;
 };
 
 const style = {
@@ -24,8 +24,7 @@ const style = {
   p: 4,
 };
 
-const ModalPost = ({ isOpen, handleClose, aftersubmit }: Props) => {
-  const [postType, setPostType] = useState("only_friend");
+const ModalPost = ({ isOpen, handleClose, fromEdit }: Props) => {
   const { userObj } = useUser();
 
   return (
@@ -56,7 +55,11 @@ const ModalPost = ({ isOpen, handleClose, aftersubmit }: Props) => {
                 <b>{userObj.firstname + " " + userObj.lastname}</b>
               </div>
             </div>
-            <PostBoard isProfile={false} cbAfterPost={handleClose} />
+            <PostBoard
+              isProfile={false}
+              cbAfterPost={handleClose}
+              fromEdit={fromEdit}
+            />
           </div>
         </div>
       </Box>
