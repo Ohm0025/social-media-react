@@ -10,6 +10,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { BBB_COOKIES } from "../../../utils/constant";
+import { useUser } from "../../../store/user";
 
 type Props = {
   currentPage: string;
@@ -17,12 +18,16 @@ type Props = {
 
 const UserBar = ({ currentPage }: Props) => {
   const [openPostModal, setOpenPostModal] = useState(false);
+  const { userObj } = useUser();
   const navigate = useNavigate();
   const [, , removeCookie] = useCookies([BBB_COOKIES]);
   return (
     <div className="flex sm:flex-col sm:items-end">
       <div className="mt-[26px] flex flex-col w-full items-center sm:items-start sm:w-[190px]">
-        <ProfileIcon radius="40px" isProfile={true} />
+        <div className="flex flex-col justify-center items-center gap-1">
+          <ProfileIcon radius="50px" isProfile={true} />
+          <b>{userObj.firstname}</b>
+        </div>
         <div className="mt-[26px] text-[16px] font-medium grid grid-cols-5 gap-[10px] sm:flex sm:flex-col sm:gap-[40px] overflow-x-auto sm:overflow-x-hidden">
           <IconUserBar
             iconSrc={homeIcon}

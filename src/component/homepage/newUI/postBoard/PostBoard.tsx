@@ -7,6 +7,11 @@ type BtnProps = {
   stateCheck: string;
 };
 
+type PostBoardProps = {
+  isProfile: boolean;
+  cbAfterPost?: () => void;
+};
+
 const BtnFilterItem = ({ typePostBtn, cb, stateCheck }: BtnProps) => {
   return (
     <button
@@ -19,7 +24,7 @@ const BtnFilterItem = ({ typePostBtn, cb, stateCheck }: BtnProps) => {
   );
 };
 
-const PostBoard = ({ isProfile }: { isProfile: boolean }) => {
+const PostBoard = ({ isProfile, cbAfterPost }: PostBoardProps) => {
   const {
     text,
     setText,
@@ -65,7 +70,10 @@ const PostBoard = ({ isProfile }: { isProfile: boolean }) => {
           />
         </div>
         <button
-          onClick={() => handleCreatePost()}
+          onClick={() => {
+            handleCreatePost();
+            cbAfterPost && cbAfterPost();
+          }}
           className="bg-textOne text-white text-[14px] font-medium px-[35px] py-[9px] rounded-[4px] mt-[10px] sm:mt-0">
           Post
         </button>

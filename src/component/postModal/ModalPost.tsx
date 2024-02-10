@@ -2,12 +2,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import ProfileIcon from "../etc/profileIcon/ProfileIcon";
 import { useState } from "react";
-import { createPost } from "../../api/post";
-import { toast } from "react-toastify";
-import { useLoading } from "../../store/loading";
-import { useMyPost } from "../../store/myPost";
 import { useUser } from "../../store/user";
-import { toFormData } from "../../utils/toFormData";
 import PostBoard from "../homepage/newUI/postBoard/PostBoard";
 
 type Props = {
@@ -30,45 +25,9 @@ const style = {
 };
 
 const ModalPost = ({ isOpen, handleClose, aftersubmit }: Props) => {
-  const [postText, setPostText] = useState("");
   const [postType, setPostType] = useState("only_friend");
-  const { openIsLoading, closeIsLoading } = useLoading();
-  const { addMyPostArr } = useMyPost();
   const { userObj } = useUser();
 
-  const handleSubmit = async () => {
-    try {
-      openIsLoading();
-      if (postText.trim() === "") {
-        toast.error("post text cannot be empty");
-      }
-      const formData = new FormData();
-      formData.append("postText", postText);
-      formData.append("postType", postType);
-
-      const res = await createPost(formData);
-      if (res.status === 201) {
-        aftersubmit();
-        //use after instead store
-        // addMyPostArr({
-        //   ...res.data?.data.rows[0],
-        //   firstname: userObj.firstname,
-        //   lastname: userObj.lastname,
-        // });
-        handleClose();
-      } else {
-        console.log("error create post");
-        console.log(res.data);
-      }
-    } catch (err) {
-      console.log(err);
-    } finally {
-      closeIsLoading();
-    }
-  };
-  const clearText = () => {
-    setPostText("");
-  };
   return (
     <Modal
       open={isOpen}
@@ -88,24 +47,16 @@ const ModalPost = ({ isOpen, handleClose, aftersubmit }: Props) => {
           </div>
           <hr className="my-4" />
           <div className="flex flex-col">
-            <div className="flex items-center">
+            <div className="flex items-center gap-2 mb-2">
               <ProfileIcon
-                radius="30px"
-                textSize="20px"
+                radius="40px"
                 profilePicture={userObj.profile_picture}
               />
               <div className="flex flex-col">
                 <b>{userObj.firstname + " " + userObj.lastname}</b>
-                <select
-                  value={postType}
-                  onChange={(e) => setPostType(e.target.value)}>
-                  <option value="only_friend">only friend</option>
-                  <option value="private">private</option>
-                  <option value="public">public</option>
-                </select>
               </div>
             </div>
-            <PostBoard />
+            <PostBoard isProfile={false} cbAfterPost={handleClose} />
           </div>
         </div>
       </Box>

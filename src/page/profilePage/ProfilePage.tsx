@@ -4,6 +4,7 @@ import DescriptionBoard from "../../component/ProfilePage/DescriptionBoard";
 import { usePageProfile } from "../../store/pageProfile";
 import useProfilePageHook from "./ProfilePage.hook";
 import DelayBox from "../../component/delayBox/DelayBox";
+import PostPictureBoard from "../../component/ProfilePage/postPictureBoard/PostPictureBoard";
 
 type Props = {
   searchUserId?: number;
@@ -30,7 +31,7 @@ const ProfilePage = (props: Props) => {
         <DescriptionBoard isOther={isOther} otherDes={otherObj?.description} />
       );
     } else if (currentPageProfile === "picture") {
-      return <h2>All Picture Post</h2>;
+      return <PostPictureBoard targetId={otherUserId} />;
     }
   };
 

@@ -16,3 +16,6 @@ export const getStandardPost = (
 
 export const getOtherUserPost = (otherid: number) =>
   axios.get("/post/" + otherid);
+
+export const getPicturePost = (targetId: number) =>
+  axios.post("/post/getPicture", { targetId });
