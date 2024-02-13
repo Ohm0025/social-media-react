@@ -9,6 +9,7 @@ import useProfileCover from "./ProfileCover.hook";
 import AlterProfilePicture from "../../etc/AlterProfilePicture";
 import { usePageProfile } from "../../../store/pageProfile";
 import AddFriendBtn from "../../etc/AddFriendBtn";
+import PendingBtn from "../../etc/PendingBtn";
 
 const ProfileCover = (props: any) => {
   const {
@@ -45,12 +46,12 @@ const ProfileCover = (props: any) => {
             otherObj={props.otherObj}
           />
           <div className="flex flex-col">
-            <span className="text-[20px] font-bold text-textOne">
+            <span className="text-[16px] sm:text-[20px] font-bold text-textOne">
               {props.isOther
                 ? props.otherObj?.firstname + " " + props.otherObj?.lastname
                 : userObj.firstname + " " + userObj.lastname}
             </span>
-            <small className="text-[16px] text-textTwo">{`Friend ${
+            <small className="text-[12px] sm:text-[14px] text-textTwo">{`Friend ${
               props.isOther
                 ? props.otherObj?.countfriend || 0
                 : userObj.countfriend || 0
@@ -62,7 +63,16 @@ const ProfileCover = (props: any) => {
             {props.otherObj?.userStatus ? (
               <></>
             ) : (
-              <AddFriendBtn callback={() => console.log("add frienf")} />
+              <>
+                {!props.otherObj?.friendStatus ? (
+                  <AddFriendBtn
+                    callback={() => console.log("add frienf")}
+                    otherId={props.otherUserId}
+                  />
+                ) : (
+                  <PendingBtn />
+                )}
+              </>
             )}
           </>
         ) : (

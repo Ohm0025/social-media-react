@@ -37,13 +37,15 @@ body {
   border-radius: 4px;
   background-color: white;
 }
+
 .quill.editor-toolbar.chat-box {
   margin-bottom: -40px;
 }
 
 .ql-container {
   font-size: 20px !important;
-  height: 123px !important;
+  min-height: 123px !important;
+  max-height: 500px !important;
 }
 
 .btn-coverImage .ql-container {
@@ -74,6 +76,7 @@ body {
   content: url("src/assets/svg/camera.svg");
   width: 80px;
   height: 70px;
+  z-index: 20;
 }
 /* .btn-coverImage .ql-image::after {
   content: "" !important;
@@ -92,6 +95,7 @@ body {
   text-wrap: wrap !important;
   max-width: 640px;
   width: 100%;
+  max-height: 500px !important;
 }
 .chat-box .ql-editor {
   text-wrap: wrap !important;

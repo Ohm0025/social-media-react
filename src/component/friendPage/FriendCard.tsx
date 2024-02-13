@@ -39,11 +39,11 @@ const FriendCard = ({ item, btn1, btn2, cb }: any) => {
             Pending...
           </div>
         )}
-        {btn2 && (
+        {/* {btn2 && (
           <button className="p-2 bg-textTwo text-white w-full rounded-[4px]">
             {btn2}
           </button>
-        )}
+        )} */}
       </div>
     </div>
   );

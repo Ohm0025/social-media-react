@@ -1,11 +1,17 @@
+import useFriendSuggest from "../friendPage/friendSuggest/FriendSuggest.hook";
+
 type Props = {
   callback: () => void;
+  otherId?: number | undefined;
 };
 
-const AddFriendBtn = ({ callback }: Props) => {
+const AddFriendBtn = ({ callback, otherId }: Props) => {
+  const { handleRequestFriend } = useFriendSuggest();
   return (
     <button
-      onClick={callback}
+      onClick={() => {
+        otherId && handleRequestFriend(otherId);
+      }}
       className="rounded-[60px] bg-fillOne px-[16px] py-[10px] border border-strokeOne text-[16px] text-textOne flex items-center gap-[15px]">
       <div>
         <svg

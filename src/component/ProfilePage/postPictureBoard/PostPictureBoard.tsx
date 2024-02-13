@@ -8,7 +8,7 @@ const PostPictureBoard = (props: Props) => {
   const { pictureArr } = usePostPicture(props.targetId);
 
   return (
-    <div className="flex justify-between p-1 flex-wrap gap-1 min-h-[400px] ">
+    <div className="flex justify-center p-1 flex-wrap gap-3 min-h-[400px] ">
       {pictureArr.length > 0 ? (
         <>
           {pictureArr.map((item: any, index: number) => {

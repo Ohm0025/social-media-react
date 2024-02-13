@@ -1,5 +1,6 @@
 import CoverPicBtn from "./CoverPicBtn";
 import { useUser } from "../../store/user";
+import { useEffect, useState } from "react";
 
 type Props = {
   isEdit: boolean;
@@ -11,6 +12,14 @@ type Props = {
 
 const CoverBg = (props: Props) => {
   const { userObj } = useUser();
+  const [tempCover, setTempCover] = useState("");
+
+  useEffect(() => {
+    if (!props.isEdit) {
+      setTempCover("");
+    }
+  }, [props.isEdit]);
+
   return (
     <>
       {props.isOther ? (
@@ -37,12 +46,33 @@ const CoverBg = (props: Props) => {
             </button>
           )}
         </div>
+      ) : tempCover ? (
+        <div className="relative">
+          <div
+            dangerouslySetInnerHTML={{
+              __html: tempCover,
+            }}
+            className="z-[-1] h-[300px] overflow-hidden flex justify-center items-center"></div>
+          {props.isEdit && (
+            <button className="text-[16px] text-primary absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
+              <div>
+                <CoverPicBtn callback={(str: string) => props.cb(str)} />
+                {userObj.profile_cover ? "Edit photo cover" : "Add photo cover"}
+              </div>
+            </button>
+          )}
+        </div>
       ) : (
         <div className="w-full h-[300px] bg-bgCover cover center relative">
           {props.isEdit && (
             <button className="text-[16px] text-primary absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
               <div>
-                <CoverPicBtn callback={(str: string) => props.cb(str)} />
+                <CoverPicBtn
+                  callback={(str: string) => {
+                    props.cb(str);
+                    setTempCover(str);
+                  }}
+                />
                 {userObj.profile_cover ? "Edit photo cover" : "Add photo cover"}
               </div>
             </button>

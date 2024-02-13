@@ -21,8 +21,8 @@ const useProfileCover = (
     try {
       openIsLoading();
       const formData = new FormData();
-      formData.append("profile_cover", cover);
       formData.append("profile_picture", picture);
+      formData.append("profile_cover", cover);
       formData.append("description", des);
       const res = await updateUser(formData);
       if (res.status === 201) {

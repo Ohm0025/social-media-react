@@ -22,7 +22,7 @@ const FilterItem = ({ text, selected }: FilterItemType) => {
 const FriendFilter = (props: Props) => {
   return (
     <div className="bg-white">
-      <ul className="sm:p-1 sm:py-0 flex justify-between sm:justify-center sm:gap-8">
+      <ul className="sm:p-1 sm:py-0 grid grid-cols-2  sm:grid-cols-4 justify-items-center gap-y-3">
         <li
           onClick={() => props.changePage(1)}
           className="hover:cursor-pointer">

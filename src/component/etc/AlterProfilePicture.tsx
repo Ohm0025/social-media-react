@@ -12,8 +12,9 @@ type Props = {
 
 const AlterProfilePicture = (props: Props) => {
   const { userObj } = useUser();
+
   return (
-    <>
+    <div>
       {props.isOther ? (
         <ProfileIcon
           radius="60px"
@@ -35,7 +36,7 @@ const AlterProfilePicture = (props: Props) => {
       ) : (
         <ProfileIcon radius="60px" isProfile={true} />
       )}
-    </>
+    </div>
   );
 };
 

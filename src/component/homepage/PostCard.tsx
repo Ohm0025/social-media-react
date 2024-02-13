@@ -53,7 +53,7 @@ const PostCard = ({ postItem, callPostData }: any) => {
 
       <div className="w-full mt-[16px] mb-[18px]">
         <div
-          className="border p-5"
+          className="border p-5 post-card-item"
           dangerouslySetInnerHTML={{ __html: postItem.post_content }}></div>
       </div>
 

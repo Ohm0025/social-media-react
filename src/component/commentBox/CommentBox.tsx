@@ -9,6 +9,8 @@ type Props = {
 };
 
 const CommentBox = ({ postItem }: Props) => {
+  console.log(postItem);
+
   const { userObj } = useUser();
 
   const [commentContent, setCommentContent] = useState("");

@@ -6,9 +6,10 @@ const EditBtn = ({ callback }: Props) => {
   return (
     <button
       onClick={callback}
-      className="rounded-[60px] bg-fillOne px-[16px] py-[10px] border border-strokeOne text-[16px] text-textOne flex items-center gap-[15px]">
+      className="rounded-[60px] bg-fillOne p-[5px] sm:px-[16px] sm:py-[10px] border border-strokeOne text-[12px] sm:text-[16px] text-textOne flex items-center gap-[15px]">
       <div>
         <svg
+          className="hidden sm:inline"
           width="16"
           height="16"
           viewBox="0 0 16 16"
