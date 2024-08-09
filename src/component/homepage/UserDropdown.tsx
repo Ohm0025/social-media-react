@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { BBB_COOKIES } from "../../utils/constant";
+import { BBB_COOKIES } from "../../../garbage/constant";
 
 type Props = {
   isOpen: boolean;
@@ -18,7 +18,7 @@ const UserDropdown = (props: Props) => {
             className="py-2 bg-[#ffbc12] hover:cursor-pointer hover:filter hover:brightness-[90%]"
             onClick={() => {
               props.closeDropdown();
-              navigate("/final-project/profile");
+              navigate("/profile");
             }}>
             Profile
           </li>

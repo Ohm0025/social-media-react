@@ -13,7 +13,7 @@ const InputText = (props: Props) => {
       <input
         {...props.objInput}
         type={props.type || "text"}
-        className={`border py-1 px-2 outline-primary rounded-[4px] text-[18px] ${
+        className={`border py-1 px-2 outline-primary rounded-[4px] text-[18px] w-fit sm:w-full ${
           !props.errors[props.objInput.name]?.message
             ? "border-strokeOne bg-fillOne"
             : "border-[red] bg-[#dc99995d]"

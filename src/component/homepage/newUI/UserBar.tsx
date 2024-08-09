@@ -9,7 +9,7 @@ import ModalPost from "../../postModal/ModalPost";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import { BBB_COOKIES } from "../../../utils/constant";
+import { BBB_COOKIES } from "../../../../garbage/constant";
 import { useUser } from "../../../store/user";
 
 type Props = {
@@ -33,25 +33,25 @@ const UserBar = ({ currentPage }: Props) => {
             iconSrc={homeIcon}
             labelName="Home"
             color={`${currentPage === "" ? "#a9a9a9" : "black"}`}
-            cb={() => navigate("/final-project/")}
+            cb={() => navigate("/")}
           />
           <IconUserBar
             iconSrc={friendIcon}
             labelName="Friends"
             color={`${currentPage === "friend" ? "#a9a9a9" : "black"}`}
-            cb={() => navigate("/final-project/friend")}
+            cb={() => navigate("/friend")}
           />
           <IconUserBar
             iconSrc={messageIcon}
             labelName="Messages"
             color={`${currentPage === "demochat" ? "#a9a9a9" : "black"}`}
-            cb={() => navigate("/final-project/demochat")}
+            cb={() => navigate("/demochat")}
           />
           <IconUserBar
             iconSrc={profileIcon}
             labelName="Profile"
             color={`${currentPage === "profile" ? "#a9a9a9" : "black"}`}
-            cb={() => navigate("/final-project/profile")}
+            cb={() => navigate("/profile")}
           />
           <IconUserBar
             iconSrc={logoutIcon}
@@ -59,7 +59,7 @@ const UserBar = ({ currentPage }: Props) => {
             color="black"
             cb={() => {
               removeCookie(BBB_COOKIES);
-              navigate("/final-project/authen/login");
+              navigate("/authen/login");
             }}
           />
           <button

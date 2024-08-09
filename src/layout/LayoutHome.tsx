@@ -14,7 +14,7 @@ const LayoutHome = () => {
     setCurrentPage(getPathName(param.pathname));
   }, [param]);
   return (
-    <div className="min-h-[100vh] min-w-[320px] w-full">
+    <div className="min-h-[100vh] min-w-[360px] w-full">
       <TopBar />
       <div
         className={`min-h-[100vh] grid ${

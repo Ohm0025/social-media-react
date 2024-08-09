@@ -7,7 +7,7 @@ import FriendPage from "./page/friendPage/FriendPage";
 import { useCookies } from "react-cookie";
 import { useEffect } from "react";
 import { callToken } from "./api/authenticate";
-import { BBB_COOKIES } from "./utils/constant";
+import { BBB_COOKIES } from "../garbage/constant";
 import { useLoading } from "./store/loading";
 import BackDropLoading from "./component/backDropLoaing/BackDropLoading";
 import DelayBox from "./component/delayBox/DelayBox";
@@ -47,12 +47,13 @@ function App() {
   };
 
   useEffect(() => {
+    console.log(import.meta.env.VITE_API_URL);
     callData();
   }, [cookies[BBB_COOKIES]]);
 
   const router = createBrowserRouter([
     {
-      path: "/final-project/",
+      path: "/",
       element: <>{userObj.userid ? <LayoutHome /> : <LoginPage />}</>,
       children: [
         {
@@ -80,7 +81,7 @@ function App() {
       ],
     },
     {
-      path: "/final-project/authen/",
+      path: "/authen/",
       children: [
         {
           path: "login",

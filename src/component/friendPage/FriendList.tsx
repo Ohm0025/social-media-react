@@ -20,7 +20,7 @@ const FriendList = ({ friendList }: any) => {
               <FriendCard
                 item={item}
                 btn1={"Chat"}
-                cb={() => navigate("/final-project/demochat")}
+                cb={() => navigate("/demochat")}
                 btn2={"Remove"}
                 key={`list-friend-${index}`}
               />

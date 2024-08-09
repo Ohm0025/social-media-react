@@ -14,7 +14,7 @@ const SuggestItem = (props: Props2) => {
       className="flex items-center h-[120px] border border-strokeOne rounded-[4px] relative hover:cursor-pointer"
       onClick={() => {
         let encodeUserId = encodeURIComponent(Number(props.item.userid));
-        navigate("/final-project/profile/" + encodeUserId);
+        navigate("/profile/" + encodeUserId);
       }}>
       <div className="flex flex-col px-[20px] justify-center items-center gap-[5px]">
         <ProfileIcon

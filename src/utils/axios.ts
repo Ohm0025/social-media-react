@@ -1,8 +1,7 @@
 import axios, { InternalAxiosRequestConfig } from "axios";
 import { getCookie } from "./getCookies";
-import { API_URL, BBB_COOKIES } from "./constant";
 
-axios.defaults.baseURL = API_URL;
+axios.defaults.baseURL = import.meta.env.API_URL;
 
 axios.interceptors.request.use(
   (
@@ -12,7 +11,7 @@ axios.interceptors.request.use(
     | Promise<InternalAxiosRequestConfig<any>> => {
     if (configObj.url === "/login") return configObj;
     if (configObj.url === "/register") return configObj;
-    const token = getCookie(BBB_COOKIES);
+    const token = getCookie(import.meta.env.BBB_COOKIES);
     if (token) {
       configObj.headers.Authorization = `Bearer ${token}`;
     }

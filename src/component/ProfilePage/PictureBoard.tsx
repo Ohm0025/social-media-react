@@ -1,5 +1,5 @@
 import { Modal, Box } from "@mui/material";
-import { API_URL } from "../../utils/constant";
+import { API_URL } from "../../../garbage/constant";
 import { useState } from "react";
 
 const style = {

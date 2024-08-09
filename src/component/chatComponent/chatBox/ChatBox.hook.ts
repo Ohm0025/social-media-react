@@ -1,5 +1,5 @@
 import io from "socket.io-client";
-import { API_URL } from "../../../utils/constant";
+import { API_URL } from "../../../../garbage/constant";
 import { useEffect, useState } from "react";
 import { useUser } from "../../../store/user";
 import { createChat } from "../../../api/chat";

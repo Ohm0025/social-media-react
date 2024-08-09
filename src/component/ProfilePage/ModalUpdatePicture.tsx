@@ -1,6 +1,6 @@
 import { Box, Modal } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
-import { API_URL } from "../../utils/constant";
+import { API_URL } from "../../../garbage/constant";
 import { updateUser } from "../../api/user";
 import { useLoading } from "../../store/loading";
 import { useUser } from "../../store/user";

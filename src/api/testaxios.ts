@@ -1,6 +1,6 @@
 import axios from "axios";
 import { handleResponse } from "../utils/handleRes";
-import { API_URL } from "../utils/constant";
+import { API_URL } from "../../garbage/constant";
 
 type LoginObj = {
   emailorphone: string;

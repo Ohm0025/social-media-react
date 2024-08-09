@@ -5,7 +5,7 @@ const useProfileIcon = () => {
 
   const clickToOther = (userId: number) => {
     let encodeUserId = encodeURIComponent(userId);
-    navigate("/final-project/profile/" + encodeUserId);
+    navigate("/profile/" + encodeUserId);
   };
   return {
     clickToOther,

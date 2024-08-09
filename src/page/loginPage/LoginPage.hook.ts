@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { userLogin } from "../../api/authenticate";
 import { useCookies } from "react-cookie";
 import { LoginObj } from "../../interface/authen";
-import { BBB_COOKIES } from "../../utils/constant";
+import { BBB_COOKIES } from "../../../garbage/constant";
 import { AxiosError } from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -26,7 +26,7 @@ const useLoginPage = () => {
       if (res.status === 200) {
         setCookies(BBB_COOKIES, res.data?.data);
         toast.success(res.data?.message);
-        navigate("/final-project/");
+        navigate("/");
       }
     } catch (err: AxiosError | any) {
       console.log(err);
