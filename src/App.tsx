@@ -7,7 +7,6 @@ import FriendPage from "./page/friendPage/FriendPage";
 import { useCookies } from "react-cookie";
 import { useEffect } from "react";
 import { callToken } from "./api/authenticate";
-import { BBB_COOKIES } from "../garbage/constant";
 import { useLoading } from "./store/loading";
 import BackDropLoading from "./component/backDropLoaing/BackDropLoading";
 import DelayBox from "./component/delayBox/DelayBox";
@@ -18,6 +17,7 @@ import { AxiosError } from "axios";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 function App() {
+  const BBB_COOKIES = import.meta.env.BBB_COOKIES;
   const [cookies, ,] = useCookies<string>([BBB_COOKIES]);
   const { isLoading, openIsLoading, closeIsLoading } = useLoading();
   const { setUserObj, userObj, resetObj } = useUser();
