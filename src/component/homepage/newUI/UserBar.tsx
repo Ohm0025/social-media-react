@@ -15,6 +15,9 @@ type Props = {
   currentPage: string;
 };
 
+// Vite will not transform this
+const homeIconUrl = new URL(homeIcon, import.meta.url).href;
+
 const UserBar = ({ currentPage }: Props) => {
   const BBB_COOKIES = import.meta.env.BBB_COOKIES;
   const [openPostModal, setOpenPostModal] = useState(false);
@@ -30,7 +33,7 @@ const UserBar = ({ currentPage }: Props) => {
         </div>
         <div className="mt-[26px] text-[16px] font-medium grid grid-cols-5 gap-[10px] sm:flex sm:flex-col sm:gap-[40px] overflow-x-auto sm:overflow-x-hidden">
           <IconUserBar
-            iconSrc={homeIcon}
+            iconSrc={homeIconUrl}
             labelName="Home"
             color={`${currentPage === "" ? "#a9a9a9" : "black"}`}
             cb={() => navigate("/")}
