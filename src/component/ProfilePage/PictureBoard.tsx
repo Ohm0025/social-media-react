@@ -1,5 +1,4 @@
 import { Modal, Box } from "@mui/material";
-import { API_URL } from "../../../garbage/constant";
 import { useState } from "react";
 
 const style = {
@@ -14,6 +13,7 @@ const style = {
   backgroundColor: "white",
   p: 4,
 };
+const API_URL = import.meta.env.VITE_API_URL;
 
 const PictureBoard = ({ myPostArr }: any) => {
   const [isOpen, setIsOpen] = useState(false);

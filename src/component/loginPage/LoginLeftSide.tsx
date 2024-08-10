@@ -1,4 +1,4 @@
-import titleWeb from "/Users/apple/Desktop/westride/final project/final-project-react/src/assets/svg/titleWeb.svg";
+import titleWeb from "../../assets/svg/titleWeb.svg";
 
 const LoginLeftSide = () => {
   return (

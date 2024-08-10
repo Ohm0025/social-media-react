@@ -1,10 +1,10 @@
 import io from "socket.io-client";
-import { API_URL } from "../../../../garbage/constant";
 import { useEffect, useState } from "react";
 import { useUser } from "../../../store/user";
 import { createChat } from "../../../api/chat";
 import { NewChatItem } from "../../../interface/chat";
 
+const API_URL = import.meta.env.VITE_API_URL;
 const useChatBox = (
   targetId: number,
   addChatArr: (newChat: NewChatItem) => void,

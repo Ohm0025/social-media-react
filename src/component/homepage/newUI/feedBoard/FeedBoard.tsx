@@ -1,5 +1,5 @@
 import PostCard from "../../PostCard";
-import filterIcon from "/Users/apple/Desktop/westride/final project/final-project-react/src/assets/svg/filterIcon.svg";
+import filterIcon from "../../../../assets/svg/filterIcon.svg";
 import Dropdown from "react-dropdown";
 import useFeedBoard from "./FeedBoard.hook";
 

@@ -1,4 +1,4 @@
-import logoWeb from "/Users/apple/Desktop/westride/final project/final-project-react/src/assets/svg/titleWeb.svg";
+import logoWeb from "../../assets/svg/titleWeb.svg";
 
 const TopBar = () => {
   return (

@@ -21,8 +21,7 @@ export default {
     },
     extend: {
       backgroundImage: {
-        bgLogin:
-          'url("/Users/apple/Desktop/westride/final project/final-project-react/src/assets/image/bg-login.png")',
+        bgLogin: "url('./src/assets/image/bg-login.png')",
       },
       colors: {
         primary: "#5858FA",

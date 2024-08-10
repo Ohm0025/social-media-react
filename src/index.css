@@ -72,7 +72,6 @@ body {
   background: none !important;
 }
 .btn-coverImage .ql-image::before {
-  /* content: url("/Users/apple/Desktop/westride/final project/final-project-react/src/assets/svg/camera.svg") !important; */
   content: url("src/assets/svg/camera.svg");
   width: 80px;
   height: 70px;

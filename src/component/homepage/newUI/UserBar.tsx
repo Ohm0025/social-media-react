@@ -1,15 +1,14 @@
 import IconUserBar from "../../etc/IconUserBar";
 import ProfileIcon from "../../etc/profileIcon/ProfileIcon";
-import homeIcon from "/Users/apple/Desktop/westride/final project/final-project-react/src/assets/svg/homeIcon.svg";
-import friendIcon from "/Users/apple/Desktop/westride/final project/final-project-react/src/assets/svg/friendIcon.svg";
-import profileIcon from "/Users/apple/Desktop/westride/final project/final-project-react/src/assets/svg/profileIcon.svg";
-import messageIcon from "/Users/apple/Desktop/westride/final project/final-project-react/src/assets/svg/messageIcon.svg";
-import logoutIcon from "/Users/apple/Desktop/westride/final project/final-project-react/src/assets/svg/logoutIcon.svg";
+import homeIcon from "../../../assets/svg/homeIcon.svg";
+import friendIcon from "../../../assets/svg/friendIcon.svg";
+import profileIcon from "../../../assets/svg/profileIcon.svg";
+import messageIcon from "../../../assets/svg/messageIcon.svg";
+import logoutIcon from "../../../assets/svg/logoutIcon.svg";
 import ModalPost from "../../postModal/ModalPost";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import { BBB_COOKIES } from "../../../../garbage/constant";
 import { useUser } from "../../../store/user";
 
 type Props = {
@@ -17,6 +16,7 @@ type Props = {
 };
 
 const UserBar = ({ currentPage }: Props) => {
+  const BBB_COOKIES = import.meta.env.BBB_COOKIES;
   const [openPostModal, setOpenPostModal] = useState(false);
   const { userObj } = useUser();
   const navigate = useNavigate();

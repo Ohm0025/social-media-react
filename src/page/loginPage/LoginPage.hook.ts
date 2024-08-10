@@ -3,12 +3,12 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { userLogin } from "../../api/authenticate";
 import { useCookies } from "react-cookie";
 import { LoginObj } from "../../interface/authen";
-import { BBB_COOKIES } from "../../../garbage/constant";
 import { AxiosError } from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const useLoginPage = () => {
+  const BBB_COOKIES = import.meta.env.BBB_COOKIES;
   const {
     register,
     handleSubmit,

@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { BBB_COOKIES } from "../../../garbage/constant";
 
 type Props = {
   isOpen: boolean;
@@ -10,6 +9,7 @@ type Props = {
 
 const UserDropdown = (props: Props) => {
   const navigate = useNavigate();
+  const BBB_COOKIES = import.meta.env.BBB_COOKIES;
   return (
     props.isOpen && (
       <div className="absolute z-[2] sm:top-4 right-2 min-w-[150px] sm:min-w-[300px] translate-y-[60px] shadow-md rounded-md overflow-hidden">

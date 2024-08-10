@@ -1,6 +1,5 @@
 import { Box, Modal } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
-import { API_URL } from "../../../garbage/constant";
 import { updateUser } from "../../api/user";
 import { useLoading } from "../../store/loading";
 import { useUser } from "../../store/user";
@@ -11,6 +10,8 @@ type Props = {
   oldPicture?: any;
   oldCover?: any;
 };
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 const style = {
   position: "absolute" as "absolute",

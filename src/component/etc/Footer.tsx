@@ -1,7 +1,7 @@
 import LogoFooter from "../logoFooter/LogoFooter";
-import fbLogo from "/Users/apple/Desktop/westride/final project/final-project-react/src/assets/svg/fb-logo.svg";
-import twLogo from "/Users/apple/Desktop/westride/final project/final-project-react/src/assets/svg/tw-logo.svg";
-import lineLogo from "/Users/apple/Desktop/westride/final project/final-project-react/src/assets/svg/line-logo.svg";
+import fbLogo from "../../assets/svg/fb-logo.svg";
+import twLogo from "../../assets/svg/tw-logo.svg";
+import lineLogo from "../../assets/svg/line-logo.svg";
 
 const Footer = () => {
   return (

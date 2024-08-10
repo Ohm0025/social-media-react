@@ -1,6 +1,6 @@
 import { useUser } from "../../../store/user";
 import useProfileIcon from "./ProfileIcon.hook";
-import userIcon from "/Users/apple/Desktop/westride/final project/final-project-react/src/assets/svg/user.svg";
+import userIcon from "../../../assets/svg/user.svg";
 
 type Props = {
   radius: string;
