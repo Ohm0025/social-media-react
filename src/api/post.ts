@@ -1,7 +1,6 @@
 import axios from "../utils/axios";
 
 export const createPost = (postObj: FormData) => {
-  console.log(postObj);
   axios.post("/post", postObj);
 };
 
