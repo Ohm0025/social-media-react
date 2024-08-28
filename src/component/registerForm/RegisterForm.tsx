@@ -1,6 +1,5 @@
 import InputText from "../loginPage/InputText";
 import { useRegisterForm } from "./RegisterForm.hook";
-import { GoogleLogin } from "@react-oauth/google";
 
 type Props = {
   handleClose: () => void;
@@ -131,15 +130,6 @@ const RegisterForm = ({ handleClose }: Props) => {
         </div>
       </div>
       <hr className="border border-line mt-[35px]" />
-      <div className="mt-[18px] text-textTwo text-[14px]">Or</div>
-      <div className="mt-[15px]">
-        <span className="text-textThree text-[16px] font-medium">
-          Login with
-        </span>
-        <div className="rounded-[4px] mt-[20px] w-[203px] h-[40px] flex justify-center items-center">
-          <GoogleLogin onSuccess={(value) => console.log(value)}></GoogleLogin>
-        </div>
-      </div>
     </form>
   );
 };

@@ -11,20 +11,26 @@ const useRegisterForm = (callback: () => void) => {
     formState: { errors },
   } = useForm<RegisterObj>();
 
-  const onSubmitRegister: SubmitHandler<RegisterObj> = async (data) => {
-    try {
-      const res = await userRegister(data);
+  // const onSubmitRegister: SubmitHandler<RegisterObj> = async (data) => {
+  //   try {
+  //     const res = await userRegister(data);
 
-      if (res.status === 201) {
-        toast.success(res.data?.message);
-        callback();
-      }
-    } catch (err: AxiosError | any) {
-      console.log(err.response?.data?.message);
-      toast.error(
-        (err.response?.data && err.response.data?.message) || err.message
-      );
-    }
+  //     if (res.status === 201) {
+  //       toast.success(res.data?.message);
+  //       callback();
+  //     }
+  //   } catch (err: AxiosError | any) {
+  //     console.log(err.response?.data?.message);
+  //     toast.error(
+  //       (err.response?.data && err.response.data?.message) || err.message
+  //     );
+  //   }
+  // };
+
+  const onSubmitRegister = () => {
+    alert(`This is just a demo, so the number of IDs is limited. Please use the following credentials for testing:\n
+ID: test01@gmail.com\n
+Password: 12345678`);
   };
 
   return {

@@ -63,16 +63,6 @@ const FormLogin = ({
           </span>
         </div>
         <hr className="border-t-[1px] border-line mt-[35px]" />
-        <div className="mt-[18px] text-textTwo text-[14px]">Or</div>
-        <div className="mt-[15px]">
-          <span className="text-textThree text-[16px] font-medium">
-            Log In with
-          </span>
-          <div className="rounded-[4px] mt-[20px] w-[203px] h-[40px] flex justify-center items-center">
-            <GoogleLogin
-              onSuccess={(value) => console.log(value)}></GoogleLogin>
-          </div>
-        </div>
       </div>
       <div className="text-[18px] text-textOne flex flex-col items-start mt-[35px]">
         <span>Creators keeps 94% of their earnings!</span>
